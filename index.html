@@ -569,8 +569,44 @@ Som forekomstdiagram:</p>
 </tr>
 </tbody>
 </table>
-<p>// TODO : l&#xF8;se oppgaven</p>
-<h3 class="mume-header" id="video-3-er-svake-entitetsklasser">Video-3-ER-svake-entitetsklasser</h3>
+<ol>
+<li></li>
+</ol>
+<div class="mermaid">flowchart LR
+    classDef keyAttribute text-decoration: underline;
+    emne[Emne]
+    student[Student]
+    tattAv{TattAv}
+    byggerP&#xE5;{ByggerP&#xE5;}
+
+    emne ---|0, N| tattAv ---|1, 1| student
+    emne --- a([EmneID]):::keyAttribute
+    emne --- b([Navn])
+    emne ---|0, N| byggerP&#xE5; ---|0, N| emne
+    tattAv --- c([Karakter])
+    student --- d([StudentNr]):::keyAttribute
+    student --- e([Navn])
+</div><ol start="2">
+<li></li>
+</ol>
+<div class="mermaid">graph TB
+    subgraph Emne
+        TDT4110
+        TDT4100
+        TDT4120
+        TDT4145
+    end
+    subgraph ByggerP&#xE5;
+        bp1[ ]
+        bp2[ ]
+        bp3[ ]
+        bp4[ ]
+    end
+    TDT4100 --- bp1 --- TDT4110
+    TDT4120 --- bp2 --- TDT4100
+    TDT4145 --- bp3 --- TDT4100
+    TDT4145 --- bp4 --- TDT4120
+</div><h3 class="mume-header" id="video-3-er-svake-entitetsklasser">Video-3-ER-svake-entitetsklasser</h3>
 
 <ul>
 <li>En entitetsklasse er en mengde entiteter

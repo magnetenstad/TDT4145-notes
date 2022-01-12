@@ -246,8 +246,43 @@ TDT4120 | TDT4100
 TDT4145 | TDT4100
 TDT4145 | TDT4120
 
-// TODO : løse oppgaven
+1.
+```mermaid
+flowchart LR
+    classDef keyAttribute text-decoration: underline;
+    emne[Emne]
+    student[Student]
+    tattAv{TattAv}
+    byggerPå{ByggerPå}
 
+    emne ---|0, N| tattAv ---|1, 1| student
+    emne --- a([EmneID]):::keyAttribute
+    emne --- b([Navn])
+    emne ---|0, N| byggerPå ---|0, N| emne
+    tattAv --- c([Karakter])
+    student --- d([StudentNr]):::keyAttribute
+    student --- e([Navn])
+```
+2.
+```mermaid
+graph TB
+    subgraph Emne
+        TDT4110
+        TDT4100
+        TDT4120
+        TDT4145
+    end
+    subgraph ByggerPå
+        bp1[ ]
+        bp2[ ]
+        bp3[ ]
+        bp4[ ]
+    end
+    TDT4100 --- bp1 --- TDT4110
+    TDT4120 --- bp2 --- TDT4100
+    TDT4145 --- bp3 --- TDT4100
+    TDT4145 --- bp4 --- TDT4120
+```
 
 ### Video-3-ER-svake-entitetsklasser
 - En entitetsklasse er en mengde entiteter
