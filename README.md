@@ -177,12 +177,14 @@ graph LR
 ER-diagrammet blir da som følger:
 
 ```mermaid
-graph LR
+flowchart LR
+    classDef keyAttribute text-decoration: underline;
+    
     photographer[Fotograf]
     photograph[Fotografi]
     motive[Motiv]
     
-    id([identifikator])
+    id([identifikator]):::keyAttribute
     title([tittel])
     date([dato])
     name([navn])
@@ -203,5 +205,90 @@ graph LR
     photograph --- date
     motive --- id
     motive --- description
-    
 ```
+
+### Video-2-ER-rekursive-relasjonsklasser
+- Rekursiver relasjonsklasser er relasjonsklasser der samme entitetsklasse inngår flere ganger.
+- En entitetsklasse kan ha flere roller i relasjonsklassen.
+
+```mermaid
+flowchart LR
+    classDef keyAttribute text-decoration: underline;
+    person[Person]
+    name([Navn]):::keyAttribute
+    leaderOf{LederFor}
+    person --- name
+    person ---|0, N sjef| leaderOf ---|0, 1 underordnet| person
+```
+
+#### Oppgave
+- Ta utgangspunkt i Emne-Student-modellen:
+```mermaid
+flowchart LR
+    classDef keyAttribute text-decoration: underline;
+    emne[Emne]
+    student[Student]
+    tattAv{TattAv}
+    emne ---|0, N| tattAv ---|1, 1| student
+    emne --- a([EmneID]):::keyAttribute
+    emne --- b([Navn])
+    tattAv --- c([Karakter])
+    student --- d([StudentNr]):::keyAttribute
+    student --- e([Navn])
+```
+- Du skal utvide modellen slik at vi kan registrere hvilke emner som anbefales som forkunnskaper for et emne.
+- Tegn et forekomstdiagram med utgangspunkt i følgende tabell
+
+Emne | Bygger på
+---  | ---
+TDT4100 | TDT4110
+TDT4120 | TDT4100
+TDT4145 | TDT4100
+TDT4145 | TDT4120
+
+// TODO : løse oppgaven
+
+
+### Video-3-ER-svake-entitetsklasser
+- En entitetsklasse er en mengde entiteter
+  - Vi kan altså ikke ha to like entiteter i en entitetsklasse
+  - Alle entiteter må ha en unik identifikator (nøkkelattributt)
+  - Eksempel:
+    - Kommuner har et unikt KommuneNr og et kommunenavn
+    - Kommuner har gater som har unike gatenavn innenfor kommunen
+    - Problem: entitetsklassen Gate har ingen (naturlig) nøkkel
+
+```mermaid
+flowchart LR
+    classDef keyAttribute text-decoration: underline;
+    kommune[Kommune]
+    gate[Gate]
+    harGate{harGate}
+    kommune ---|0, N| harGate ---|1, 1| gate
+    kommune --- a([Kommunenummer]):::keyAttribute
+    kommune --- b([Kommunenavn])
+    gate --- c([Gatenavn])
+```
+- En entitetsklasse som mangler en naturlig nøkkel, kan av og til identifiseres gjennom en *indentifiserende relasjonsklasse* til en annen (identifiserende) entitetsklasse. Dette kalles en *svak entitetsklasse* (siden den mangler en nøkkel)
+  - Den må være eksistensavhengig av deltakelse i den identifiserende relasjonsklassen
+  - Den må ha ett eller flere attributt som identifiserer entiteter unikt sammen med nøkkelen til den identifiserende entitetsklassen
+- Fordelen er at vi unngår å legge til et "unødvendig" nøkkelattributt
+
+#### Oppgave
+- Ta utgangspunkt i Emne-Student-modellen:
+```mermaid
+flowchart LR
+    classDef keyAttribute text-decoration: underline;
+    emne[Emne]
+    student[Student]
+    tattAv{TattAv}
+    emne ---|0, N| tattAv ---|1, 1| student
+    emne --- a([EmneID]):::keyAttribute
+    emne --- b([Navn])
+    tattAv --- c([Karakter])
+    student --- d([StudentNr]):::keyAttribute
+    student --- e([Navn])
+```
+- Du skal utvide modellen slik at vi kan holde oversikt over alle eksamener som er arrangert i et emne. Et emne har maks en eksamen på en bestemt dato. Ulike emner kan ha eksamen på samme dag. En student kan ha tatt flere eksamener i et og samme emne, i så fall skal vi kunne lagre oppnådd karakter på hver av disse eksamenene.
+
+// TODO: løse oppgaven

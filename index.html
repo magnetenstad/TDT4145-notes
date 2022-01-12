@@ -482,12 +482,14 @@ Som forekomstdiagram:</p>
 </li>
 </ol>
 <p>ER-diagrammet blir da som f&#xF8;lger:</p>
-<div class="mermaid">graph LR
+<div class="mermaid">flowchart LR
+    classDef keyAttribute text-decoration: underline;
+    
     photographer[Fotograf]
     photograph[Fotografi]
     motive[Motiv]
     
-    id([identifikator])
+    id([identifikator]):::keyAttribute
     title([tittel])
     date([dato])
     name([navn])
@@ -508,8 +510,122 @@ Som forekomstdiagram:</p>
     photograph --- date
     motive --- id
     motive --- description
-    
-</div>
+</div><h3 class="mume-header" id="video-2-er-rekursive-relasjonsklasser">Video-2-ER-rekursive-relasjonsklasser</h3>
+
+<ul>
+<li>Rekursiver relasjonsklasser er relasjonsklasser der samme entitetsklasse inng&#xE5;r flere ganger.</li>
+<li>En entitetsklasse kan ha flere roller i relasjonsklassen.</li>
+</ul>
+<div class="mermaid">flowchart LR
+    classDef keyAttribute text-decoration: underline;
+    person[Person]
+    name([Navn]):::keyAttribute
+    leaderOf{LederFor}
+    person --- name
+    person ---|0, N sjef| leaderOf ---|0, 1 underordnet| person
+</div><h4 class="mume-header" id="oppgave">Oppgave</h4>
+
+<ul>
+<li>Ta utgangspunkt i Emne-Student-modellen:</li>
+</ul>
+<div class="mermaid">flowchart LR
+    classDef keyAttribute text-decoration: underline;
+    emne[Emne]
+    student[Student]
+    tattAv{TattAv}
+    emne ---|0, N| tattAv ---|1, 1| student
+    emne --- a([EmneID]):::keyAttribute
+    emne --- b([Navn])
+    tattAv --- c([Karakter])
+    student --- d([StudentNr]):::keyAttribute
+    student --- e([Navn])
+</div><ul>
+<li>Du skal utvide modellen slik at vi kan registrere hvilke emner som anbefales som forkunnskaper for et emne.</li>
+<li>Tegn et forekomstdiagram med utgangspunkt i f&#xF8;lgende tabell</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Emne</th>
+<th>Bygger p&#xE5;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TDT4100</td>
+<td>TDT4110</td>
+</tr>
+<tr>
+<td>TDT4120</td>
+<td>TDT4100</td>
+</tr>
+<tr>
+<td>TDT4145</td>
+<td>TDT4100</td>
+</tr>
+<tr>
+<td>TDT4145</td>
+<td>TDT4120</td>
+</tr>
+</tbody>
+</table>
+<p>// TODO : l&#xF8;se oppgaven</p>
+<h3 class="mume-header" id="video-3-er-svake-entitetsklasser">Video-3-ER-svake-entitetsklasser</h3>
+
+<ul>
+<li>En entitetsklasse er en mengde entiteter
+<ul>
+<li>Vi kan alts&#xE5; ikke ha to like entiteter i en entitetsklasse</li>
+<li>Alle entiteter m&#xE5; ha en unik identifikator (n&#xF8;kkelattributt)</li>
+<li>Eksempel:
+<ul>
+<li>Kommuner har et unikt KommuneNr og et kommunenavn</li>
+<li>Kommuner har gater som har unike gatenavn innenfor kommunen</li>
+<li>Problem: entitetsklassen Gate har ingen (naturlig) n&#xF8;kkel</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="mermaid">flowchart LR
+    classDef keyAttribute text-decoration: underline;
+    kommune[Kommune]
+    gate[Gate]
+    harGate{harGate}
+    kommune ---|0, N| harGate ---|1, 1| gate
+    kommune --- a([Kommunenummer]):::keyAttribute
+    kommune --- b([Kommunenavn])
+    gate --- c([Gatenavn])
+</div><ul>
+<li>En entitetsklasse som mangler en naturlig n&#xF8;kkel, kan av og til identifiseres gjennom en <em>indentifiserende relasjonsklasse</em> til en annen (identifiserende) entitetsklasse. Dette kalles en <em>svak entitetsklasse</em> (siden den mangler en n&#xF8;kkel)
+<ul>
+<li>Den m&#xE5; v&#xE6;re eksistensavhengig av deltakelse i den identifiserende relasjonsklassen</li>
+<li>Den m&#xE5; ha ett eller flere attributt som identifiserer entiteter unikt sammen med n&#xF8;kkelen til den identifiserende entitetsklassen</li>
+</ul>
+</li>
+<li>Fordelen er at vi unng&#xE5;r &#xE5; legge til et &quot;un&#xF8;dvendig&quot; n&#xF8;kkelattributt</li>
+</ul>
+<h4 class="mume-header" id="oppgave-1">Oppgave</h4>
+
+<ul>
+<li>Ta utgangspunkt i Emne-Student-modellen:</li>
+</ul>
+<div class="mermaid">flowchart LR
+    classDef keyAttribute text-decoration: underline;
+    emne[Emne]
+    student[Student]
+    tattAv{TattAv}
+    emne ---|0, N| tattAv ---|1, 1| student
+    emne --- a([EmneID]):::keyAttribute
+    emne --- b([Navn])
+    tattAv --- c([Karakter])
+    student --- d([StudentNr]):::keyAttribute
+    student --- e([Navn])
+</div><ul>
+<li>Du skal utvide modellen slik at vi kan holde oversikt over alle eksamener som er arrangert i et emne. Et emne har maks en eksamen p&#xE5; en bestemt dato. Ulike emner kan ha eksamen p&#xE5; samme dag. En student kan ha tatt flere eksamener i et og samme emne, i s&#xE5; fall skal vi kunne lagre oppn&#xE5;dd karakter p&#xE5; hver av disse eksamenene.</li>
+</ul>
+<p>// TODO: l&#xF8;se oppgaven</p>
+
       </div>
       
       
