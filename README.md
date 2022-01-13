@@ -54,7 +54,7 @@
 ### Relasjonsklasser (-typer)
 - Mengden av likeartede relasjoner mellom samme enitetsklasser
 
-![](/assets/er_diagram_person_dog.svg)
+![](/assets/er_diagram_relation_example.svg)
 
 ### Forekomstdiagram
 Som mengder:
