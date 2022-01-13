@@ -39,7 +39,9 @@
 
 ### Entitetsklasse
 - Mengden av alle likeartede entiteter som er av samme klasse (type) og har samme egenskaper
-- 
+
+Eksempel i ER-diagram:
+
 ![](/assets/er_diagram_entity_example.svg)
 
 ### Relasjoner
@@ -53,6 +55,8 @@
 
 ### Relasjonsklasser (-typer)
 - Mengden av likeartede relasjoner mellom samme enitetsklasser
+
+Eksempel i ER-diagram:
 
 ![](/assets/er_diagram_relation_example.svg)
 
@@ -110,7 +114,7 @@ ER-diagrammet blir da som følger:
 ![](assets/er_diagram_task_photography.svg)
 
 
-### Video-2-ER-rekursive-relasjonsklasser
+## Video-2-ER-rekursive-relasjonsklasser
 - Rekursiver relasjonsklasser er relasjonsklasser der samme entitetsklasse inngår flere ganger.
 - En entitetsklasse kan ha flere roller i relasjonsklassen.
 
@@ -118,12 +122,12 @@ ER-diagrammet blir da som følger:
 
 
 #### Oppgave
-- Ta utgangspunkt i Emne-Student-modellen:
+Ta utgangspunkt i Emne-Student-modellen:
 
 ![](assets/er_diagram_emne_student_model.svg)
 
-- Du skal utvide modellen slik at vi kan registrere hvilke emner som anbefales som forkunnskaper for et emne.
-- Tegn et forekomstdiagram med utgangspunkt i følgende tabell
+1. Du skal utvide modellen slik at vi kan registrere hvilke emner som anbefales som forkunnskaper for et emne.
+2. Tegn et forekomstdiagram med utgangspunkt i følgende tabell
 
 Emne | Bygger på
 ---  | ---
@@ -132,32 +136,39 @@ TDT4120 | TDT4100
 TDT4145 | TDT4100
 TDT4145 | TDT4120
 
+##### Løsning:
 1.
 ![](assets/er_diagram_emne_student_model_recursive.svg)
 2.
 ![](assets/entity_occurence_diagram_courses.svg)
 
-### Video-3-ER-svake-entitetsklasser
+## Video-3-ER-svake-entitetsklasser
 - En entitetsklasse er en mengde entiteter
   - Vi kan altså ikke ha to like entiteter i en entitetsklasse
   - Alle entiteter må ha en unik identifikator (nøkkelattributt)
   - Eksempel:
     - Kommuner har et unikt KommuneNr og et kommunenavn
     - Kommuner har gater som har unike gatenavn innenfor kommunen
-    - Problem: entitetsklassen Gate har ingen (naturlig) nøkkel
+    - **Problem(!)**: entitetsklassen Gate har ingen (naturlig) nøkkel
 
-![](assets/er_diagram_task_municipality.svg)
+![](assets/er_diagram_weak_entity.svg)
 
 - En entitetsklasse som mangler en naturlig nøkkel, kan av og til identifiseres gjennom en *indentifiserende relasjonsklasse* til en annen (identifiserende) entitetsklasse. Dette kalles en *svak entitetsklasse* (siden den mangler en nøkkel)
   - Den må være eksistensavhengig av deltakelse i den identifiserende relasjonsklassen
   - Den må ha ett eller flere attributt som identifiserer entiteter unikt sammen med nøkkelen til den identifiserende entitetsklassen
 - Fordelen er at vi unngår å legge til et "unødvendig" nøkkelattributt
+- **Løsning** på oppgaven over:
+
+![](assets/er_diagram_weak_entity_solution.svg)
+
 
 #### Oppgave
-- Ta utgangspunkt i Emne-Student-modellen:
+Ta utgangspunkt i Emne-Student-modellen:
 
 ![](assets/er_diagram_emne_student_model.svg)
 
 - Du skal utvide modellen slik at vi kan holde oversikt over alle eksamener som er arrangert i et emne. Et emne har maks en eksamen på en bestemt dato. Ulike emner kan ha eksamen på samme dag. En student kan ha tatt flere eksamener i et og samme emne, i så fall skal vi kunne lagre oppnådd karakter på hver av disse eksamenene.
 
-// TODO: løse oppgaven
+##### Løsning
+
+![](assets/er_diagram_emne_student_model_weak.svg)
