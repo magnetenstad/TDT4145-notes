@@ -39,32 +39,8 @@
 
 ### Entitetsklasse
 - Mengden av alle likeartede entiteter som er av samme klasse (type) og har samme egenskaper
-
-```mermaid
-flowchart LR
-    classDef keyAttribute text-decoration: underline;
-    classDef derivedAttribute stroke-dasharray: 0.4em;
-    classDef multivaluedAttribute stroke-width: 0.1rem;
-
-    person[Person]
-    birthdate([Fødselsdato])
-    birthday([Dag])
-    birthmonth([Måned])
-    birthyear([År])
-    phone([Telefonnummer]):::multivaluedAttribute
-    age([Alder]):::derivedAttribute
-    pid([PID]):::keyAttribute
-    name([Navn])
-
-    person --- birthdate
-    birthdate --- birthday
-    birthdate --- birthmonth
-    birthdate --- birthyear
-    person --- phone
-    person --- age
-    person --- pid
-    person --- name
-```
+- 
+![](/assets/er_diagram_entity_example.svg)
 
 ### Relasjoner
 - Relasjon - sammenheng (assosiasjon) mellom to eller flere enititeter.
@@ -78,22 +54,7 @@ flowchart LR
 ### Relasjonsklasser (-typer)
 - Mengden av likeartede relasjoner mellom samme enitetsklasser
 
-```mermaid
-graph LR
-    person[Person]
-    dog[Hund]
-    owns{Eier}
-    bitBy{BittAv}
-
-    person ---|0, N| owns ---|1, 1| dog
-    person ---|0, T| bitBy ---|0, S| dog
-```
-- Alternativ 'kråkefotmodell' (ikke pensum):
-```mermaid
-erDiagram
-    Person || -- o{ Hund: Eier
-    Person }o -- o{ Hund: BittAv
-```
+![](/assets/er_diagram_person_dog.svg)
 
 ### Forekomstdiagram
 Som mengder:
@@ -176,32 +137,4 @@ graph LR
 
 ER-diagrammet blir da som følger:
 
-```mermaid
-graph LR
-    photographer[Fotograf]
-    photograph[Fotografi]
-    motive[Motiv]
-    
-    id([identifikator])
-    title([tittel])
-    date([dato])
-    name([navn])
-    nationality([nasjonalitet])
-    description([beskrivelse])
-
-    takenBy{tattAv}
-    shows{viser}
-
-    photographer ---|0, N| takenBy ---|0, 1| photograph
-    photograph ---|0, N| shows ---|0, N| motive
-
-    photographer --- id
-    photographer --- name
-    photographer --- nationality
-    photograph --- id
-    photograph --- title
-    photograph --- date
-    motive --- id
-    motive --- description
-    
-```
+![](assets/er_diagram_task_photography.svg)
