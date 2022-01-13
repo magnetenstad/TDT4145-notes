@@ -68,37 +68,7 @@ $$
 $$
 Som forekomstdiagram:
 
-```mermaid
-graph LR
-    subgraph Person
-        A
-        B
-        C
-        D
-    end
-    subgraph Eier
-        e1[" "]
-        e2[" "]
-        e3[" "]
-    end
-    subgraph BittAv
-        ba1[" "]
-        ba2[" "]
-        ba3[" "]
-    end
-    subgraph Hund
-        1
-        2
-        3
-    end
-    B --- e1 --- 1
-    D --- e2 --- 3
-    C --- e3 --- 2
-
-    D --- ba1 --- 1
-    C --- ba2 --- 2
-    A --- ba3 --- 2
-```
+![](assets/entity_occurence_diagram_example.svg)
 
 ### Trinn i utvikling av datamodell
 1. Finn de nødvendige entitetsklassene
@@ -165,25 +135,7 @@ TDT4145 | TDT4120
 1.
 ![](assets/er_diagram_emne_student_model_recursive.svg)
 2.
-```mermaid
-graph TB
-    subgraph Emne
-        TDT4110
-        TDT4100
-        TDT4120
-        TDT4145
-    end
-    subgraph ByggerPå
-        bp1[ ]
-        bp2[ ]
-        bp3[ ]
-        bp4[ ]
-    end
-    TDT4100 --- bp1 --- TDT4110
-    TDT4120 --- bp2 --- TDT4100
-    TDT4145 --- bp3 --- TDT4100
-    TDT4145 --- bp4 --- TDT4120
-```
+![](assets/entity_occurence_diagram_courses.svg)
 
 ### Video-3-ER-svake-entitetsklasser
 - En entitetsklasse er en mengde entiteter
