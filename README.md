@@ -149,7 +149,7 @@ TDT4145 | TDT4120
 
 ![](assets/er_diagram_weak_entity.svg)
 
-- En entitetsklasse som mangler en naturlig nøkkel, kan av og til identifiseres gjennom en *indentifiserende relasjonsklasse* til en annen (identifiserende) entitetsklasse. Dette kalles en *svak entitetsklasse* (siden den mangler en nøkkel)
+- En entitetsklasse som mangler en naturlig nøkkel, kan av og til identifiseres gjennom en *identifiserende relasjonsklasse* til en annen (identifiserende) entitetsklasse. Dette kalles en *svak entitetsklasse* (siden den mangler en nøkkel)
   - Den må være eksistensavhengig av deltakelse i den identifiserende relasjonsklassen
   - Den må ha ett eller flere attributt som identifiserer entiteter unikt sammen med nøkkelen til den identifiserende entitetsklassen
 - Fordelen er at vi unngår å legge til et "unødvendig" nøkkelattributt
