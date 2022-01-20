@@ -169,6 +169,71 @@ Ta utgangspunkt i Emne-Student-modellen:
 
 ![](assets/er_diagram_emne_student_model_weak.svg)
 
+
+
+## Video-5-EER-spesialisering
+
+### Enhanced ER (EER)
+- Standard ER, pluss
+  - Støtte for spesialisering/generalisering
+    - Subklasser/superklasser
+  - Entitetsklasser med entiteter fra ulike entitetsklasser
+    - Kategorier (union-typer)
+  - Arv
+    - Relasjonsklasser og attributter
+- Pensum
+  - Spesialisering/generalisering: 4.1-4.3
+  - Kategorier: 4.4
+
+### Spesialisering/generalisering
+- Spesialisering
+  - Å definere en mengde subklasser (underklasser) for en entitetsklasse (superklasse)
+- Generalisering
+  - Samling av entitetsklasser med felles egenskaper som subklasser under en (felles) superklasse (overklasse)
+- De felles egenskapene modelleres på superklassen
+- Det som er unikt for en subklasse, modelleres på subklassen
+
+### Notasjon m.m.
+- En entitet i en subklasse er alltid en entitet i superklassen
+  - Men har en spesiell rolle
+- Entiteter i subklasser arver alle superklassens attributter og relasjoner
+- Subklassene kan ha egne
+  - Attributter
+  - Relasjonsklasser
+- Entiteter må generelt ikke være med i en subklasse, men det kan være et krav
+- En entitet kan være med i bare en subklasse, eller den kan være med i flere
+
+### Restriksjoner (1)
+- Regelbasert eller brukerstyrt deltakelse i subklasse
+
+### Restriksjoner (2)
+- Disjunkte eller overlappende subklasser
+  - Hvorvidt en entitet kan være i flere subklasser samtidig
+- Delvis eller total spesialisering (frivillig eller tvungen)
+  - Total/tvungen vil si at alle entiteter i superklassen må også være i minst en subklasse
+
+### Restriksjoner (4)
+Entitet deltar i | disjunkt | overlappende
+--- | --- | ---
+delvis | 0-1 subklasser | 0-n subklasser
+total | 1 subklasse | 1-n subklasser
+
+
+
+## Video-6-EER-kategorier
+
+### Kategorier: Subklasser med flere superklasser
+- Mengden entiteter i en kategori er en delmengde av entitetene i superklassen
+- Kategorier kalles også union-klasse, derfor U i sirkelen
+- Selektiv arv
+
+### Restriksjoner: Delvis/total
+- På samme måte som ved spesialisering/generalisering
+
+### Total kategori eller superklasse?
+- Når alle entiteter i superklassene for en kategori må delta i kategorien bør vi vurdere om en løsning med spesialisering/generalisering blir bedre
+
+
 </details>
 
 <details open>
