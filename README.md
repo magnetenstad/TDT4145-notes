@@ -193,6 +193,9 @@ Ta utgangspunkt i Emne-Student-modellen:
 - De felles egenskapene modelleres på superklassen
 - Det som er unikt for en subklasse, modelleres på subklassen
 
+![](assets/er_diagram_specialisation_generalisation.svg)
+![](assets/entity_occurence_diagram_hospital.svg)
+
 ### Notasjon m.m.
 - En entitet i en subklasse er alltid en entitet i superklassen
   - Men har en spesiell rolle
@@ -206,11 +209,15 @@ Ta utgangspunkt i Emne-Student-modellen:
 ### Restriksjoner (1)
 - Regelbasert eller brukerstyrt deltakelse i subklasse
 
+![](assets/er_diagram_participation_subclass.svg)
+
 ### Restriksjoner (2)
 - Disjunkte eller overlappende subklasser
   - Hvorvidt en entitet kan være i flere subklasser samtidig
 - Delvis eller total spesialisering (frivillig eller tvungen)
   - Total/tvungen vil si at alle entiteter i superklassen må også være i minst en subklasse
+
+![](assets/er_diagram_disjunct_overlap_partial_total.svg)
 
 ### Restriksjoner (4)
 Entitet deltar i | disjunkt | overlappende
@@ -226,6 +233,8 @@ total | 1 subklasse | 1-n subklasser
 - Mengden entiteter i en kategori er en delmengde av entitetene i superklassen
 - Kategorier kalles også union-klasse, derfor U i sirkelen
 - Selektiv arv
+
+![](assets/er_diagram_category_example.svg)
 
 ### Restriksjoner: Delvis/total
 - På samme måte som ved spesialisering/generalisering
