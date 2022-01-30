@@ -385,7 +385,114 @@ Lag relasjonsskjema for følgende ER-diagram
 ## Video-8-relasjonsdatabaser-mapping-av-EER
 
 ### ER til RDB (8): spesialisering/generalisering
+![](assets/video/8/1.png)
 
+### ER til RDB (9): kategorier
+![](assets/video/8/2.png)
+
+### Oppgave: spesialisering/generalisering
+Oversett følgende til RDB-skjema
+![](assets/video/8/3.png)
+
+### Oppgave: kategorier
+Oversett følgende til RDB-skjema
+![](assets/video/8/4.png)
+
+
+
+## Video-9-relasjonsdatabaser-relasjonsalgrebra-del-1
+
+### Relasjonsalgebra
+- Operatorer for å manipulere tabeller:
+  - Vi ser kun på spørrefunksjonalitet, ikke innsetting, endring eller sletting
+  - Viktig grunnlag for å forstå hva man kan gjøre med tabeller, for normaliseringsteorien og for spørreoptimalisering og spørreutføring
+- Husk: tabellforekomster er mengder av tuppler
+- Operatorene er lukket over tabeller:
+  - Operanden(e) er tabell(er), resultatet er en ny tabell
+- Mengdeoperatorer:
+  - Union, snitt, mengdedifferanse (minus), kartesisk produkt, ..
+- Spesielle operatorer:
+  - Seleksjon, projeksjon, join-operatorer, ..
+
+### Projeksjon
+![](assets/video/9/1.png)
+
+### Seleksjon
+![](assets/video/9/2.png)
+
+### Kan kombinere operatorer
+![](assets/video/9/3.png)
+
+### Mengdeoperatorene: union, snitt of differanse
+![](assets/video/9/4.png)
+
+### Kartesisk produkt (X)
+- Kombinerer alle tuppler (rader) i den ene tabellen med alle tuppler i den andre tabellen
+- Resultattabellen får alle kolonner fra den første tabellen og alle kolonner fra den andre
+  - Ved behov kan vi prefikse med tabellnavn
+- To operand-tabeller med henholdsvis r og s tuppler, vil gi resultattabell med r*s tuppler
+  - Kan lett gi svært store resultattabeller
+- En ukritisk sammenstilling
+
+![](assets/video/9/5.png)
+
+### Oppgaver
+![](assets/video/9/6.png)
+
+
+
+## Video-10-relasjonsdatabaser-relasjonsalgrebra-del-2
+
+### JOIN - kritisk sammenstilling
+![](assets/video/10/1.png)
+
+### Oppgaver
+![](assets/video/10/2.png)
+
+
+
+## Video-11-relasjonsdatabaser-relasjonsalgrebra-del-3
+
+### EQUIJOIN
+![](assets/video/11/1.png)
+
+### Naturlig join (*)
+- Som EQUIJOIN, men
+  - \* som operatorsymbol
+  - Implisitt join-betingelse
+    - Likhet i alle par av kolonner me like navn
+  - Fjerner alle "duplikatkolonner"
+- Tilsvarer kartesisk produkt + seleksjon + projeksjon
+- Risiko:
+  - Kan bli større join-betingelse enn man ønsker
+  - Ved endringer i operand-tabellene kan join-betingelsen endre seg
+
+### Omdøping og sortering
+![](assets/video/11/2.png)
+
+### Outer-join-operatorer
+- Får med alle rader i en eller begge operand-tabellene
+  - Left outer join: alle rader fra "venstre-operanden"
+  - Right outer join: alle rader fra "høyre-operanden"
+  - Full outer join: alle rader fra begge operander
+- Filterer ikke bort rader slik som inner-join-operatorer
+- Rader som mangler "matchende" rad i den andre tabellen kombineres med en rad der alle attributter er satt til NULL-verdi
+
+### Oppgaver
+![](assets/video/11/3.png)
+
+
+
+## Video-12-relasjonsdatabaser-relasjonsalgrebra-del-4
+
+### Aggregering / gruppering
+![](assets/video/12/1.png)
+
+### Q: Antall hunder per rase
+![](assets/video/12/2.png)
+
+### Oppgave
+![](assets/video/12/3.png)
 
 
 
