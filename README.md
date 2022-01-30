@@ -47,7 +47,7 @@
 
 Eksempel i ER-diagram:
 
-![](/assets/er_diagram_entity_example.svg)
+![](assets/video/1/er_diagram_entity_example.svg)
 
 ### Relasjoner
 - Relasjon - sammenheng (assosiasjon) mellom to eller flere enititeter.
@@ -63,7 +63,7 @@ Eksempel i ER-diagram:
 
 Eksempel i ER-diagram:
 
-![](/assets/er_diagram_relation_example.svg)
+![](assets/video/1/er_diagram_relation_example.svg)
 
 ### Forekomstdiagram
 Som mengder:
@@ -77,7 +77,7 @@ $$
 $$
 Som forekomstdiagram:
 
-![](assets/entity_occurence_diagram_example.svg)
+![](assets/video/1/entity_occurence_diagram_example.svg)
 
 ### Oppgave: Enkel fotodatabase
 1. Entitetsklasser
@@ -107,20 +107,20 @@ Som forekomstdiagram:
 
 ER-diagrammet blir da som følger:
 
-![](assets/er_diagram_task_photography.svg)
+![](assets/video/1/er_diagram_task_photography.svg)
 
 
 ## Video-2-ER-rekursive-relasjonsklasser
 - Rekursiver relasjonsklasser er relasjonsklasser der samme entitetsklasse inngår flere ganger.
 - En entitetsklasse kan ha flere roller i relasjonsklassen.
 
-![](assets/er_diagram_recursive_relation_example.svg)
+![](assets/video/2/er_diagram_recursive_relation_example.svg)
 
 
 #### Oppgave
 Ta utgangspunkt i Emne-Student-modellen:
 
-![](assets/er_diagram_emne_student_model.svg)
+![](assets/video/2/er_diagram_emne_student_model.svg)
 
 1. Du skal utvide modellen slik at vi kan registrere hvilke emner som anbefales som forkunnskaper for et emne.
 2. Tegn et forekomstdiagram med utgangspunkt i følgende tabell
@@ -134,9 +134,9 @@ TDT4145 | TDT4120
 
 ##### Løsning:
 1.
-![](assets/er_diagram_emne_student_model_recursive.svg)
+![](assets/video/2/er_diagram_emne_student_model_recursive.svg)
 2.
-![](assets/entity_occurence_diagram_courses.svg)
+![](assets/video/2/entity_occurence_diagram_courses.svg)
 
 ## Video-3-ER-svake-entitetsklasser
 - En entitetsklasse er en mengde entiteter
@@ -147,7 +147,7 @@ TDT4145 | TDT4120
     - Kommuner har gater som har unike gatenavn innenfor kommunen
     - **Problem(!)**: entitetsklassen Gate har ingen (naturlig) nøkkel
 
-![](assets/er_diagram_weak_entity.svg)
+![](assets/video/3/er_diagram_weak_entity.svg)
 
 - En entitetsklasse som mangler en naturlig nøkkel, kan av og til identifiseres gjennom en *identifiserende relasjonsklasse* til en annen (identifiserende) entitetsklasse. Dette kalles en *svak entitetsklasse* (siden den mangler en nøkkel)
   - Den må være eksistensavhengig av deltakelse i den identifiserende relasjonsklassen
@@ -155,23 +155,23 @@ TDT4145 | TDT4120
 - Fordelen er at vi unngår å legge til et "unødvendig" nøkkelattributt
 - **Løsning** på problemet over:
 
-![](assets/er_diagram_weak_entity_solution.svg)
+![](assets/video/3/er_diagram_weak_entity_solution.svg)
 
 
 #### Oppgave
 Ta utgangspunkt i Emne-Student-modellen:
 
-![](assets/er_diagram_emne_student_model.svg)
+![](assets/video/2/er_diagram_emne_student_model.svg)
 
 - Du skal utvide modellen slik at vi kan holde oversikt over alle eksamener som er arrangert i et emne. Et emne har maks en eksamen på en bestemt dato. Ulike emner kan ha eksamen på samme dag. En student kan ha tatt flere eksamener i et og samme emne, i så fall skal vi kunne lagre oppnådd karakter på hver av disse eksamenene.
 
 ##### Løsning
 
-![](assets/er_diagram_emne_student_model_weak.svg)
+![](assets/video/3/er_diagram_emne_student_model_weak.svg)
 
 
 
-## Video-5-EER-spesialisering
+## Video-4-EER-spesialisering
 
 ### Enhanced ER (EER)
 - Standard ER, pluss
@@ -193,8 +193,8 @@ Ta utgangspunkt i Emne-Student-modellen:
 - De felles egenskapene modelleres på superklassen
 - Det som er unikt for en subklasse, modelleres på subklassen
 
-![](assets/er_diagram_specialisation_generalisation.svg)
-![](assets/entity_occurence_diagram_hospital.svg)
+![](assets/video/4/er_diagram_specialisation_generalisation.svg)
+![](assets/video/4/entity_occurence_diagram_hospital.svg)
 
 ### Notasjon m.m.
 - En entitet i en subklasse er alltid en entitet i superklassen
@@ -209,7 +209,7 @@ Ta utgangspunkt i Emne-Student-modellen:
 ### Restriksjoner (1)
 - Regelbasert eller brukerstyrt deltakelse i subklasse
 
-![](assets/er_diagram_participation_subclass.svg)
+![](assets/video/4/er_diagram_participation_subclass.svg)
 
 ### Restriksjoner (2)
 - Disjunkte eller overlappende subklasser
@@ -217,7 +217,7 @@ Ta utgangspunkt i Emne-Student-modellen:
 - Delvis eller total spesialisering (frivillig eller tvungen)
   - Total/tvungen vil si at alle entiteter i superklassen må også være i minst en subklasse
 
-![](assets/er_diagram_disjunct_overlap_partial_total.svg)
+![](assets/video/4/er_diagram_disjunct_overlap_partial_total.svg)
 
 ### Restriksjoner (4)
 Entitet deltar i | disjunkt | overlappende
@@ -229,18 +229,18 @@ total | 1 subklasse | 1-n subklasser
 Idrettslag kan ha avdelinger som fotball eller håndball. Idrettslag har medlemmer som kan være tilknyttet en eller flere avdelinger. En avdeling kan organisere en eller flere treningsgrupper. Alle personer som har en rolle i et idrettslag eller deltar i aktiviteter i laget må være medlem. En person kan være medlem i flere idrettslag. Hver treningsgruppe må ha en ansvarlig leder, kan ha et antall deltakende utøvere og kan ha en eller flere trenere. Det finnes et antall trenerkurs. Hvis en trener har tatt et kurs skal dette være registrert. Hver avdeling kan ha et antall ledere i ulike lederroller. Den som leder en treningsgruppe må ha en lederrolle i avdelingen som organiserer treningsgruppen. Medlemmer kan ha ulike roller, for eksempel være både leder, trener og utøver.
 
 #### Løsning
-![](assets/er_diagram_video_5_solution.svg)
+![](assets/video/4/er_diagram_solution.svg)
+NB: mistanke om at relasjonene av tredje grad er feil!
 
 
-
-## Video-6-EER-kategorier
+## Video-5-EER-kategorier
 
 ### Kategorier: Subklasser med flere superklasser
 - Mengden entiteter i en kategori er en delmengde av entitetene i superklassen
 - Kategorier kalles også union-klasse, derfor U i sirkelen
 - Selektiv arv
 
-![](assets/er_diagram_category_example.svg)
+![](assets/video/5/er_diagram_category_example.svg)
 
 ### Restriksjoner: Delvis/total
 - På samme måte som ved spesialisering/generalisering
@@ -252,9 +252,146 @@ Idrettslag kan ha avdelinger som fotball eller håndball. Idrettslag har medlemm
 Påloitiet har en bildedatabase der bilder har id, tittel og dato. For hvert bilde ønsker man å kunne registrere interessante objekter som vises i bildet. Dette kan være personer (person-ID, navn), kjøretøy (registreringsnummer, merke og modell) eller andre fysiske objekter (objekt-ID, objektnavn, beskrivelse) som en koffert eller en pistol. Et bilde kan ha mange interessante objekter og et objekt kan være avbildet i mange bilder. Når et objekt er avbildet i et bilde skal man kunne registrere objektets plassering (horisontal% og vertikal%) Objektets interesse i bildet spesifiseres på en skala fra 1-5, der 5 angir høy interesse. 
 
 #### Løsning
-![](assets/er_diagram_video_6_solution.svg)
+![](assets/video/5/er_diagram_solution.svg)
+
+
+
+## Video-6-relasjonsdatabaser-intro
+
+### Relasjonsdatabaser - oversikt
+- Modell, kap. 1
+- Oversetting fra ER, kap. 9
+- Relasjonsalgebra, kap. 8
+- SQL, kap. 6-7
+- MySQL
+
+### Relasjonsdatabaser (1): Tabeller / Relasjoner
+![](assets/video/6/tabell.png)
+
+### Relasjonsdatabaser (2)
+- Skjema ("intention") beskriver tabellen
+  - Tabellnavn
+  - Kolonner (attributter)
+  - Kolonnenes datatyper
+  - Restriksjoner
+    - Primærnøkkel (entydig identifikator) og andre restriksjoner
+- Forkomst av data ("extension")
+  - Rader/tupler med lovlige verdier
+- Spesiell NULL-verdi
+  - Der vi ikke har noen verdi
+- Fremmednøkkel
+  - Verdi som viser til en rad (tuppel) i en annen tabell (ev. samme tabell)
+
+### Hundedatabasen: skjema
+![](assets/video/1/er_diagram_relation_example.svg)
+
+Person
+PersonNummer | Navn
+--- | ---
+
+Hund
+RegNummer | Navn | Fødselsår | EierPersonNummer
+--- | --- | --- | ---
+
+BittAv
+OfferPersonNummer | HundRegNummer | Antall
+--- | --- | ---
+
+- EierPersonNummer er en fremmednøkkel mot Person (PersonNummer)
+- OfferPersonNummer er en fremmednøkkel mot Person (PersonNummer)
+- HundRegNummer er en fremmednøkkel mot Hund (RegNummer)
+
+### Hundedatabsen: innhold
+Person
+PersonNummer | Navn
+--- | ---
+1 | Ola
+2 | Karl
+3 | Per
+4 | Liv
+
+Hund
+RegNummer | Navn | Fødselsår | EierPersonNummer
+--- | --- | --- | ---
+1 | King | 2018 | 1
+2 | Pluto | 2017 | 1
+3 | Lady | NULL | 2
+
+BittAv
+OfferPersonNummer | HundRegNummer | Antall
+--- | --- | ---
+3 | 1 | 1
+3 | 2 | 2
+3 | 3 | 1
+2 | 2 | NULL
+
+### Relasjonsdatabaser (3)
+- Standard relasjonsdatabaser har
+  - Atomiske verdier i domenene (datatypene)
+  - En verdi for hvert attributt (i en rad)
+  - Dette gir oss "flate, 2-dimensjonale tabeller)
+- Ikke-standard relasjonsdatabaser kan ha
+  - Sammensatte attributter (poster, tabeller), repeterende grupper (fler-verdi-attributter)
+- Entitetsintegritet
+  - En relasjon (tabell) er en mengde tuppler (rader)
+    - Kan ikke ha to like tuppler (rader)
+  - Alle tabeller må ha en primærnøkkel (unik identifikator)
+    - NULL tillattes ikke
+- Referanseintegritet
+  - Fremmednøkeler må referere til en tuppel som finnes i den tabellen det refereres til eller bare bestå av NULL-verdier
+
+### Oppgave
+![](assets/video/6/oppgave.png)
+
+- Hvilke nøkler og fremmednøkler har vi i de tre tabellene?
+  - PersonID (Persons) og FruitType (Fruits) er nøkler
+  - PersonID (Harvest) og FruitType (Harvest) er fremmednøkler
+- Hvem har plukket mest appelsiner?
+  - Appelsiner har FruitType 1, vi ser i Harvest at personen med PersonID 2 har plukket mest (200 gram). Dette er Ola.
+- Hvor mye epler er plukket til sammen?
+  - Ingen epler er plukket.
+
+
+
+## Video-7-relasjonsdatabaser-mapping-av-ER
+
+### ER til RDB (1): Regulære entitetsklasser
+![](assets/video/7/slide_1.png)
+
+### ER til RDB (2): Svake entitetsklasser
+![](assets/video/7/slide_2.png)
+
+### ER til RDB (3): Binære 1:1 relasjonsklasser
+![](assets/video/7/slide_3.png)
+
+### ER til RDB (4): Binære 1:N relasjonsklasser
+![](assets/video/7/slide_4.png)
+
+### ER til RDB (5): Binære N:M relasjonsklasser
+![](assets/video/7/slide_5.png)
+
+### ER til RDB (6): Fler-verdi attributter
+![](assets/video/7/slide_6.png)
+
+### ER til RDB (7): N-ære relasjonsklasser
+![](assets/video/7/slide_7.png)
+
+### Oppgave: mapping
+Lag relasjonsskjema for følgende ER-diagram
+![](assets/video/1/er_diagram_task_photography.svg)
+
+
+
+## Video-8-relasjonsdatabaser-mapping-av-EER
+
+### ER til RDB (8): spesialisering/generalisering
+
+
+
 
 </details>
+
+
 
 <details open>
   <summary
