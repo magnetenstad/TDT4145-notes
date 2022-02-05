@@ -1183,7 +1183,386 @@ CDID | <strong>CameraID</strong> | Model | Brand | CameraType<br>
 <li><code>SET NULL</code>: setter <code>NULL</code>-verdi</li>
 <li><code>CASCADE</code>: oppdaterer/sletter tilsvarende</li>
 </ul>
-</details>
+<h3>DML - Data Manipulation Language</h3>
+<ul>
+<li>Endre data
+<ul>
+<li><code>insert</code></li>
+<li><code>update</code></li>
+<li><code>delete</code></li>
+</ul>
+</li>
+<li>Sp&#xF8;rringer
+<ul>
+<li>alt gj&#xF8;res med <code>select</code></li>
+</ul>
+</li>
+</ul>
+<h3>Hundedatabasen: sette inn data</h3>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-INSERT">INSERT</span> <span class="token keyword keyword-INTO">INTO</span> Person <span class="token keyword keyword-VALUES">VALUES</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">&apos;Ola&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-INSERT">INSERT</span> <span class="token keyword keyword-INTO">INTO</span> Person <span class="token keyword keyword-VALUES">VALUES</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">&apos;Kari&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-INSERT">INSERT</span> <span class="token keyword keyword-INTO">INTO</span> Person <span class="token keyword keyword-VALUES">VALUES</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token string">&apos;Per&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-INSERT">INSERT</span> <span class="token keyword keyword-INTO">INTO</span> Hund <span class="token keyword keyword-VALUES">VALUES</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">&apos;King&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Puddel&apos;</span><span class="token punctuation">,</span> <span class="token number">2018</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-INSERT">INSERT</span> <span class="token keyword keyword-INTO">INTO</span> Hund <span class="token keyword keyword-VALUES">VALUES</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">&apos;Pluto&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Sch&#xE6;fer&apos;</span><span class="token punctuation">,</span> <span class="token number">2017</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-INSERT">INSERT</span> <span class="token keyword keyword-INTO">INTO</span> Hund <span class="token keyword keyword-VALUES">VALUES</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token string">&apos;Lady&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Collie&apos;</span><span class="token punctuation">,</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-INSERT">INSERT</span> <span class="token keyword keyword-INTO">INTO</span> BittAv <span class="token keyword keyword-VALUES">VALUES</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-INSERT">INSERT</span> <span class="token keyword keyword-INTO">INTO</span> BittAv <span class="token keyword keyword-VALUES">VALUES</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-INSERT">INSERT</span> <span class="token keyword keyword-INTO">INTO</span> BittAv <span class="token keyword keyword-VALUES">VALUES</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token boolean">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><h3>Hundedatabasen: endre, slette og sp&#xF8;rre</h3>
+<ul>
+<li>update</li>
+</ul>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-update">update</span> person
+<span class="token keyword keyword-set">set</span> Navn <span class="token operator">=</span> <span class="token string">&apos;Karianne&apos;</span>
+<span class="token keyword keyword-where">where</span> Pnr <span class="token operator">=</span> <span class="token number">2</span>
+</pre><ul>
+<li>delete</li>
+</ul>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-delete">delete</span> <span class="token keyword keyword-from">from</span> Hund
+<span class="token keyword keyword-where">where</span> Navn <span class="token operator">=</span> <span class="token string">&apos;Varg&apos;</span>
+</pre><ul>
+<li>select</li>
+</ul>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-select">select</span> Navn
+<span class="token keyword keyword-from">from</span> Hund
+<span class="token keyword keyword-where">where</span> Rase <span class="token operator">=</span> <span class="token string">&apos;Mops&apos;</span>
+</pre><h3>DML: sp&#xF8;rringer</h3>
+<ul>
+<li>SELECT-setningen
+<ul>
+<li>Ikke samme som seleksjon!</li>
+</ul>
+</li>
+</ul>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-SELECT">SELECT</span> <span class="token operator">&lt;</span>attributt<span class="token operator">-</span>liste<span class="token operator">&gt;</span>
+<span class="token keyword keyword-FROM">FROM</span> <span class="token operator">&lt;</span>tabell<span class="token operator">-</span>liste<span class="token operator">&gt;</span>
+<span class="token keyword keyword-WHERE">WHERE</span> <span class="token operator">&lt;</span>logisk betingelse<span class="token operator">&gt;</span>
+</pre><ul>
+<li>Spesifiserer
+<ul>
+<li>&quot;Skjema&quot; for resultattabellen</li>
+<li>Hvilke tabeller som er involvert og sammenstillingen av disse</li>
+<li>En betingelse som alle rader i resultat-tabellen m&#xE5; oppfylle</li>
+</ul>
+</li>
+<li>SQL eliminerer ikke duplikater (bag-semantikk)</li>
+<li>Setningen kan bygges ut med flere deler</li>
+</ul>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>&#x3C0;</mi><mtext>&lt;attributt-liste&gt;</mtext></msub><mo stretchy="false">(</mo><msub><mi>&#x3C3;</mi><mtext>&lt;logisk&#xA0;betingelse&gt;</mtext></msub><mo stretchy="false">(</mo><mtext>&lt;tabell&gt;</mtext><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\pi_{\text{&lt;attributt-liste&gt;}}(\sigma_{\text{&lt;logisk betingelse&gt;}}(\text{&lt;tabell&gt;}))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">&#x3C0;</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999985em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">&lt;attributt-liste&gt;</span></span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.17737em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">&#x3C3;</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">&lt;logisk&#xA0;betingelse&gt;</span></span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord text"><span class="mord">&lt;tabell&gt;</span></span><span class="mclose">))</span></span></span></span></p>
+<h3>Oppgave</h3>
+<ul>
+<li>Finn RegNr, Navn og Rase for alle hunder som er eid av Ola (Pnr=1), eller Kari (Pnr=2)</li>
+</ul>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-SELECT">SELECT</span> RegNr<span class="token punctuation">,</span> Navn<span class="token punctuation">,</span> Rase
+<span class="token keyword keyword-FROM">FROM</span> Hund
+<span class="token keyword keyword-WHERE">WHERE</span> <span class="token punctuation">(</span>EierPnr <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">OR</span> <span class="token punctuation">(</span>EierPnr <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">)</span>
+</pre><h2>Video-15-SQL</h2>
+<h3>Distinkte elementer</h3>
+<ul>
+<li><code>DISTINCT</code> rett etter <code>SELECT</code> fjerner duplikater
+<ul>
+<li>Ingen like rader i resultattabellen</li>
+</ul>
+</li>
+<li>Eksempel:</li>
+</ul>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-SELECT">SELECT</span> <span class="token keyword keyword-DISTINCT">DISTINCT</span> Navn
+<span class="token keyword keyword-FROM">FROM</span> Hund
+</pre><h3>Ordning av resultat-tabell</h3>
+<ul>
+<li><code>ORDER BY</code> &lt; attributt-ordning-liste &gt;
+<ul>
+<li>ASC - ascending, DESC - descending</li>
+<li>Alltid til slutt i <code>SELECT</code>-setning</li>
+</ul>
+</li>
+<li>Eksempel:</li>
+</ul>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-SELECT">SELECT</span> <span class="token keyword keyword-DISTINCT">DISTINCT</span> Navn
+<span class="token keyword keyword-FROM">FROM</span> Hund
+<span class="token keyword keyword-ORDER">ORDER</span> <span class="token keyword keyword-BY">BY</span> Rase <span class="token keyword keyword-ASC">ASC</span>
+</pre><h3>Betingelser p&#xE5; tekstfelt</h3>
+<ul>
+<li>Rase = &apos;Puddel&apos; sjekker 100% likhet</li>
+<li>LIKE kan lage betingelser med &quot;wildcards&quot;
+<ul>
+<li>% = 0-n tegn</li>
+<li>_ = 1 tegn</li>
+</ul>
+</li>
+<li>Eksempel: Pnr og Navn for personer som har navn som begynner med L</li>
+</ul>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-SELECT">SELECT</span> <span class="token operator">*</span> <span class="token comment">-- * angir alle kolonner</span>
+<span class="token keyword keyword-FROM">FROM</span> Person
+<span class="token keyword keyword-WHERE">WHERE</span> Navn <span class="token operator">LIKE</span> <span class="token string">&apos;L%&apos;</span>
+</pre><h3>Data fra flere tabeller: &quot;Klassisk&quot; SQL</h3>
+<ul>
+<li>Eksempel: RegNr, Hundens navn og eiers navn</li>
+</ul>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-SELECT">SELECT</span> RegNr<span class="token punctuation">,</span> Hund<span class="token punctuation">.</span>Navn <span class="token keyword keyword-AS">AS</span> Hundenavn
+  Person<span class="token punctuation">.</span>Navn <span class="token keyword keyword-AS">AS</span> Eier
+<span class="token keyword keyword-FROM">FROM</span> Hund<span class="token punctuation">,</span> Person
+<span class="token keyword keyword-WHERE">WHERE</span> Hund<span class="token punctuation">.</span>EierPnr <span class="token operator">=</span> Person<span class="token punctuation">.</span>Pnr
+</pre><ul>
+<li>Hund.EierPnr = Person.Pnr er en join-betingelse</li>
+<li>Uten join-betingelsen vil vi f&#xE5; kartesisk produkt mellom Hund- og Person-tabellene</li>
+<li>AS Hundenavn definerer et &quot;alias&quot; for attributtet</li>
+</ul>
+<h3>Data fra flere tabeller: Moderne SQL</h3>
+<ul>
+<li>Spesifiserer sammenstillingen i FROM-delen:
+<ul>
+<li>JOIN typer
+<ul>
+<li>JOIN / INNER JOIN</li>
+<li>NATURAL JOIN</li>
+<li>LEFT OUTER JOIN, RIGHT OUTER JOIN, FULL OTHER JOIN</li>
+<li>CROSS JOIN (kartesisk produkt)</li>
+</ul>
+</li>
+<li>JOIN betingelse (condition)
+<ul>
+<li>NATURAL</li>
+<li>ON &lt; logisk betingelse &gt;</li>
+<li>USING ( &lt; attributt-liste &gt; )</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Fordeler
+<ul>
+<li>Kan ha ulike typer sammenstillinger</li>
+<li>Bruker FROM-delen til &#xE5; definere &quot;data-grunnlaget&quot; for sp&#xF8;rringen</li>
+</ul>
+</li>
+<li>Eksempel:</li>
+</ul>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-SELECT">SELECT</span> RegNr<span class="token punctuation">,</span> Hund<span class="token punctuation">.</span>Navn<span class="token punctuation">,</span> <span class="token keyword keyword-AS">AS</span> Hundenavn<span class="token punctuation">,</span>
+  Person<span class="token punctuation">.</span>Navn <span class="token keyword keyword-AS">AS</span> Eier
+<span class="token keyword keyword-FROM">FROM</span> Hund <span class="token keyword keyword-INNER">INNER</span> <span class="token keyword keyword-JOIN">JOIN</span> Person <span class="token keyword keyword-ON">ON</span>
+  Hund<span class="token punctuation">.</span>EierPnr <span class="token operator">=</span> Person<span class="token punctuation">.</span>Pnr
+</pre><ul>
+<li>Eksempel: RegNr og Navn for sch&#xE6;fere som har bitt noen</li>
+</ul>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token comment">-- Sp&#xF8;rring med ON</span>
+<span class="token keyword keyword-SELECT">SELECT</span> Hund<span class="token punctuation">.</span>RegNr<span class="token punctuation">,</span> Navn
+<span class="token keyword keyword-FROM">FROM</span> Hund <span class="token keyword keyword-INNER">INNER</span> <span class="token keyword keyword-JOIN">JOIN</span> BittAv <span class="token keyword keyword-ON">ON</span>
+  Hund<span class="token punctuation">.</span>RegNr <span class="token operator">=</span> BittAv<span class="token punctuation">.</span>RegNr
+<span class="token keyword keyword-WHERE">WHERE</span> Rase <span class="token operator">=</span> <span class="token string">&apos;Sch&#xE6;fer&apos;</span>
+
+<span class="token comment">-- Alternativ med NATURAL</span>
+<span class="token keyword keyword-SELECT">SELECT</span> Hund<span class="token punctuation">.</span>RegNr<span class="token punctuation">,</span> Navn
+<span class="token keyword keyword-FROM">FROM</span> Hund <span class="token keyword keyword-NATURAL">NATURAL</span> <span class="token keyword keyword-INNER">INNER</span> <span class="token keyword keyword-JOIN">JOIN</span> BittAv
+<span class="token keyword keyword-WHERE">WHERE</span> Rase <span class="token operator">=</span> <span class="token string">&apos;Sch&#xE6;fer&apos;</span>
+
+<span class="token comment">-- Sp&#xF8;rring med USING</span>
+<span class="token keyword keyword-SELECT">SELECT</span> Hund<span class="token punctuation">.</span>RegNr<span class="token punctuation">,</span> Navn
+<span class="token keyword keyword-FROM">FROM</span> Hund <span class="token keyword keyword-INNER">INNER</span> <span class="token keyword keyword-JOIN">JOIN</span> BittAv <span class="token keyword keyword-USING">USING</span> RegNr
+<span class="token keyword keyword-WHERE">WHERE</span> Rase <span class="token operator">=</span> <span class="token string">&apos;Sch&#xE6;fer&apos;</span>
+</pre><h3>Oppgaver</h3>
+<ol>
+<li>Finn RegNr, hundens Navn, eiers Pnr, og eiers Navn for hunder som har bitt sin egen eier</li>
+</ol>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-SELECT">SELECT</span> Hund<span class="token punctuation">.</span>Regnr<span class="token punctuation">,</span> Hund<span class="token punctuation">.</span>Navn<span class="token punctuation">,</span> Person<span class="token punctuation">.</span>Pnr<span class="token punctuation">,</span> Person<span class="token punctuation">.</span>Navn
+<span class="token keyword keyword-FROM">FROM</span> <span class="token punctuation">(</span>Hund <span class="token keyword keyword-INNER">INNER</span> <span class="token keyword keyword-JOIN">JOIN</span> BittAv <span class="token keyword keyword-USING">USING</span> <span class="token punctuation">(</span>Regnr<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token keyword keyword-INNER">INNER</span> <span class="token keyword keyword-JOIN">JOIN</span> Person <span class="token keyword keyword-ON">ON</span> <span class="token punctuation">(</span>Hund<span class="token punctuation">.</span>EierPnr <span class="token operator">=</span> Person<span class="token punctuation">.</span>Pnr<span class="token punctuation">)</span>
+<span class="token keyword keyword-WHERE">WHERE</span> BittAv<span class="token punctuation">.</span>Pnr <span class="token operator">=</span> Hund<span class="token punctuation">.</span>EierPnr
+</pre><ol start="2">
+<li>Finn alle mulige kombinasjoner av hundenavn og raser</li>
+</ol>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-SELECT">SELECT</span> H1<span class="token punctuation">.</span>Navn<span class="token punctuation">,</span> H2<span class="token punctuation">.</span>Rase
+<span class="token keyword keyword-FROM">FROM</span> Hund <span class="token keyword keyword-as">as</span> H1 <span class="token keyword keyword-CROSS">CROSS</span> <span class="token keyword keyword-JOIN">JOIN</span> Hund <span class="token keyword keyword-as">as</span> H2
+</pre><h2>Video-16-SQL</h2>
+<h3>Innebygde funksjoner</h3>
+<ul>
+<li><code>COUNT</code>, <code>SUM</code>, <code>MIN</code>, <code>MAX</code>, etc.</li>
+<li>Funksjonene ignorerer <code>NULL</code>-verdier</li>
+<li><code>COUNT(*)</code> teller antall rader (uansett <code>NULL</code>-verdier)</li>
+<li><code>DISTINCT</code> gj&#xF8;r at funksjonene opererer p&#xE5; unike verdier</li>
+<li>Eksempel: Finn antall hunder og antall ulike raser</li>
+</ul>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-SELECT">SELECT</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword keyword-AS">AS</span> AntallHunder<span class="token punctuation">,</span>
+  <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token keyword keyword-DISTINCT">DISTINCT</span> Rase<span class="token punctuation">)</span> <span class="token keyword keyword-AS">AS</span> AntallRaser
+<span class="token keyword keyword-FROM">FROM</span> Hund
+</pre><ul>
+<li>Kan ha aritmetosle uttrykk som operand</li>
+<li>Eksempel: Finn gjennomsnittsalder for hunder</li>
+</ul>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-SELECT">SELECT</span> <span class="token function">AVG</span><span class="token punctuation">(</span><span class="token number">2022</span> <span class="token operator">-</span> FAar<span class="token punctuation">)</span> <span class="token keyword keyword-AS">AS</span> SnittAlder
+<span class="token keyword keyword-FROM">FROM</span> Hund
+</pre><h3>Gruppering</h3>
+<ul>
+<li><code>GROUP BY</code> &lt; attributt-liste &gt;
+<ul>
+<li>Definerer &quot;grupper&quot; (partisjoner) av rader</li>
+<li>M&#xE5; komme etter <code>WHERE</code>-del (ev. <code>FROM</code>-del)</li>
+</ul>
+</li>
+</ul>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-SELECT">SELECT</span> EierPnr<span class="token punctuation">,</span> <span class="token function">COUNT</span><span class="token punctuation">(</span>RegNr<span class="token punctuation">)</span> <span class="token keyword keyword-AS">AS</span> AntallHunder
+<span class="token keyword keyword-FROM">FROM</span> Hund
+<span class="token keyword keyword-GROUP">GROUP</span> <span class="token keyword keyword-BY">BY</span> EierPnr
+<span class="token keyword keyword-ORDER">ORDER</span> <span class="token keyword keyword-BY">BY</span> AntallHunder <span class="token keyword keyword-DESC">DESC</span>
+</pre><ul>
+<li>Algebraekvivalent:<br>
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext>SORT</mtext><mtext>AntallHunder,&#xA0;DESC</mtext></msub><mo stretchy="false">(</mo><msub><mtext>F</mtext><mtext>EierPnr,&#xA0;COUNT(RegNr)&#xA0;AS&#xA0;AntallHunder</mtext></msub><mo stretchy="false">(</mo><mi>H</mi><mi>u</mi><mi>n</mi><mi>d</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\text{SORT}_{\text{AntallHunder, DESC}}(\text{F}_{\text{EierPnr, COUNT(RegNr) AS AntallHunder}}(Hund))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1052em;vertical-align:-0.3551999999999999em;"></span><span class="mord"><span class="mord text"><span class="mord">SORT</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">AntallHunder,&#xA0;DESC</span></span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord text"><span class="mord">F</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.5198em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">EierPnr,&#xA0;COUNT(RegNr)&#xA0;AS&#xA0;AntallHunder</span></span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.3551999999999999em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mord mathnormal">u</span><span class="mord mathnormal">n</span><span class="mord mathnormal">d</span><span class="mclose">))</span></span></span></span></li>
+</ul>
+<h3>Betingelse etter gruppering</h3>
+<ul>
+<li><code>HAVING</code> &lt; betingelse &gt;
+<ul>
+<li>Betingelse knyttet til resultatet av &quot;opptelling&quot; i gruppene</li>
+</ul>
+</li>
+<li>Eksempel: RegNr, Navn, antall offer og sum av Antall-attributtet for hunder som har bitt flere enn to personer</li>
+</ul>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-SELECT">SELECT</span> H<span class="token punctuation">.</span>RegNr<span class="token punctuation">,</span> Navn<span class="token punctuation">,</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword keyword-AS">AS</span> AntallOffer
+  <span class="token function">SUM</span><span class="token punctuation">(</span>Antall<span class="token punctuation">)</span> <span class="token keyword keyword-As">As</span> Antall
+<span class="token keyword keyword-FROM">FROM</span> Hund <span class="token keyword keyword-AS">AS</span> H <span class="token keyword keyword-INNER">INNER</span> <span class="token keyword keyword-JOIN">JOIN</span> BittAv <span class="token keyword keyword-USING">USING</span> RegNr
+<span class="token keyword keyword-GROUP">GROUP</span> <span class="token keyword keyword-BY">BY</span> H<span class="token punctuation">.</span>RegNr<span class="token punctuation">,</span> Navn
+<span class="token keyword keyword-HAVING">HAVING</span> AntallOffer <span class="token operator">&gt;</span> <span class="token number">2</span>
+<span class="token keyword keyword-ORDER">ORDER</span> <span class="token keyword keyword-BY">BY</span> AntallOffer <span class="token keyword keyword-DESC">DESC</span><span class="token punctuation">,</span> Antall <span class="token keyword keyword-DESC">DESC</span>
+</pre><ul>
+<li>Betingelse i <code>WHERE</code>-delen fjerner rader f&#xF8;r gruppering</li>
+</ul>
+<h3>N&#xF8;stede sp&#xF8;rringer (sammenligning, ANY, ALL)</h3>
+<ul>
+<li>Sammenligningsoperatorer: <code>=, &lt;&gt;, &lt;, &lt;=, &gt;, &gt;=</code></li>
+<li>Eksempel: Finn RegNr og Navn for de eldste hundene</li>
+</ul>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-SELECT">SELECT</span> RegNr<span class="token punctuation">,</span> Navn
+<span class="token keyword keyword-FROM">FROM</span> Hund
+<span class="token keyword keyword-WHERE">WHERE</span> FAar <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword keyword-SELECT">SELECT</span> <span class="token function">MIN</span> <span class="token punctuation">(</span>FAar<span class="token punctuation">)</span> <span class="token keyword keyword-FROM">FROM</span> HUND<span class="token punctuation">)</span>
+</pre><ul>
+<li>Med ANY/ALL:</li>
+</ul>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-SELECT">SELECT</span> RegNr<span class="token punctuation">,</span> Navn
+<span class="token keyword keyword-FROM">FROM</span> Hund
+<span class="token keyword keyword-WHERE">WHERE</span> FAar <span class="token operator">&lt;=</span> <span class="token keyword keyword-ALL">ALL</span> <span class="token punctuation">(</span><span class="token keyword keyword-SELECT">SELECT</span> FAar <span class="token keyword keyword-FROM">FROM</span> HUND<span class="token punctuation">)</span>
+</pre><ul>
+<li><code>ALL</code>: sammenligningen m&#xE5; v&#xE6;re oppfylt for alle verdier fra sub-sp&#xF8;rringen</li>
+<li><code>ANY</code>: sammenligningen m&#xE5; v&#xE6;re oppfylt for minst en verdi fra sub-sp&#xF8;rringen</li>
+</ul>
+<h3>N&#xF8;stede sp&#xF8;rringer (IN)</h3>
+<ul>
+<li>Mengdeoperatoren &apos;element i&apos;:
+<ul>
+<li><code>IN</code> / <code>NOT IN</code></li>
+</ul>
+</li>
+<li>Eksempel: Alle hunder som ikke har bitt noen:</li>
+</ul>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-SELECT">SELECT</span> <span class="token operator">*</span>
+<span class="token keyword keyword-FROM">FROM</span> Hund
+<span class="token keyword keyword-WHERE">WHERE</span> RegNr <span class="token operator">NOT</span> <span class="token operator">IN</span> <span class="token punctuation">(</span><span class="token keyword keyword-SELECT">SELECT</span> RegNr <span class="token keyword keyword-FROM">FROM</span> BittAv<span class="token punctuation">)</span>
+</pre><h3>N&#xF8;stede sp&#xF8;rringer (EXISTS)</h3>
+<ul>
+<li>Gir del-sp&#xF8;rringen resultat (minst en rad) eller ikke?
+<ul>
+<li><code>EXISTS</code> / <code>NOT EXISTS</code></li>
+</ul>
+</li>
+<li>Eksempel: Hunder som ikke har bitt sin eier</li>
+</ul>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-SELECT">SELECT</span> <span class="token operator">*</span>
+<span class="token keyword keyword-FROM">FROM</span> Hund <span class="token keyword keyword-AS">AS</span> H
+<span class="token keyword keyword-WHERE">WHERE</span> <span class="token operator">NOT</span> <span class="token keyword keyword-EXISTS">EXISTS</span> <span class="token punctuation">(</span>
+  <span class="token keyword keyword-SELECT">SELECT</span> <span class="token operator">*</span>
+  <span class="token keyword keyword-FROM">FROM</span> BittAv <span class="token keyword keyword-AS">AS</span> BA
+  <span class="token keyword keyword-WHERE">WHERE</span> BA<span class="token punctuation">.</span>RegNr <span class="token operator">=</span> H<span class="token punctuation">.</span>RegNr
+    <span class="token operator">AND</span> BA<span class="token punctuation">.</span>Pnr <span class="token operator">=</span> H<span class="token punctuation">.</span>EierNr
+<span class="token punctuation">)</span>
+</pre><ul>
+<li>Dette er en korrelert del-sp&#xF8;rring (sender inn data)</li>
+</ul>
+<h3>Mengde-operatorer</h3>
+<ul>
+<li>Mengdeorientert (fjerner duplikater)
+<ul>
+<li><code>UNION</code> (union)</li>
+<li><code>INTERSECT</code> (snitt)</li>
+<li><code>EXCEPT</code> (minus)</li>
+</ul>
+</li>
+<li>Bag-orienterte (multiset)
+<ul>
+<li><code>UNION ALL</code></li>
+<li><code>INTERSECT ALL</code></li>
+<li><code>EXCEPT ALL</code></li>
+</ul>
+</li>
+<li>Husk union-kompatible (operand-)tabeller</li>
+<li>Her er det mye mangelfull og varierende implementasjon
+<ul>
+<li>M&#xE5; ofte finne alternativer ved &#xE5; n&#xF8;ste sp&#xF8;rringer</li>
+</ul>
+</li>
+</ul>
+<h3>N&#xF8;stede sp&#xF8;rringer i FROM-delen</h3>
+<ul>
+<li>Lager en midlertidig tabell</li>
+<li>Eksempel: Finn hunder (RegNr, Navn, AntallOffer) som har bitt flere enn to personer og har et navn som ogs&#xE5; er brukt som navn p&#xE5; person</li>
+</ul>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-SELECT">SELECT</span> RegNr<span class="token punctuation">,</span> Navn<span class="token punctuation">,</span> AntallOffer
+<span class="token keyword keyword-FROM">FROM</span> <span class="token punctuation">(</span>
+  <span class="token keyword keyword-SELECT">SELECT</span> H<span class="token punctuation">.</span>RegNr<span class="token punctuation">,</span> Navn<span class="token punctuation">,</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword keyword-AS">AS</span> AntallOffer
+  <span class="token keyword keyword-FROM">FROM</span> Hund <span class="token keyword keyword-AS">AS</span> H <span class="token keyword keyword-INNER">INNER</span> <span class="token keyword keyword-JOIN">JOIN</span> BittAv <span class="token keyword keyword-AS">AS</span> BA
+  <span class="token keyword keyword-ON">ON</span> <span class="token punctuation">(</span>H<span class="token punctuation">.</span>RegNr <span class="token operator">=</span> BA<span class="token punctuation">.</span>RegNr<span class="token punctuation">)</span>
+  <span class="token keyword keyword-GROUP">GROUP</span> <span class="token keyword keyword-BY">BY</span> H<span class="token punctuation">.</span>RegNr<span class="token punctuation">,</span> Navn
+<span class="token punctuation">)</span> <span class="token keyword keyword-AS">AS</span> GjerningsHunder<span class="token punctuation">(</span>RegNr<span class="token punctuation">,</span> Navn<span class="token punctuation">,</span> AntallOffer<span class="token punctuation">)</span>
+<span class="token keyword keyword-WHERE">WHERE</span> AntallOffer <span class="token operator">&gt;</span> <span class="token number">2</span> <span class="token operator">AND</span>
+  Navn <span class="token operator">=</span> <span class="token keyword keyword-ANY">ANY</span> <span class="token punctuation">(</span><span class="token keyword keyword-SELECT">SELECT</span> Navn <span class="token keyword keyword-FROM">FROM</span> Person<span class="token punctuation">)</span> <span class="token comment">-- Her kunne vi brukt IN</span>
+</pre><h3>VIEWS / Virtuelle tabeller</h3>
+<ul>
+<li>View er tabeller som er avledet ut fra tabeller som er lagret i databasen</li>
+</ul>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-CREATE">CREATE</span> <span class="token keyword keyword-VIEW">VIEW</span> Hundeeier<span class="token punctuation">(</span>Pnr<span class="token punctuation">,</span> Navn<span class="token punctuation">,</span> Hund<span class="token punctuation">)</span>
+<span class="token keyword keyword-AS">AS</span> <span class="token keyword keyword-SELECT">SELECT</span> Pnr<span class="token punctuation">,</span> P<span class="token punctuation">.</span>Navn<span class="token punctuation">,</span> H<span class="token punctuation">.</span>Navn
+  <span class="token keyword keyword-FROM">FROM</span> Person <span class="token keyword keyword-AS">AS</span> P <span class="token keyword keyword-INNER">INNER</span> <span class="token keyword keyword-JOIN">JOIN</span> Hund <span class="token keyword keyword-AS">AS</span> H 
+  <span class="token keyword keyword-ON">ON</span> <span class="token punctuation">(</span>P<span class="token punctuation">.</span>Pnr <span class="token operator">=</span> H<span class="token punctuation">.</span>EierPnr<span class="token punctuation">)</span>
+</pre><ul>
+<li>Hvorfor: Sp&#xF8;rreforenkling + sikkerhet + ytelse</li>
+<li>Implementasjon
+<ul>
+<li>query modification (skriver om sp&#xF8;rringen)</li>
+<li>view materialization (lagret view-et)</li>
+</ul>
+</li>
+<li>Brukes som base-tabeller, men ikke alltid mulig &#xE5; oppdatere gjennom VIEW
+<ul>
+<li>Sammenstilling fra flere tabeller / aggregering gir utfordringer</li>
+</ul>
+</li>
+</ul>
+<h3>Oppgaver</h3>
+<ol>
+<li>Finn alle kombinasjoner av hundenavn og rase som ikke er i bruk</li>
+</ol>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-SELECT">SELECT</span> H1<span class="token punctuation">.</span>Navn<span class="token punctuation">,</span> H2<span class="token punctuation">.</span>Rase
+<span class="token keyword keyword-FROM">FROM</span> Hund <span class="token keyword keyword-as">as</span> H1 <span class="token keyword keyword-CROSS">CROSS</span> <span class="token keyword keyword-JOIN">JOIN</span> Hund <span class="token keyword keyword-as">as</span> H2
+
+<span class="token keyword keyword-EXCEPT">EXCEPT</span>
+
+<span class="token keyword keyword-SELECT">SELECT</span> Navn<span class="token punctuation">,</span> Rase
+<span class="token keyword keyword-FROM">FROM</span> Hund
+</pre><ol start="2">
+<li>Finn Pnr og Navn for personer som ikke eier hunder</li>
+</ol>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-SELECT">SELECT</span> Pnr<span class="token punctuation">,</span> Navn
+<span class="token keyword keyword-FROM">FROM</span> Person
+<span class="token keyword keyword-WHERE">WHERE</span> Pnr <span class="token operator">NOT</span> <span class="token operator">IN</span> <span class="token punctuation">(</span>
+  <span class="token keyword keyword-SELECT">SELECT</span> EierPnr
+  <span class="token keyword keyword-FROM">FROM</span> Hund
+<span class="token punctuation">)</span>
+</pre><ol start="3">
+<li>Finn antall offer for hver hunderase. Alle hunderaser skal v&#xE6;re med i resultatet</li>
+</ol>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-SELECT">SELECT</span> Rase<span class="token punctuation">,</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword keyword-AS">AS</span> AntallOffer
+<span class="token keyword keyword-FROM">FROM</span> Hund <span class="token keyword keyword-LEFT">LEFT</span> <span class="token keyword keyword-OUTER">OUTER</span> <span class="token keyword keyword-JOIN">JOIN</span> BittAv <span class="token keyword keyword-Using">Using</span> RegNr
+<span class="token keyword keyword-GROUP">GROUP</span> <span class="token keyword keyword-BY">BY</span> Rase
+</pre></details>
 <details open>
   <summary style="font-size: x-large">Treningsoppgaver</summary>
 <h2>Treningsoppgave 1</h2>

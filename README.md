@@ -624,12 +624,340 @@ Alternativer for `<>`:
 - `SET NULL`: setter `NULL`-verdi
 - `CASCADE`: oppdaterer/sletter tilsvarende
 
+### DML - Data Manipulation Language
+- Endre data
+  - `insert`
+  - `update`
+  - `delete`
+- Spørringer
+  - alt gjøres med `select`
+
+### Hundedatabasen: sette inn data
+```sql
+INSERT INTO Person VALUES (1, 'Ola');
+INSERT INTO Person VALUES (2, 'Kari');
+INSERT INTO Person VALUES (3, 'Per');
+
+INSERT INTO Hund VALUES (1, 'King', 'Puddel', 2018, 1);
+INSERT INTO Hund VALUES (2, 'Pluto', 'Schæfer', 2017, 1);
+INSERT INTO Hund VALUES (3, 'Lady', 'Collie', NULL, 2);
+
+INSERT INTO BittAv VALUES (3, 1, 1);
+INSERT INTO BittAv VALUES (3, 2, 2);
+INSERT INTO BittAv VALUES (2, 2, NULL);
+```
+
+### Hundedatabasen: endre, slette og spørre
+- update
+```sql
+update person
+set Navn = 'Karianne'
+where Pnr = 2
+```
+- delete
+```sql
+delete from Hund
+where Navn = 'Varg'
+```
+- select
+```sql
+select Navn
+from Hund
+where Rase = 'Mops'
+```
+
+### DML: spørringer
+- SELECT-setningen
+  - Ikke samme som seleksjon!
+```sql
+SELECT <attributt-liste>
+FROM <tabell-liste>
+WHERE <logisk betingelse>
+```
+- Spesifiserer
+  - "Skjema" for resultattabellen
+  - Hvilke tabeller som er involvert og sammenstillingen av disse
+  - En betingelse som alle rader i resultat-tabellen må oppfylle
+- SQL eliminerer ikke duplikater (bag-semantikk)
+- Setningen kan bygges ut med flere deler
+
+$\pi_{\text{<attributt-liste>}}(\sigma_{\text{<logisk betingelse>}}(\text{<tabell>}))$
+
+### Oppgave
+
+- Finn RegNr, Navn og Rase for alle hunder som er eid av Ola (Pnr=1), eller Kari (Pnr=2)
+  
+```sql
+SELECT RegNr, Navn, Rase
+FROM Hund
+WHERE (EierPnr = 1) OR (EierPnr = 2)
+```
+
+## Video-15-SQL
+
+### Distinkte elementer
+- `DISTINCT` rett etter `SELECT` fjerner duplikater
+  - Ingen like rader i resultattabellen
+- Eksempel:
+```sql
+SELECT DISTINCT Navn
+FROM Hund
+```
+
+### Ordning av resultat-tabell
+- `ORDER BY` < attributt-ordning-liste >
+  - ASC - ascending, DESC - descending
+  - Alltid til slutt i `SELECT`-setning
+- Eksempel:
+```sql
+SELECT DISTINCT Navn
+FROM Hund
+ORDER BY Rase ASC
+```
+
+### Betingelser på tekstfelt
+- Rase = 'Puddel' sjekker 100% likhet
+- LIKE kan lage betingelser med "wildcards"
+  - % = 0-n tegn
+  - _ = 1 tegn
+- Eksempel: Pnr og Navn for personer som har navn som begynner med L
+```sql
+SELECT * -- * angir alle kolonner
+FROM Person
+WHERE Navn LIKE 'L%'
+```
+
+### Data fra flere tabeller: "Klassisk" SQL
+- Eksempel: RegNr, Hundens navn og eiers navn
+```sql
+SELECT RegNr, Hund.Navn AS Hundenavn
+  Person.Navn AS Eier
+FROM Hund, Person
+WHERE Hund.EierPnr = Person.Pnr
+```
+- Hund.EierPnr = Person.Pnr er en join-betingelse
+- Uten join-betingelsen vil vi få kartesisk produkt mellom Hund- og Person-tabellene
+- AS Hundenavn definerer et "alias" for attributtet
+
+### Data fra flere tabeller: Moderne SQL
+- Spesifiserer sammenstillingen i FROM-delen:
+  - JOIN typer
+    - JOIN / INNER JOIN
+    - NATURAL JOIN
+    - LEFT OUTER JOIN, RIGHT OUTER JOIN, FULL OTHER JOIN
+    - CROSS JOIN (kartesisk produkt)
+  - JOIN betingelse (condition)
+    - NATURAL
+    - ON < logisk betingelse >
+    - USING ( < attributt-liste > )
+- Fordeler
+  - Kan ha ulike typer sammenstillinger
+  - Bruker FROM-delen til å definere "data-grunnlaget" for spørringen
+- Eksempel:
+```sql
+SELECT RegNr, Hund.Navn, AS Hundenavn,
+  Person.Navn AS Eier
+FROM Hund INNER JOIN Person ON
+  Hund.EierPnr = Person.Pnr
+```
+- Eksempel: RegNr og Navn for schæfere som har bitt noen
+```sql
+-- Spørring med ON
+SELECT Hund.RegNr, Navn
+FROM Hund INNER JOIN BittAv ON
+  Hund.RegNr = BittAv.RegNr
+WHERE Rase = 'Schæfer'
+
+-- Alternativ med NATURAL
+SELECT Hund.RegNr, Navn
+FROM Hund NATURAL INNER JOIN BittAv
+WHERE Rase = 'Schæfer'
+
+-- Spørring med USING
+SELECT Hund.RegNr, Navn
+FROM Hund INNER JOIN BittAv USING RegNr
+WHERE Rase = 'Schæfer'
+```
+
+### Oppgaver
+1. Finn RegNr, hundens Navn, eiers Pnr, og eiers Navn for hunder som har bitt sin egen eier
+```sql
+SELECT Hund.Regnr, Hund.Navn, Person.Pnr, Person.Navn
+FROM (Hund INNER JOIN BittAv USING (Regnr))
+  INNER JOIN Person ON (Hund.EierPnr = Person.Pnr)
+WHERE BittAv.Pnr = Hund.EierPnr
+```
+2. Finn alle mulige kombinasjoner av hundenavn og raser
+```sql
+SELECT H1.Navn, H2.Rase
+FROM Hund as H1 CROSS JOIN Hund as H2
+```
 
 
 
+## Video-16-SQL
+
+### Innebygde funksjoner
+- `COUNT`, `SUM`, `MIN`, `MAX`, etc.
+- Funksjonene ignorerer `NULL`-verdier
+- `COUNT(*)` teller antall rader (uansett `NULL`-verdier)
+- `DISTINCT` gjør at funksjonene opererer på unike verdier
+- Eksempel: Finn antall hunder og antall ulike raser
+```sql
+SELECT COUNT(*) AS AntallHunder,
+  COUNT(DISTINCT Rase) AS AntallRaser
+FROM Hund
+```
+- Kan ha aritmetosle uttrykk som operand
+- Eksempel: Finn gjennomsnittsalder for hunder
+```sql
+SELECT AVG(2022 - FAar) AS SnittAlder
+FROM Hund
+```
+
+### Gruppering
+- `GROUP BY` < attributt-liste >
+  - Definerer "grupper" (partisjoner) av rader
+  - Må komme etter `WHERE`-del (ev. `FROM`-del)
+```sql
+SELECT EierPnr, COUNT(RegNr) AS AntallHunder
+FROM Hund
+GROUP BY EierPnr
+ORDER BY AntallHunder DESC
+```
+- Algebraekvivalent:
+$\text{SORT}_{\text{AntallHunder, DESC}}(\text{F}_{\text{EierPnr, COUNT(RegNr) AS AntallHunder}}(Hund))$
+
+### Betingelse etter gruppering
+- `HAVING` < betingelse >
+  - Betingelse knyttet til resultatet av "opptelling" i gruppene
+- Eksempel: RegNr, Navn, antall offer og sum av Antall-attributtet for hunder som har bitt flere enn to personer
+```sql
+SELECT H.RegNr, Navn, COUNT(*) AS AntallOffer
+  SUM(Antall) As Antall
+FROM Hund AS H INNER JOIN BittAv USING RegNr
+GROUP BY H.RegNr, Navn
+HAVING AntallOffer > 2
+ORDER BY AntallOffer DESC, Antall DESC
+```
+- Betingelse i `WHERE`-delen fjerner rader før gruppering
+
+### Nøstede spørringer (sammenligning, ANY, ALL)
+- Sammenligningsoperatorer: `=, <>, <, <=, >, >=`
+- Eksempel: Finn RegNr og Navn for de eldste hundene
+```sql
+SELECT RegNr, Navn
+FROM Hund
+WHERE FAar = (SELECT MIN (FAar) FROM HUND)
+```
+- Med ANY/ALL:
+```sql
+SELECT RegNr, Navn
+FROM Hund
+WHERE FAar <= ALL (SELECT FAar FROM HUND)
+```
+- `ALL`: sammenligningen må være oppfylt for alle verdier fra sub-spørringen
+- `ANY`: sammenligningen må være oppfylt for minst en verdi fra sub-spørringen
+
+### Nøstede spørringer (IN)
+- Mengdeoperatoren 'element i':
+  - `IN` / `NOT IN`
+- Eksempel: Alle hunder som ikke har bitt noen:
+```sql
+SELECT *
+FROM Hund
+WHERE RegNr NOT IN (SELECT RegNr FROM BittAv)
+```
+
+### Nøstede spørringer (EXISTS)
+- Gir del-spørringen resultat (minst en rad) eller ikke?
+  - `EXISTS` / `NOT EXISTS`
+- Eksempel: Hunder som ikke har bitt sin eier
+```sql
+SELECT *
+FROM Hund AS H
+WHERE NOT EXISTS (
+  SELECT *
+  FROM BittAv AS BA
+  WHERE BA.RegNr = H.RegNr
+    AND BA.Pnr = H.EierNr
+)
+```
+- Dette er en korrelert del-spørring (sender inn data)
+
+### Mengde-operatorer
+- Mengdeorientert (fjerner duplikater)
+  - `UNION` (union)
+  - `INTERSECT` (snitt)
+  - `EXCEPT` (minus)
+- Bag-orienterte (multiset)
+  - `UNION ALL`
+  - `INTERSECT ALL`
+  - `EXCEPT ALL`
+- Husk union-kompatible (operand-)tabeller
+- Her er det mye mangelfull og varierende implementasjon
+  - Må ofte finne alternativer ved å nøste spørringer
+
+### Nøstede spørringer i FROM-delen
+- Lager en midlertidig tabell
+- Eksempel: Finn hunder (RegNr, Navn, AntallOffer) som har bitt flere enn to personer og har et navn som også er brukt som navn på person
+```sql
+SELECT RegNr, Navn, AntallOffer
+FROM (
+  SELECT H.RegNr, Navn, COUNT(*) AS AntallOffer
+  FROM Hund AS H INNER JOIN BittAv AS BA
+  ON (H.RegNr = BA.RegNr)
+  GROUP BY H.RegNr, Navn
+) AS GjerningsHunder(RegNr, Navn, AntallOffer)
+WHERE AntallOffer > 2 AND
+  Navn = ANY (SELECT Navn FROM Person) -- Her kunne vi brukt IN
+```
+
+### VIEWS / Virtuelle tabeller
+- View er tabeller som er avledet ut fra tabeller som er lagret i databasen
+```sql
+CREATE VIEW Hundeeier(Pnr, Navn, Hund)
+AS SELECT Pnr, P.Navn, H.Navn
+  FROM Person AS P INNER JOIN Hund AS H 
+  ON (P.Pnr = H.EierPnr)
+```
+- Hvorfor: Spørreforenkling + sikkerhet + ytelse
+- Implementasjon
+  - query modification (skriver om spørringen)
+  - view materialization (lagret view-et)
+- Brukes som base-tabeller, men ikke alltid mulig å oppdatere gjennom VIEW
+  - Sammenstilling fra flere tabeller / aggregering gir utfordringer
+
+### Oppgaver
+1. Finn alle kombinasjoner av hundenavn og rase som ikke er i bruk
+```sql
+SELECT H1.Navn, H2.Rase
+FROM Hund as H1 CROSS JOIN Hund as H2
+
+EXCEPT
+
+SELECT Navn, Rase
+FROM Hund
+```
+
+2. Finn Pnr og Navn for personer som ikke eier hunder
+```sql
+SELECT Pnr, Navn
+FROM Person
+WHERE Pnr NOT IN (
+  SELECT EierPnr
+  FROM Hund
+)
+```
 
 
+3. Finn antall offer for hver hunderase. Alle hunderaser skal være med i resultatet
 
+```sql
+SELECT Rase, COUNT(*) AS AntallOffer
+FROM Hund LEFT OUTER JOIN BittAv Using RegNr
+GROUP BY Rase
+```
 
 
 
