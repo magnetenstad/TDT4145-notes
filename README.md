@@ -380,6 +380,24 @@ OfferPersonNummer | HundRegNummer | Antall
 Lag relasjonsskjema for følgende ER-diagram
 ![](assets/video/1/er_diagram_task_photography.svg)
 
+Fotograf
+**Identifikator** | Navn | Nasjonalitet
+--- | --- | ---
+
+Fotografi
+**Identifikator** | Tittel | Dato | FotografId
+
+FotografId er fremmednøkkel mot Fotograf
+
+Motiv
+**Identifikator** | Beskrivelse
+
+HarMotiv
+FotografiId | MotivId
+--- | ---
+
+FotografiId er fremmednøkkel mot Fotografi og MotivId er fremmednøkkel mot Motiv
+
 
 
 ## Video-8-relasjonsdatabaser-mapping-av-EER
@@ -397,6 +415,42 @@ Oversett følgende til RDB-skjema
 ### Oppgave: kategorier
 Oversett følgende til RDB-skjema
 ![](assets/video/8/4.png)
+
+Photographer
+**PhotographerID** | Nationality | FirstName | Surname
+--- | --- | --- | ---
+
+Photo
+**PhotoID** | Title | Description | PhotographedBy | CapturedWith
+--- | --- | --- | --- | ---
+
+Hashtag
+**PhotoID** | Hashtag
+--- | ---
+
+Genre
+**Title** | Description
+--- | ---
+
+DescribedBy
+**PhotoID** | **GenreTitle**
+--- | ---
+
+CaptureDevice
+**CDID** | Type
+--- | ---
+
+Camera
+CDID | **CameraID** | Model | Brand | CameraType
+--- | --- | --- | --- 
+
+Phone
+CDID | **PhoneID** | Model
+--- | --- | --- 
+
+Uses
+**PhotographerID** | **CDID**
+--- | ---
 
 
 
@@ -439,6 +493,12 @@ Oversett følgende til RDB-skjema
 ### Oppgaver
 ![](assets/video/9/6.png)
 
+1. $\pi_{\text{Navn, RegNr}}(\sigma_{\text{Rase=Mops, FAar}=2020}(\text{Hund}))$
+
+2. $\pi_{\text{Navn}}(\text{Person}) \cup \pi_{\text{Navn}}(\text{Hund})$
+
+3. $\pi_{\text{Navn}}(\text{Hund}) \times \pi_{\text{Rase}}(\text{Hund})$
+
 
 
 ## Video-10-relasjonsdatabaser-relasjonsalgrebra-del-2
@@ -449,7 +509,7 @@ Oversett følgende til RDB-skjema
 ### Oppgaver
 ![](assets/video/10/2.png)
 
-
+$\pi_{\text{Pnr, Navn}}(\Join_{\text{Pnr=EierPnr}}(\text{Person}, \sigma_{\text{Rase=Labrador OR Rase=Mops}}(\text{Hund})))$
 
 ## Video-11-relasjonsdatabaser-relasjonsalgrebra-del-3
 
@@ -481,7 +541,9 @@ Oversett følgende til RDB-skjema
 ### Oppgaver
 ![](assets/video/11/3.png)
 
+1. $\pi_{\text{Navn, RegNr}}(\sigma_{\text{EierPnr=OfferPnr}}(\Join_{\text{RegNr=GjHundRegNr}}(\text{Hund, BittAv})))$
 
+2. $\pi_{\text{Navn, RegNr}}(\text{Hund}) - \pi_{\text{Navn, RegNr}}(\Join_{\text{GjHundRegNr}=\text{RegNr}}(\text{Hund, BittAv}))$
 
 ## Video-12-relasjonsdatabaser-relasjonsalgrebra-del-4
 
@@ -493,6 +555,85 @@ Oversett følgende til RDB-skjema
 
 ### Oppgave
 ![](assets/video/12/3.png)
+
+$\sigma_{\text{AntallHunder} > 1}(\text{F}_{\text{Pnr, Navn, COUNT(GjHundRegNr) AS AntallHunder}}(\Join_{\text{Pnr = OfferPnr}}(\text{Person, BittAv}))$
+
+## Video-14-SQL
+
+### SQL
+- Opprinnelig fra IBM på 1970-tallet
+- ANSI/ISO-standard
+  - Omfattende
+  - Produkttilpasninger (mangler, tillegg, varianter)
+- Historiske alternativer
+  - QUEL (fra Ingres)
+  - QBE - Query By Example
+- Ikke like mengdeorientert som relasjonsalgebra
+  - Resultattabellene kan ha like rader/tuppler - må be om at duplikater fjernes
+- Deklarativt spørrespråk ("hva, ikke hvordan")
+  - Røtter i relational calulus (ikke pensum)
+- Skiller ikke mellom små og store bokstaver i SQL reserverte ord ("keywords")
+- Tips: SQL tutorial på w3schools: https://w3schools.com/sql/
+
+### DDL - Data Definition 
+```sql
+create table /* opprette tabell */
+alter table /* endre tabell */
+drop table /* fjerne tabell */
+```
+
+### Hundedatabasen: Opprette tabell
+```sql
+CREATE TABLE Person (
+  Pnr     INTEGER NOT NULL,
+  Navn    VARCHAR(30),
+  CONSTRAINT Person_PK PRIMARY KEY (Pnr));
+
+CREATE TABLE Hund (
+  Regnr   INTEGER NOT NULL,
+  Navn    VARCHAR(30),
+  Rase    VARCHAR(30),
+  Faar    INTEGER,
+  EierPnr INTEGER NOT NULL,
+  CONSTRAINT Hund_PK PRIMARY KEY (Regnr),
+  CONSTRAINT Hund_FK FOREIGN KEY (EierPnr) REFERENCES Person(Pnr)
+    ON UPDATE CASCADE
+    ON DELETE NO ACTION);
+
+CREATE TABLE BittAv (
+  Pnr     INTEGER NOT NULL,
+  Regnr   INTEGER NOT NULL,
+  Antall  INTEGER DEFAULT 0,
+  CONSTRAINT BittAv_PK PRIMARY Key (Pnr, Regnr),
+  CONSTRAINT BittAV_FK1 FOREIGN KEY (Pnr) REFERENCES Person(Pnr)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE,
+  CONSTRAINT BittAV_FK2 FOREIGN KEY (Regnr) REFERENCES Hund(Regnr)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE);
+```
+
+### Foreign Key restriksjoner
+```sql
+CONSTRAINT Hund_FK FOREIGN KEY (EierPnr) REFERENCES Person(Pnr)
+    ON UPDATE <>
+    ON DELETE <>);
+```
+Alternativer for `<>`:
+- `NO ACTION` (default) / `RESTRICT`: stopper handlingen
+- `SET NULL`: setter `NULL`-verdi
+- `CASCADE`: oppdaterer/sletter tilsvarende
+
+
+
+
+
+
+
+
+
+
+
 
 
 
