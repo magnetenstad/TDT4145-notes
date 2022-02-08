@@ -693,7 +693,9 @@ FROM Hund
 WHERE (EierPnr = 1) OR (EierPnr = 2)
 ```
 
-## Video-15-SQL
+
+
+## Video-14-SQL
 
 ### Distinkte elementer
 - `DISTINCT` rett etter `SELECT` fjerner duplikater
@@ -795,7 +797,7 @@ FROM Hund as H1 CROSS JOIN Hund as H2
 
 
 
-## Video-16-SQL
+## Video-15-SQL
 
 ### Innebygde funksjoner
 - `COUNT`, `SUM`, `MIN`, `MAX`, etc.
@@ -950,7 +952,6 @@ WHERE Pnr NOT IN (
 )
 ```
 
-
 3. Finn antall offer for hver hunderase. Alle hunderaser skal være med i resultatet
 
 ```sql
@@ -958,6 +959,247 @@ SELECT Rase, COUNT(*) AS AntallOffer
 FROM Hund LEFT OUTER JOIN BittAv Using RegNr
 GROUP BY Rase
 ```
+
+
+
+## Video-16-normalisering-intro
+
+### Normaliseringsteori: oversikt
+![](assets/video/16/1.png)
+
+### Motiverende eksempel - fotodatabase
+- Kan lagre alt i en tabell, men det oppstår problemer
+  - Redundans (lagrer samme informasjon flere ganger) - kan gi inkonsistente databasetilstander
+  - Anomalier (uheldige egenskaper)
+    - Kan ikke lagre informasjon om en fotograf som ikke har registrert noen fotografier
+    - Endring av fotografnavn må oppdateres i flere rader
+    - Sletting av bilder kan føre til at data om fotografer går tapt
+- Ved problemer (lav normalform) splitter vi opp i "mindre" tabeller (færre attributter og høyere normalform)
+  - Unngår redundans og innsettings-, oppdaterings- og slettings-anomalier
+  - Oppnår fordeler med hensyn til representasjon av data, fare for inkonsistens og oppdaterings-arbeid
+  - MEN får et design med flere tabeller, økt behov for å forene tabeller (join) og ofte mer ressurskrevende spørringer
+
+### Restriksjoner: generelt
+- Databasetilstand: database-forekomsten (dataene) på en gitt tid
+  - Er *konsistent* når når alle reglene i miniverdenen er oppfylt
+- Restriksjoner begrenser hvilke data som kan finnes i en konsistent databasetilstand
+  - Inherent (eller implicit) constraints er en del av datamodellen og derfor alltid håndheves av DBMS
+    - Eksempel: Ingen like rader, følger av at tabellen er en mengde rader
+  - Explicit constraints kan uttrykkes i datamodellen (databaseskjemaet). Håndheves av DBMS
+    - Eksempler: Primærnøkkel, fremmednøkkel, datatyper, verdi-begrensninger, etc.
+  - Applikasjonsbaserte restriksjoner ("business rules") - må håndteres utenfor datamodellen (av applikasjonsprogrammene)
+    - Eksempel: ingen kan tjene mer enn sjefen sin
+
+
+
+## Video-17-normalisering-funksjonelle-avhengigheter
+
+### Nyttig notasjon
+![](assets/video/17/1.png)
+
+### Restriksjoner: funksjonelle avhengigheter
+- En delmengde av alle restriksjoner kan uttrykkes som funksjonelle avhengigheter
+  - Grunnlag for nøkler og viktige designregler
+- `FotografiID -> Navn`
+  - Alle rader som har samme verdi for FotografID må ha samme verdi for Navn
+  - Det er bare ett Navn knyttet til en bestemt FotografID, men en fotograf kan bytte navn
+  - Funksjonelle avhengigheter uttrykker en *sterk sammenheng* mellom attributter
+  - Legg merke til at det kan være flere FotografID som har samme Navn og da vil vi ikke har Navn -> FotografID
+
+### Funksjonelle avhengigheter (FA)
+- $X \rightarrow Y$, der $X, Y \subseteq R$ uttrykker en restriksjon på alle lovlige tabellforekomster for R
+  - Alle rader (tuppler), $t_j$ pg $t_i$, i en forekomst $r(R)$ som har samme verdier for attributtene i $X$ (dvs. $t_i[X] = t_j[X]$), *må* ha samme verdier for attributtene i $Y$ (dvs. $t_i[Y] = t_j[Y]$)
+- Eksempler fra Hund-databasen:
+  - Hund-tabell: RegNr -> Navn, RegNr -> Rase, RegNr -> FAar, RegNr -> EierPnr
+  - BittAv-tabell: RegNr, Pnr -> Antall
+
+### Utledningsregler
+Navn | Regel
+--- | ---
+IR-1 (reflexive) | ${ Y \subseteq X }$ gir $X \rightarrow Y$
+IR-2 (augmentation) | ${ X \rightarrow Y }$ gir $XZ \rightarrow YZ$
+IR-3 (transitive) | ${ X \rightarrow Y, Y \rightarrow Z }$ gir $X \rightarrow Z$
+IR-4 (decomposition) | ${ X \rightarrow YZ }$ gir $X \rightarrow Y$
+IR-5 (additive) | ${ X \rightarrow Y, X \rightarrow Z }$ gir $X \rightarrow YZ$
+IR-6 (pseudotransitive) | ${ X \rightarrow Y, WY \rightarrow Z }$ gir $WX \rightarrow Z$
+$X, Y, Z, W \subseteq R$ (mengden av alle attributter)
+
+### Tillukningen til en mengde FA-er: F^+^
+- F er en mengde funksjonelle avhengigheter
+- $F^+ = { X \rightarrow Y | X \rightarrow Y \text{kan utledes fra FA-ene i F} }$
+
+### Tillukningen til en mengde attributter: X^+^
+- Anta $R$ og $F$, $X \subseteq R$
+- $ X^+ = { Y \in R | X \rightarrow Y \in F^+ }$
+  - Alle attributter som er funksjonelt avhengige av $X$
+  - $X \rightarrow X+$ vil gjelde
+- Kan finnes ved en enkel algoritme
+```
+X+ = X;
+repeat
+  oldX+ = X+;
+  for each Y -> Z in F do
+    if Y subset X+ then
+      X+ = X+ union Z;
+until X+ = oldX+;
+```
+
+### Oppgaver
+
+#### 1
+![](assets/video/17/2.png)
+
+#### 2
+![](assets/video/17/3.png)
+
+#### 3
+![](assets/video/17/4.png)
+
+
+
+## Video-18-normalisering-nøkler
+
+### Supernøkkel
+- En supernøkkel for en tabell R er en mengde attributter S i R slik at 
+  - Ingen forekomst av tabellen kan ha to rader med samme verdier for S
+  - Supernøkkelen er en unik identifikator for tabellen
+  - Det må være slik at S -> alle de andre attributtene i tabellen
+  - Siden S -> S vil det være slik at S+ = R
+  - Alle tabeller vil ha minst en supernøkkel, ofte vil det være flere
+    - Siden vi ikke kanha like rader i en tabell vil "alle attributtene" alltid være en supernøkkel
+
+### Nøkkel
+- En nøkkel K er en minimal supernøkkel
+  - Vi kan ikke fjerne noe attributt fra K og fortsatt ha en supernøkkel
+  - Alle nøkler er supernøkler, noen supernøkler er nøkler
+  - K -> R og K+ = R holder selvsagt
+- Alle supernøkler inneholder minst en nøkkel
+- En nøkkel er en "sterkere restriksjon" (enn en supernøkkel med flere attributter) fordi den inneholder så få attributter som mulig
+
+### Kandidat-, primær- og sekundærnøkler
+- Alle tabeller vil ha minst en nøkkel
+- En tabells mulige nøkler utgjør tabellen kandidatnøkler
+- Primærnøkkelen velges blant kandidatnøklene
+- Øvrige kandidatnøkler blir tabellens sekundærnøkler (alternative nøkler)
+  - Her kan vi velge å tillate NULL-verdier
+
+### Nøkkel og ikke-nøkkel-attributter
+- Nøkkelattributt (eng: prime)
+  - Attributter som inngår i en eller flere kandidatnøkler
+- Ikke-nøkkelattributt (eng: nonprime)
+  - Attributter som ikke inngår i noen kandidatnøkkel
+- Partisjonerer attributtene i en tabell i to deler
+
+### Oppgave
+![](assets/video/18/1.png)
+
+
+
+## Video-19-normalisering-normalformer
+
+### Normalformer
+- Regler som stiller stadig strengere krav til tabeller
+  - Sikrer at vi har tabeller som unngår uheldige egenskaper
+- Første normalform (1NF)
+  - Attributtenes domener inneholder atomiske (udelelige) verdier
+  - Verdien til et attributt er en enkelt verdi fra domenet
+  - Sikrer "flate, to-dimensjonale tabeller"
+  - Unngår sammensatte attributter, flere verdier og nøstede tabeller
+  - NB! Det finner tabeller som ikke er på 1NF, disse er NON-1NF
+- Alle høyere normalformer forutsetter de lavere normalformene
+
+### Full funksjonell avhengighet
+- En funksjonell avhengighet $X \rightarrow Y$ er en full funksjonell avhengighet hvis det er umulig å fjerne et attributt, $A \in X$, og ha $(X - {A}) \rightarrow Y$
+- Inneholder ikke "overflødige" venstreside-attributter
+- Kan tenke på den som en "sterkere" regel enn en delvis funksjonell avhengighet, der vi kan venstreside-attributt fortsatt ha en funksjonell avhengighet
+
+### Andre normalform (2NF)
+- En tabell er på andre normalform hvis og bare hvis det ikke finnes noen ikke-nøkkel-attributter som er delvis avhengig av en kandidatnøkkel
+- Man kan gjerne oppnå andre normalform ved å splitte tabeller.
+
+![](assets/video/19/1.png)
+
+### Tredje normalform (3NF)
+- En tabell er på tredje normalform hvis og bare hvis det for alle funksjonelle avhengigheter på formen $X \rightarrow A$, som gjelder for tabellen er slik at:
+  - $X$ er en supernøkkel i tabellen, eller
+  - $A$ er et nøkkelattributt i tabellen
+- Man kan gjerne oppnå tredje normalform ved å splitte tabeller.
+
+![](assets/video/19/2.png)
+
+### Boyce-Codd normalform
+- 3NF kan ha redundandsproblemer ved overlappende kandidatnøkler
+- En tabell er på BCNF hvis og bare hvis det for alle funksjonelle avhengigheter på formen $X \rightarrow Y$, som gjelder for tabellen er slik at $X$ er en supernøkkel i tabellen
+- Alle venstresider i FA-er må altså være supernøkler (entydige identifikatorer for rader i tabellen)
+
+![](assets/video/19/3.png)
+
+### Eksempel
+
+![](assets/video/19/4.png)
+![](assets/video/19/5png)
+
+### Oppgave
+
+![](assets/video/19/6.png)
+
+
+
+## Video-20-normalisering-kriterier
+
+### Relasjonsdatabasedesign
+- Analyse eller syntese
+
+![](assets/video/20/1.png)
+
+### Kriterier
+- Started med R og F. Finner en dekomponering i tabeller (projeksjoner) som kan lagre det samme og har bedre egenskaper.
+
+1. Normalform
+  - Ser på hver enkelt tabell (projeksjon) for seg
+2. Attributtbevaring
+  - Kan lagre det samme
+3. Bevaring av funksjonelle avhengigheter
+  - Beholde samme restriksjon, enkelt
+4. Tapsløs sammenstilling til utgangspunktet
+  - Ikke skape "falske data"
+
+### Attributtbevaring
+- Alle attributter i R må finnes i minst en av projeksjonene
+- "Må kunne lagre de samme dataene"
+
+### Bevaring av funksjonelle avhengigheter
+- F representerer en restriksjon på alle tabellforekomster av R
+  - Må ivaretas i tabellene i dekomponeringen
+- Mål: Alle funksjonelle avhengigheter i F skal finnes i en eller flere $R_i$-er eller kunne utledes fra FA-ene som gjelder i $R_i$-ene
+- Ellers vil vi få inter-tabell-avhengigheter som vi må joine tabeller for å sjekke
+
+![](assets/video/20/2.png)
+
+### Tapsløst-join / ikke-adderende join
+- Må kunne komme tilbake til utgangspunktet
+- Ikke skape "falske data"
+- Kan sjekke hver oppdeling med "tommelfingerregel"
+- Kan sjekke med tabellmetoden, læreboka algoritme 15.3
+
+### BCNF og kriteriene
+- Kan alltid oppnå alle 4 kriterier når vi nøyer oss med tabeller på 3NF
+- Ønsker vi BCNF kan vi måtte velge bort noe:
+  - Attributtbevaring - kan vi ikke klare oss uten
+  - Bevaring av funksjonelle avhengigheter - restriksjonen blir mer krevende å gjennomføre, men det er mulig
+  - Tapsløst-join-egenskapen - kan vi ikke velge bort, da får vi et design som genererer "søppel"
+- I noen "vanskelige" tilfeller: 3NF og FA-bevaring *eller* BCNF uten FA-bevaring
+
+### Oppgaver
+
+#### 1
+
+![](assets/video/20/3.png)
+
+#### 2
+
+![](assets/video/20/4.png)
+
 
 
 
