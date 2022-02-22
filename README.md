@@ -1,10 +1,7 @@
 
 # TDT4145 - Data Modelling, Databases and Database Management Systems
 
-<details open>
-  <summary
-    style="font-size: x-large"
-  >Videoer</summary>
+
 
 ## Video-1-intro-ER-modellering
 
@@ -1200,89 +1197,3 @@ until X+ = oldX+;
 
 ![](assets/video/20/4.png)
 
-
-
-
-
-
-
-
-</details>
-
-
-
-<details open>
-  <summary
-    style="font-size: x-large"
-  >Treningsoppgaver</summary>
-
-## Treningsoppgave 1
-
-### 1 Relasjonsklasser og restriksjoner
-Ta utgangspunkt i en eller flere miniverdener som du kjenner godt. Finn eksempler på (binære) relasjonsklasser som har følgende restriksjoner, uttrykt med min-maks-par:
-- (0,n) og (0,n)
-- (0,1) og (0,n)
-- (1,1) og (0,n)
-- (1,1) og (1,n)
-
-##### Løsning
-![](assets/treningsoppgave/1/0.svg)
-
-### 2 Modelleringsoppgave
-
-#### a) Utgangspunkt
-Databasefaget har et antall studenter som tar faget og et antall øvinger som disse  studentene må gjøre før eksamen. Vi trenger en database for å holde oversikt  over studenter og øvinger. Finn ut hvilke opplysninger som det i denne  sammenhengen er nødvendig å ha om studenter. Alle øvinger har et entydig  øvingsnummer, en tittel, en oppgavetekst (URL til PDF-fil), et løsningsforslag  (URL til PDF-fil) og en innleveringsfrist. Vi ønsker å registrerer godkjenningsdato når en student får godkjent en bestemt øving. Lag et ER-diagram for en slik database.
-
-##### Løsning
-- Entiteter
-  - Student
-    - StudentNr
-  - Øvinger
-    - ØvingsNr
-    - Tittel
-    - OppgaveTekst
-    - LF
-    - Frist
-- Relasjoner
-  - Student (0,N) --- FåttGodkjent --- (0,N) Øving
-    - Dato
-
-![](assets/treningsoppgave/1/1.svg)
-
-#### b) Nye krav
-Etter litt bruk av databasen finner vi ut at vi trenger litt utvidet funksjonalitet. Vi ønsker å holde oversikt over øvingsassistentene (stud.ass.-er og und.ass-er) i faget. Den nødvendige informasjonen er ansattnummer som er unikt for hver person, navn, e-postadresse og mobiltelefonnummer. Det er bare øvingsassistenter som kan godkjenne øvinger. Når en øving blir godkjent ønsker vi å registrere hvem som har godkjent den, i tillegg til godkjenningsdato. Hver student skal registreres med en primærassistent, men kan få godkjent øvinger av alle assistenter. Lag et utvidet ER-diagram som oppfyller de nye kravene til databasen.
-
-##### Løsning
-- Entiteter
-  - Student
-    - StudentNr
-  - Øvinger
-    - ØvingsNr
-    - Tittel
-    - OppgaveTekst
-    - LF
-    - Frist
-  - Øvingsassistent
-    - AnsattNr
-    - Navn
-    - E-post
-    - Tlf
-- Relasjoner
-  - Student (0,N) --- FåttGodkjent --- (0,N) Øving
-    - Dato
-
-![](assets/treningsoppgave/1/2.svg)
-
-#### c) Nye krav II
-Vi ønsker å samle kvalitetsdata om øvingene og studentenes innsats med disse. Når en øvingsassistent godkjenner en øving skal hun, i tillegg til dato, registrere en poengsum fra 0-100 som viser i hvilken grad studenten har oppnådd målene for øvingen. Studentene skal også kunne gi vurdering av øvinger, med ”terningkast” fra 1-6. Lag et utvidet ER-diagram som oppfyller de nye kravene til databasen.
-
-##### Løsning
-![](assets/treningsoppgave/1/3.svg)
-
-#### d) Forekomstdiagram
-Anta en databasetilstand der vi har 3 øvinger (ø-1, ø-2 og ø-3), 3 studenter (s-1, s-2 og s-3) og 2 øvingsassistenter (a-1 og a-2). s-1 har gjort ø-1 og ø-2, godkjent av a-1. s-2 har gjort øving ø-1 som ble godkjent av a-1, og øving ø-3 som ble godkjent av a-2. s-1 har vurdert de to godkjente øvingene til terningkast 4. Alle studentene har a-1 som primærassistent. Tegn et forekomstdiagram for denne databasetilstanden. Gjør de forutsetningene som du evt. trenger.
-
-##### Løsning
-![](assets/treningsoppgave/1/4.svg)
-
-</details>
