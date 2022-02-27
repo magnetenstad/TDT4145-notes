@@ -10,7 +10,7 @@ Følgende notater dekker første halvdel av faget.
     - [3.1.1. Entiteter og entitetsklasser](#311-entiteter-og-entitetsklasser)
     - [3.1.2. Attributter](#312-attributter)
     - [3.1.3. Relasjoner og relasjonsklasser](#313-relasjoner-og-relasjonsklasser)
-      - [3.1.3.1. Kardinalitet](#3131-kardinalitet)
+      - [3.1.3.1. Kardinalitet og strukturelle restriksjoner](#3131-kardinalitet-og-strukturelle-restriksjoner)
   - [3.2. Forekomstdiagram](#32-forekomstdiagram)
   - [3.3. EER-modellering](#33-eer-modellering)
     - [3.3.1. Spesialisering og generalisering](#331-spesialisering-og-generalisering)
@@ -42,23 +42,22 @@ Følgende notater dekker første halvdel av faget.
       - [6.3.10.6. Nøstede spørringer i `FROM`-delen](#63106-nøstede-spørringer-i-from-delen)
     - [6.3.11. Virtuelle tabeller - `VIEW`](#6311-virtuelle-tabeller---view)
 - [7. Normalisering](#7-normalisering)
-  - [Tillukning](#tillukning)
-    - [Tillukningen til en mengde FA-er: F^+^](#tillukningen-til-en-mengde-fa-er-f)
-    - [Tillukningen til en mengde attributter: X^+^](#tillukningen-til-en-mengde-attributter-x)
-  - [Nøkler](#nøkler)
-  - [Normalformer](#normalformer)
-  - [Dekomponering](#dekomponering)
+  - [7.1. Tillukning](#71-tillukning)
+    - [7.1.1. Tillukningen til en mengde FA-er: F^+^](#711-tillukningen-til-en-mengde-fa-er-f)
+    - [7.1.2. Tillukningen til en mengde attributter: X^+^](#712-tillukningen-til-en-mengde-attributter-x)
+  - [7.2. Nøkler](#72-nøkler)
+  - [7.3. Normalformer](#73-normalformer)
+  - [7.4. Dekomponering](#74-dekomponering)
 
 # 3. Datamodellering
 Begrep | Forklaring
 --- | ---
-Miniverden | Domenet. En avgrenset mengde konsepter som skal modelleres.
+Miniverden | Domenet. En mengde konsepter som skal modelleres.
 Datamodell | Et sett begreper for å beskrive struktur (hvilke typer data, sammenheger og restriksjoner) og operasjoner (handlinger på data: innsetting, endring, sletting og spørring)
-Konseptuelle modeller | For å forstå og dokumentere. For eksempel ER-modell.
-Implementasjonsmodeller | For å realisere. For eksempel Relasjonsdatabasemodell.
+Konseptuelle modeller | For å forstå og dokumentere. For eksempel ER-modeller.
+Implementasjonsmodeller | For å realisere. For eksempel relasjonsdatabasemodeller.
 Fysiske modeller | Kontroll på lagring og optimalisering. Disse er produktspesifikke modeller.
-Database | Et sett av relaterte data.
-Data |
+Database | En strukturert samling av relaterte data.
 Informasjon | Data + tolkning
 DBMS | Databasehåndteringssystem. Software som styrer lagring og tilgang på data i databasen.
 Databasesystem | DBMS + data
@@ -66,10 +65,11 @@ Selvbeskrivende DBMS | Vil si at den inneholder både data og beskrivelser om da
 Selvbeskrivende datamodeller | Inkluderer databeskrivelser i selve dataen. For eksempel XML og JSON.
 Program-data uavhengighet | En egenskap som går ut på at strukturendring i datafil ikke medfører at man må endre programmene som har tilgang til dataen.
 Flerbrukersstøtte | Flere brukere kan hente ut og lagre data samtidig uten at det er problem.
-Transaksjoner |
+Transaksjon | En serie operasjoner på en database som sammen bevarer databasens konsistens.
 
 
 ## 3.1. ER-modellering
+<p>ER-notasjon: <a href="/assets/ER_notasjon_2017.pdf">Open PDF</a>.</p>
 
 ### 3.1.1. Entiteter og entitetsklasser
 Begrep | Forklaring
@@ -86,7 +86,7 @@ Type attributt | Notasjon | Forklaring
 Enkel attributt (Standard) | Ingen | Attributt
 Flerverdiattributt | Dobbel linje | Kan holde flere verdier
 Sammensatt attributt | Har egne subattributter | Har egne subattributter
-Avledet attributt | Stiplet linje | Attributtet kan avledes, og trenger ikke lagres eksplisitt
+Avledet attributt | Stiplet linje | Kan avledes fra andre attributter, trenger ikke lagres eksplisitt
 Nøkkelattributt | Understreket | Entydig identifikator for entiteten
 
 ### 3.1.3. Relasjoner og relasjonsklasser
@@ -96,7 +96,13 @@ Relasjon | Sammenheng mellom to eller flere enititeter. Kan ha attributter på s
 Relasjonsklasse | Mengden av likeartede relasjoner mellom samme enitetsklasser.
 Rekursiv relasjonsklasse | Relasjonsklasser der samme entitetsklasse inngår flere ganger. En entitetsklasse kan da ha flere roller i relasjonsklassen.
 
-#### 3.1.3.1. Kardinalitet
+#### 3.1.3.1. Kardinalitet og strukturelle restriksjoner
+Foreleser i emnet foretrekker strukturelle restriksjoner
+
+Begrep | Forklaring
+--- | ---
+Kardinalitet | Ved bruk av 1 eller N på hver side av relasjonen antydes om relasjonen er en-til-en, en-til-mange eller mange-til-mange. Noteres på *motsatt side* av relasjonen som den aktuelle entiteten.
+Strukturell restriksjon (*min*, *max*) | Antyder at en entitet opptrer i relasjonen minst *min* ganger og maks *max* ganger. Vanlige restriksjoner er (0, 1), (1, 1), (0, n) og (1, n). Noteres på *samme side* av relasjonen som den aktuelle entiteten.
 
 
 ## 3.2. Forekomstdiagram
@@ -104,29 +110,41 @@ Rekursiv relasjonsklasse | Relasjonsklasser der samme entitetsklasse inngår fle
 
 ## 3.3. EER-modellering
 ### 3.3.1. Spesialisering og generalisering
+
+Begrep | Forklaring
+--- | ---
+Superklasse-subklasserelasjon | Subklassene *arver* egenskapene (attributter og relasjoner) til superklassen.
+Total spesialisering | Alle entiteter i superklassen må delta i minst en subklasse. Noteres med dobbel strek.
+Overlappende subklasser | En entitet i superklassen kan delta i flere enn en subklasse. Noteres med O eller mangel på notasjon. 
+Distinke subklasser | En entitet i superklassen kan *ikke* delta i flere enn en subklasse. Noteres med D. 
+
 En entitet kan delta i | **Disjunkt** | **Overlappende**
 --- | --- | ---
 **Delvis** | 0-1 subklasser | 0-n subklasser
 **Total** | 1 subklasse | 1-n subklasser
 
 ###  3.3.2. Kategorier
+En kategori representerer en samling av entiteter som er en delmenge av entitetene fra ulike  entitetsklasser (kategorienes superklasser). Blir også kalt en union-type. En kategori kan være delvis eller total. En total kategori vil inneholde alle entitetene i unionen av superklassene og markeres med dobbelt strek mellom kategorien og sirkelen.
+
 # 4. Relasjonsdatabaser
 ## 4.1. Mapping fra ER-modell
 ## 4.2. Mapping fra EER-modell
 # 5. Relasjonsalgebra
 Operasjon | Operator | Forklaring
 --- | --- | ---
-Projeksjon | $\sigma$
-Seleksjon | $\Pi$
-Union | $\cup$
-Snitt | $\cap$
-Differanse | $-$
-Kartesisk produkt | $\text{X}$
-Indre join | $\Join$
-Naturlig join | $*$
-Ytre join | TODO
-Omdøping | $\rho$
-Sortering | $\uparrow \downarrow$
+Seleksjon | $\sigma_{\text{Betingelse}}(\text{A})$ | Returnerer radene i A som oppfyller betingelsen.
+Projeksjon | $\Pi_{\text{Kolonnenavn...}}(\text{A})$ | Returnerer de oppgitte kolonnene i A.
+Union | $\cup(\text{A, B})$ | Returnerer unionen av A og B. Krever like kolonnenavn.
+Snitt | $\cap(\text{A, B})$ | Returnerer snittet av A og B. Krever like kolonnenavn.
+Differanse | $-(\text{A, B})$ | Returnerer radene i A som ikke er i B. Krever like kolonnenavn.
+Kartesisk produkt | $\text{X}(\text{A, B})$ | Kombinerer alle rader i A med alle rader i B.
+Indre join | $\Join_{\text{Betingelse}}(\text{A, B})$ | Kombinerer radene i A og B som sammen oppfyller betingelsen.
+Naturlig join | $*(\text{A, B})$ | Kombinerer radene i A og B der alle kolonner i A og B med samme navn også har samme verdi.
+Venstre ytre join | $=\Join_{\text{Betingelse}}(\text{A, B})$ | Returnerer alle rader i A, og de kombinerte radene i A og B som sammen oppfyller betingelsen.
+Høyre ytre join | $\Join=_{\text{Betingelse}}(\text{A, B})$ | Returnerer alle rader i B, og de kombinerte radene i A og B som sammen oppfyller betingelsen.
+Full ytre join | $=\Join=_{\text{Betingelse}}(\text{A, B})$ | Returnerer alle rader i A og B, og de kombinerte radene i A og B som sammen oppfyller betingelsen.
+Omdøping | $\rho_{Tabellnavn(Attributtnavn..)}(\text{A})$ | Returnerer en ny tabell med nye kolonnenavn.
+Sortering | $\uparrow \downarrow_{Attributt..}(A)$ | Returnerer en tabell der radene er sortert etter de oppgitte attributtene. Man kan spesifisere ASC (stigende) eller DESC (synkende) rekkefølge.
 
 ## 5.1. Gruppering og aggregering
 Funksjon | Forklaring
@@ -152,6 +170,7 @@ COUNT(*) | Antall rader
 ### 6.3.6. Ulike typer join
 
 Funksjon | Beskrivelse
+--- | ---
 `(INNER) JOIN` | Returns records that have matching values in both tables
 `LEFT (OUTER) JOIN` | Returns all records from the left table, and the matched records from the right table
 `RIGHT (OUTER) JOIN` | Returns all records from the right table, and the matched records from the left table
@@ -170,16 +189,16 @@ Funksjon | Beskrivelse
 ### 6.3.11. Virtuelle tabeller - `VIEW`
 # 7. Normalisering
 
-## Tillukning
+## 7.1. Tillukning
 
-### Tillukningen til en mengde FA-er: F^+^
+### 7.1.1. Tillukningen til en mengde FA-er: F^+^
 Anta $F$ er en mengde funksjonelle avhengigheter. Da er 
 $F^+ = \{ X \rightarrow Y | X \rightarrow Y \text{ kan utledes fra FA-ene i F} \}$
 
-### Tillukningen til en mengde attributter: X^+^
+### 7.1.2. Tillukningen til en mengde attributter: X^+^
 Anta $R$ og $F$, $X \subseteq R$. Da er $ X^+ = \{ Y \in R | X \rightarrow Y \in F^+ \}$ Dette er mengden av alle attributter som er funksjonelt avhengige av $X$.
 
-## Nøkler
+## 7.2. Nøkler
 
 Type nøkkel | Forklaring
 --- | ---
@@ -188,7 +207,7 @@ Supernøkkel | Mengde attributter som sammen er en identifikator
 Kandidatnøkkel | En minimal supernøkkel
 Nøkkel | 
 
-## Normalformer
+## 7.3. Normalformer
 FØRSTE NORMALFORM
 
 Atomiske verdier
@@ -207,5 +226,5 @@ BOYCE-CODD NORMALFORM
 
 En tabell er på BCNF hvis det for alle ikke-trivielle funksjonelle avhengigheter X -> Y som gjelder for tabellen, er slik at X er en supernøkkel i tabellen.
 
-## Dekomponering
+## 7.4. Dekomponering
 

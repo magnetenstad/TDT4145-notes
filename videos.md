@@ -383,11 +383,13 @@ Fotograf
 
 Fotografi
 **Identifikator** | Tittel | Dato | FotografId
+--- | --- | --- | ---
 
 FotografId er fremmednøkkel mot Fotograf
 
 Motiv
 **Identifikator** | Beskrivelse
+--- | ---
 
 HarMotiv
 FotografiId | MotivId
@@ -439,7 +441,7 @@ CaptureDevice
 
 Camera
 CDID | **CameraID** | Model | Brand | CameraType
---- | --- | --- | --- 
+--- | --- | --- | --- | ---
 
 Phone
 CDID | **PhoneID** | Model
