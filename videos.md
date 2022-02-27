@@ -1023,11 +1023,11 @@ $X, Y, Z, W \subseteq R$ (mengden av alle attributter)
 
 ### Tillukningen til en mengde FA-er: F^+^
 - F er en mengde funksjonelle avhengigheter
-- $F^+ = { X \rightarrow Y | X \rightarrow Y \text{kan utledes fra FA-ene i F} }$
+- $F^+ = \{ X \rightarrow Y | X \rightarrow Y \text{kan utledes fra FA-ene i F} \}$
 
 ### Tillukningen til en mengde attributter: X^+^
 - Anta $R$ og $F$, $X \subseteq R$
-- $ X^+ = { Y \in R | X \rightarrow Y \in F^+ }$
+- $ X^+ = \{ Y \in R | X \rightarrow Y \in F^+ \}$
   - Alle attributter som er funksjonelt avhengige av $X$
   - $X \rightarrow X+$ vil gjelde
 - Kan finnes ved en enkel algoritme
