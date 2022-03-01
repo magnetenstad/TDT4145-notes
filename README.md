@@ -256,8 +256,8 @@ $$\Pi_{\text{attributt, ...}}(\sigma_{\text{betingelse}}(\text{tabell}))$$
 Følgende operator virker som forventet.
 Operator |
 --- |
-AND, OR |
-=, !=, <, >, <=, >= |
+`AND`, `OR` |
+`=`, `!=`, `<`, `>`, `<=`, `>=` |
 
 Merk: `<>` er det samme som `!=`
 
