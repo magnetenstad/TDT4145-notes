@@ -299,35 +299,48 @@ pre[data-line] .line-highlight[data-end]:after {
 </li>
 <li><a href="#5-relasjonsalgebra">5. Relasjonsalgebra</a>
 <ul>
-<li><a href="#51-gruppering-og-aggregering">5.1. Gruppering og aggregering</a></li>
+<li><a href="#51-operasjoner">5.1. Operasjoner</a></li>
+<li><a href="#52-gruppering-og-aggregering">5.2. Gruppering og aggregering</a></li>
 </ul>
 </li>
 <li><a href="#6-sql">6. SQL</a>
 <ul>
-<li><a href="#61-opprette-data">6.1. Opprette data</a></li>
-<li><a href="#62-endre-data">6.2. Endre data</a></li>
-<li><a href="#63-sp%C3%B8rringer">6.3. Sp&#xF8;rringer</a>
+<li><a href="#61-opprette-data">6.1. Opprette data</a>
+<ul>
+<li><a href="#611-fremmedn%C3%B8kkelrestriksjoner">6.1.1. Fremmedn&#xF8;kkelrestriksjoner</a></li>
+</ul>
+</li>
+<li><a href="#62-manipulere-data">6.2. Manipulere data</a>
+<ul>
+<li><a href="#621-sette-inn-data---insert-into">6.2.1. Sette inn data - <code>INSERT INTO</code></a></li>
+<li><a href="#622-oppdatere-data---update">6.2.2. Oppdatere data - <code>UPDATE</code></a></li>
+<li><a href="#623-slette-data---delete">6.2.3. Slette data - <code>DELETE</code></a></li>
+</ul>
+</li>
+<li><a href="#63-sp%C3%B8rringer---select">6.3. Sp&#xF8;rringer - <code>SELECT</code></a>
 <ul>
 <li><a href="#631-spesifisere-krav---where">6.3.1. Spesifisere krav - <code>WHERE</code></a></li>
 <li><a href="#632-fjerne-duplikater---distinct">6.3.2. Fjerne duplikater - <code>DISTINCT</code></a></li>
-<li><a href="#633-sortering-order-by">6.3.3. Sortering <code>ORDER BY</code></a></li>
+<li><a href="#633-sortering---order-by">6.3.3. Sortering - <code>ORDER BY</code></a></li>
 <li><a href="#634-strengsammenlikning---like">6.3.4. Strengsammenlikning - <code>LIKE</code></a></li>
-<li><a href="#635-kartesisk-produkt">6.3.5. Kartesisk produkt</a></li>
-<li><a href="#636-ulike-typer-join">6.3.6. Ulike typer join</a></li>
-<li><a href="#637-aggregering">6.3.7. Aggregering</a></li>
-<li><a href="#638-gruppering">6.3.8. Gruppering</a></li>
-<li><a href="#639-betingelse-etter-gruppering---having">6.3.9. Betingelse etter gruppering - <code>HAVING</code></a></li>
-<li><a href="#6310-n%C3%B8stede-sp%C3%B8rringer">6.3.10. N&#xF8;stede sp&#xF8;rringer</a>
+<li><a href="#635-data-fra-flere-tabeller-kartesisk-produkt-og-ulike-typer-join">6.3.5. Data fra flere tabeller: kartesisk produkt og ulike typer join</a></li>
+<li><a href="#636-aggregering">6.3.6. Aggregering</a></li>
+<li><a href="#637-gruppering---group-by">6.3.7. Gruppering - <code>GROUP BY</code></a>
 <ul>
-<li><a href="#63101-sammenlikningsoperatorer">6.3.10.1. Sammenlikningsoperatorer</a></li>
-<li><a href="#63102-any-all">6.3.10.2. <code>ANY</code>, <code>ALL</code></a></li>
-<li><a href="#63103-in-not-in">6.3.10.3. <code>IN</code>, <code>NOT IN</code></a></li>
-<li><a href="#63104-exists">6.3.10.4. <code>EXISTS</code></a></li>
-<li><a href="#63105-union-snitt-og-differanse">6.3.10.5. Union, snitt og differanse</a></li>
-<li><a href="#63106-n%C3%B8stede-sp%C3%B8rringer-i-from-delen">6.3.10.6. N&#xF8;stede sp&#xF8;rringer i <code>FROM</code>-delen</a></li>
+<li><a href="#6371-betingelse-etter-gruppering---having">6.3.7.1. Betingelse etter gruppering - <code>HAVING</code></a></li>
 </ul>
 </li>
-<li><a href="#6311-virtuelle-tabeller---view">6.3.11. Virtuelle tabeller - <code>VIEW</code></a></li>
+<li><a href="#638-n%C3%B8stede-sp%C3%B8rringer">6.3.8. N&#xF8;stede sp&#xF8;rringer</a>
+<ul>
+<li><a href="#6381-sammenlikningsoperatorer">6.3.8.1. Sammenlikningsoperatorer</a></li>
+<li><a href="#6382-any-all">6.3.8.2. <code>ANY</code>, <code>ALL</code></a></li>
+<li><a href="#6383-in-not-in">6.3.8.3. <code>IN</code>, <code>NOT IN</code></a></li>
+<li><a href="#6384-exists">6.3.8.4. <code>EXISTS</code></a></li>
+<li><a href="#6385-union-snitt-og-differanse">6.3.8.5. Union, snitt og differanse</a></li>
+<li><a href="#6386-n%C3%B8stede-sp%C3%B8rringer-i-from-delen">6.3.8.6. N&#xF8;stede sp&#xF8;rringer i <code>FROM</code>-delen</a></li>
+</ul>
+</li>
+<li><a href="#639-virtuelle-tabeller---view">6.3.9. Virtuelle tabeller - <code>VIEW</code></a></li>
 </ul>
 </li>
 </ul>
@@ -358,7 +371,7 @@ pre[data-line] .line-highlight[data-end]:after {
 <tbody>
 <tr>
 <td>Miniverden</td>
-<td>Domenet. De virkelige konseptene som skal modelleres.</td>
+<td>Domenet. De konseptene fra virkeligheten som skal modelleres.</td>
 </tr>
 <tr>
 <td>Datamodell</td>
@@ -409,6 +422,22 @@ pre[data-line] .line-highlight[data-end]:after {
 <td>Flere brukere kan hente ut og lagre data samtidig uten problemer.</td>
 </tr>
 <tr>
+<td>Entitetsintegritet</td>
+<td>Tilsier at en prim&#xE6;rn&#xF8;kkel ikke kan v&#xE6;re <code>NULL</code>.</td>
+</tr>
+<tr>
+<td>Referanseintegritet</td>
+<td>Tilsier at fremmedn&#xF8;kkelen mot en tabell m&#xE5; referere til en eksisterende rad i den tabellen.</td>
+</tr>
+<tr>
+<td>Databasetilstand</td>
+<td>Dataen i databasen p&#xE5; et gitt tidspunkt.</td>
+</tr>
+<tr>
+<td>Konsistent databasetilstand</td>
+<td>At databasen tilfredsstiller alle integritetsregler.</td>
+</tr>
+<tr>
 <td>Transaksjon</td>
 <td>En serie operasjoner p&#xE5; en database som sammen bevarer databasens konsistens.</td>
 </tr>
@@ -416,7 +445,7 @@ pre[data-line] .line-highlight[data-end]:after {
 </table>
 <h2 class="mume-header" id="31-er-modellering">3.1. ER-modellering</h2>
 
-<p>ER-notasjon: <a href="assets\ER_notasjon_2017.pdf">Open PDF</a>.</p>
+<p><strong>Viktig!</strong> ER-notasjon: <a href="assets\ER_notasjon_2017.pdf">Open PDF</a>.</p>
 <h3 class="mume-header" id="311-entiteter-og-entitetsklasser">3.1.1. Entiteter og entitetsklasser</h3>
 
 <table>
@@ -541,7 +570,7 @@ pre[data-line] .line-highlight[data-end]:after {
 <tbody>
 <tr>
 <td>Superklasse-subklasserelasjon</td>
-<td>Subklassene <em>arver</em> egenskapene (attributter og relasjoner) til superklassen.</td>
+<td>Subklassene <em>arver</em> egenskapene (attributter og relasjoner) til superklassen, men kan ogs&#xE5; ha s&#xE6;regne attributter og relasjoner. En subklasse er en delmengde av den tilh&#xF8;rende superklassen.</td>
 </tr>
 <tr>
 <td>Total spesialisering</td>
@@ -583,11 +612,71 @@ pre[data-line] .line-highlight[data-end]:after {
 <p>En kategori representerer en samling av entiteter som er en delmenge av entitetene fra ulike  entitetsklasser (kategorienes superklasser). Blir ogs&#xE5; kalt en union-type. En kategori kan v&#xE6;re delvis eller total. En total kategori vil inneholde alle entitetene i unionen av superklassene og markeres med dobbelt strek mellom kategorien og sirkelen.</p>
 <h1 class="mume-header" id="4-relasjonsdatabaser">4. Relasjonsdatabaser</h1>
 
+<p>Relasjonersdatabaser er bygd opp av tabeller der kolonner angir attributter og rader angir entiteter eller relasjoner.</p>
 <h2 class="mume-header" id="41-mapping-fra-er-modell">4.1. Mapping fra ER-modell</h2>
 
+<table>
+<thead>
+<tr>
+<th>Konsept</th>
+<th>Hvordan mappe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Regul&#xE6;re entitetsklasser</td>
+<td>Entitetsklassen f&#xE5;r egen tabell. Attributter blir kolonner. Sammensatte attributter splittes opp. Prim&#xE6;rn&#xF8;kkel fra ER-modell brukes.</td>
+</tr>
+<tr>
+<td>Svake entitetstyper</td>
+<td>Legger til prim&#xE6;rn&#xF8;kkel (fremmedn&#xF8;kkel) fra identifiserende entitetsklasser, sammen med klassens delvise n&#xF8;kkel. Ellers likt.</td>
+</tr>
+<tr>
+<td>Bin&#xE6;re 1:1 relasjoner</td>
+<td>Fremmedn&#xF8;kkel kan legges i en av entitetsklassetabellene, eller s&#xE5; kan relasjonen f&#xE5; egen tabell.</td>
+</tr>
+<tr>
+<td>Bin&#xE6;re 1:N relasjoner</td>
+<td>Fremmedn&#xF8;kkel kan legges i entiteten med kardinalitet 1, eller s&#xE5; kan relasjonen f&#xE5; egen tabell.</td>
+</tr>
+<tr>
+<td>Bin&#xE6;re N:N relasjoner</td>
+<td>Relasjonen f&#xE5;r egen tabell.</td>
+</tr>
+<tr>
+<td>Flerverdiattributter</td>
+<td>F&#xE5;r egen tabell med fremmedn&#xF8;kkel mot entitetsklassen.</td>
+</tr>
+<tr>
+<td>N-&#xE6;re relasjonsklasser (N &gt; 2)</td>
+<td>F&#xE5;r egen tabell med fremmedn&#xF8;kler mot alle tilh&#xF8;rende entitetsklasser.</td>
+</tr>
+</tbody>
+</table>
 <h2 class="mume-header" id="42-mapping-fra-eer-modell">4.2. Mapping fra EER-modell</h2>
 
+<table>
+<thead>
+<tr>
+<th>Konsept</th>
+<th>Hvordan mappe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Spesialisering/generalisering</td>
+<td>A) Separate tabeller for superklasse og alle subklasser. Kommentar: Data om en entitet spredt over flere tabeller, m&#xE5; bruke join. B) Separate tabeller for subklasser som inkluderer attributter fra superklassen. Kommentar: Krever total og disjunkt spesialisering. C) En tabell som inkluderer attributter fra superklassen og alle subklasser. Kommentar: Ved disjunkt spesialisering kreves et type-attributt. Ved overlappende spesialisering kreves en boolsk type-vektor (en kolonne per type).</td>
+</tr>
+<tr>
+<td>Kategorier</td>
+<td>En tabell for kategori-entitetsklassen, med typeattributt. Superklassene har som regel ulike n&#xF8;kler, i tillegg til en surrogat(fremmed)n&#xF8;kkel mot kategorien.</td>
+</tr>
+</tbody>
+</table>
 <h1 class="mume-header" id="5-relasjonsalgebra">5. Relasjonsalgebra</h1>
+
+<p>I relasjonsalgebra bruker vi operasjoner for &#xE5; manipulere relasjonsdatabasetabeller. Merk at en rad her er en tuppel og en tabell er en mengde av tuppler. Vi vil alts&#xE5; ikke ha duplikater. Operatorene er lukket over tabeller (b&#xE5;de input og output er mengder).</p>
+<h2 class="mume-header" id="51-operasjoner">5.1. Operasjoner</h2>
 
 <table>
 <thead>
@@ -665,8 +754,10 @@ pre[data-line] .line-highlight[data-end]:after {
 </tr>
 </tbody>
 </table>
-<h2 class="mume-header" id="51-gruppering-og-aggregering">5.1. Gruppering og aggregering</h2>
+<h2 class="mume-header" id="52-gruppering-og-aggregering">5.2. Gruppering og aggregering</h2>
 
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mtext>Grupperingsattributter,&#xA0;Aggregeringsfunksjoner</mtext></msub><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">F_{\text{Grupperingsattributter, Aggregeringsfunksjoner}}(A)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">Grupperingsattributter,&#xA0;Aggregeringsfunksjoner</span></span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mclose">)</span></span></span></span><br>
+Visualisert med graf plasseres grupperingsattributtene p&#xE5; venstre side og aggregeringsfunksjonene p&#xE5; h&#xF8;yre side. Man kan ogs&#xE5; definere et alias med <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>AS</mtext></mrow><annotation encoding="application/x-tex">\text{AS}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">AS</span></span></span></span></span>. Eksempel: La <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>A&#xA0;=&#xA0;Bilde(Fotograf,&#xA0;Motiv)</mtext></mrow><annotation encoding="application/x-tex">\text{A = Bilde(Fotograf, Motiv)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">A&#xA0;=&#xA0;Bilde(Fotograf,&#xA0;Motiv)</span></span></span></span></span> Da vil <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mtext>Fotograf,&#xA0;COUNT(Motiv)&#xA0;AS&#xA0;AntallMotiver</mtext></msub><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">F_{\text{Fotograf, COUNT(Motiv) AS AntallMotiver}}(A)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1052em;vertical-align:-0.3552em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.5198em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">Fotograf,&#xA0;COUNT(Motiv)&#xA0;AS&#xA0;AntallMotiver</span></span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.3552em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mclose">)</span></span></span></span> returnere en tabell <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>Bilde(Fotograf,&#xA0;AntallMotiver)</mtext></mrow><annotation encoding="application/x-tex">\text{Bilde(Fotograf, AntallMotiver)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">Bilde(Fotograf,&#xA0;AntallMotiver)</span></span></span></span></span> med antall motiver hver fotograf har avbildet.</p>
 <table>
 <thead>
 <tr>
@@ -676,55 +767,119 @@ pre[data-line] .line-highlight[data-end]:after {
 </thead>
 <tbody>
 <tr>
-<td>SUM(attributt)</td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>SUM(attributt)</mtext></mrow><annotation encoding="application/x-tex">\text{SUM(attributt)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">SUM(attributt)</span></span></span></span></span></td>
 <td>Sum</td>
 </tr>
 <tr>
-<td>AVG(attributt)</td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>AVG(attributt)</mtext></mrow><annotation encoding="application/x-tex">\text{AVG(attributt)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">AVG(attributt)</span></span></span></span></span></td>
 <td>Gjennomsnitt</td>
 </tr>
 <tr>
-<td>MIN(attributt)</td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>MIN(attributt)</mtext></mrow><annotation encoding="application/x-tex">\text{MIN(attributt)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">MIN(attributt)</span></span></span></span></span></td>
 <td>Minimum</td>
 </tr>
 <tr>
-<td>MAX(attributt)</td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>MAX(attributt)</mtext></mrow><annotation encoding="application/x-tex">\text{MAX(attributt)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">MAX(attributt)</span></span></span></span></span></td>
 <td>Maksimum</td>
 </tr>
 <tr>
-<td>COUNT(attributt)</td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>COUNT(attributt)</mtext></mrow><annotation encoding="application/x-tex">\text{COUNT(attributt)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">COUNT(attributt)</span></span></span></span></span></td>
 <td>Antall verdier (unntatt NULL)</td>
 </tr>
 <tr>
-<td>COUNT(DISTINCT attributt)</td>
-<td>Antall unike verdier (unntatt NULL)</td>
-</tr>
-<tr>
-<td>COUNT(*)</td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>COUNT(*)</mtext></mrow><annotation encoding="application/x-tex">\text{COUNT(*)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">COUNT(*)</span></span></span></span></span></td>
 <td>Antall rader</td>
 </tr>
 </tbody>
 </table>
 <h1 class="mume-header" id="6-sql">6. SQL</h1>
 
+<p>Deklarativt sp&#xF8;rrespr&#xE5;k (&quot;hva, ikke hvordan&quot;) - vi trenger ikke tenke p&#xE5; optimalisering. Ikke mengdeorientert som relasjonsalgebra, resultattabellene kan ha like rader - m&#xE5; be om at duplikater fjernes.</p>
 <h2 class="mume-header" id="61-opprette-data">6.1. Opprette data</h2>
 
-<h2 class="mume-header" id="62-endre-data">6.2. Endre data</h2>
+<p>DDL - Data Definition Language</p>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-CREATE">CREATE</span> <span class="token keyword keyword-TABLE">TABLE</span> <span class="token comment">/* opprette tabell */</span>
+<span class="token keyword keyword-ALTER">ALTER</span> <span class="token keyword keyword-TABLE">TABLE</span> <span class="token comment">/* endre tabell */</span>
+<span class="token keyword keyword-DROP">DROP</span> <span class="token keyword keyword-TABLE">TABLE</span> <span class="token comment">/* fjerne tabell */</span>
+</pre><pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-CREATE">CREATE</span> <span class="token keyword keyword-TABLE">TABLE</span> Person <span class="token punctuation">(</span>
+    Pnr     <span class="token keyword keyword-INTEGER">INTEGER</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    Navn    <span class="token keyword keyword-VARCHAR">VARCHAR</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    Alder   <span class="token keyword keyword-INTEGER">INTEGER</span><span class="token punctuation">,</span>
+    <span class="token keyword keyword-CONSTRAINT">CONSTRAINT</span> Person_PK <span class="token keyword keyword-PRIMARY">PRIMARY</span> <span class="token keyword keyword-KEY">KEY</span> <span class="token punctuation">(</span>Pnr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><h3 class="mume-header" id="611-fremmedn%C3%B8kkelrestriksjoner">6.1.1. Fremmedn&#xF8;kkelrestriksjoner</h3>
 
-<h2 class="mume-header" id="63-sp%C3%B8rringer">6.3. Sp&#xF8;rringer</h2>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-CONSTRAINT">CONSTRAINT</span> RestriksjonsNavn <span class="token keyword keyword-FOREIGN">FOREIGN</span> <span class="token keyword keyword-KEY">KEY</span> <span class="token punctuation">(</span>Attributt<span class="token punctuation">)</span> <span class="token keyword keyword-REFERENCES">REFERENCES</span> FremmedTabell<span class="token punctuation">(</span>FremmedAttributt<span class="token punctuation">)</span>
+    <span class="token keyword keyword-ON">ON</span> <span class="token keyword keyword-UPDATE">UPDATE</span> <span class="token operator">&lt;&gt;</span>
+    <span class="token keyword keyword-ON">ON</span> <span class="token keyword keyword-DELETE">DELETE</span> <span class="token operator">&lt;&gt;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><p>Alternativer for <code>&lt;&gt;</code>:</p>
+<ul>
+<li><code>NO ACTION</code> (default) / <code>RESTRICT</code>: stopper handlingen</li>
+<li><code>SET NULL</code>: setter <code>NULL</code>-verdi</li>
+<li><code>CASCADE</code>: oppdaterer/sletter tilsvarende</li>
+</ul>
+<h2 class="mume-header" id="62-manipulere-data">6.2. Manipulere data</h2>
 
+<p>DML - Data Manipulation Language</p>
+<h3 class="mume-header" id="621-sette-inn-data-insert-into">6.2.1. Sette inn data - <code>INSERT INTO</code></h3>
+
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-INSERT">INSERT</span> <span class="token keyword keyword-INTO">INTO</span> Person <span class="token keyword keyword-VALUES">VALUES</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">&apos;Ola&apos;</span><span class="token punctuation">,</span> <span class="token number">24</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-INSERT">INSERT</span> <span class="token keyword keyword-INTO">INTO</span> Person <span class="token keyword keyword-VALUES">VALUES</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">&apos;Kari&apos;</span><span class="token punctuation">,</span> <span class="token number">45</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-INSERT">INSERT</span> <span class="token keyword keyword-INTO">INTO</span> Person <span class="token keyword keyword-VALUES">VALUES</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token string">&apos;Per&apos;</span><span class="token punctuation">,</span> <span class="token number">14</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><h3 class="mume-header" id="622-oppdatere-data-update">6.2.2. Oppdatere data - <code>UPDATE</code></h3>
+
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-UPDATE">UPDATE</span> Person
+<span class="token keyword keyword-SET">SET</span> Navn <span class="token operator">=</span> <span class="token string">&apos;Karianne&apos;</span>
+<span class="token keyword keyword-WHERE">WHERE</span> Pnr <span class="token operator">=</span> <span class="token number">2</span>
+</pre><h3 class="mume-header" id="623-slette-data-delete">6.2.3. Slette data - <code>DELETE</code></h3>
+
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-DELETE">DELETE</span> <span class="token keyword keyword-FROM">FROM</span> Person
+<span class="token keyword keyword-WHERE">WHERE</span> Navn <span class="token operator">=</span> <span class="token string">&apos;Ola&apos;</span>
+</pre><h2 class="mume-header" id="63-sp%C3%B8rringer-select">6.3. Sp&#xF8;rringer - <code>SELECT</code></h2>
+
+<p>Merk: <code>SELECT(*)</code> angir at vi &#xF8;nsker alle attributter.</p>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-SELECT">SELECT</span> attributt<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword keyword-FROM">FROM</span> tabell<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword keyword-WHERE">WHERE</span> betingelse
+</pre><p>Relasjonsalgebraekvivalent:<br>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi mathvariant="normal">&#x3A0;</mi><mtext>attributt,&#xA0;...</mtext></msub><mo stretchy="false">(</mo><msub><mi>&#x3C3;</mi><mtext>betingelse</mtext></msub><mo stretchy="false">(</mo><mtext>tabell</mtext><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Pi_{\text{attributt, ...}}(\sigma_{\text{betingelse}}(\text{tabell}))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord">&#x3A0;</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">attributt,&#xA0;...</span></span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">&#x3C3;</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">betingelse</span></span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord text"><span class="mord">tabell</span></span><span class="mclose">))</span></span></span></span></span></p>
 <h3 class="mume-header" id="631-spesifisere-krav-where">6.3.1. Spesifisere krav - <code>WHERE</code></h3>
 
+<p>F&#xF8;lgende operator virker som forventet.</p>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AND, OR</td>
+</tr>
+<tr>
+<td>=, !=, &lt;, &gt;, &lt;=, &gt;=</td>
+</tr>
+</tbody>
+</table>
+<p>Merk: <code>&lt;&gt;</code> er det samme som <code>!=</code></p>
 <h3 class="mume-header" id="632-fjerne-duplikater-distinct">6.3.2. Fjerne duplikater - <code>DISTINCT</code></h3>
 
-<h3 class="mume-header" id="633-sortering-order-by">6.3.3. Sortering <code>ORDER BY</code></h3>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-SELECT">SELECT</span> <span class="token keyword keyword-DISTINCT">DISTINCT</span> Navn
+<span class="token keyword keyword-FROM">FROM</span> Person
+</pre><h3 class="mume-header" id="633-sortering-order-by">6.3.3. Sortering - <code>ORDER BY</code></h3>
 
-<h3 class="mume-header" id="634-strengsammenlikning-like">6.3.4. Strengsammenlikning - <code>LIKE</code></h3>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-SELECT">SELECT</span> Navn
+<span class="token keyword keyword-FROM">FROM</span> Person
+<span class="token keyword keyword-ORDER">ORDER</span> <span class="token keyword keyword-BY">BY</span> Alder <span class="token keyword keyword-ASC">ASC</span>
+</pre><h3 class="mume-header" id="634-strengsammenlikning-like">6.3.4. Strengsammenlikning - <code>LIKE</code></h3>
 
-<h3 class="mume-header" id="635-kartesisk-produkt">6.3.5. Kartesisk produkt</h3>
+<p><code>%</code> angir vilk&#xE5;rlig antall tegn. <code>_</code> angir ett tegn.</p>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token comment">-- Finner alle attributter for personer med navn som begynner p&#xE5; P</span>
+<span class="token keyword keyword-SELECT">SELECT</span> <span class="token operator">*</span>
+<span class="token keyword keyword-FROM">FROM</span> Person
+<span class="token keyword keyword-WHERE">WHERE</span> Navn <span class="token operator">LIKE</span> <span class="token string">&apos;P%&apos;</span>
+</pre><h3 class="mume-header" id="635-data-fra-flere-tabeller-kartesisk-produkt-og-ulike-typer-join">6.3.5. Data fra flere tabeller: kartesisk produkt og ulike typer join</h3>
 
-<h3 class="mume-header" id="636-ulike-typer-join">6.3.6. Ulike typer join</h3>
-
+<p>Plasseres i <code>FROM</code>-delen. Gitt tabeller <code>A</code> og <code>B</code>:</p>
 <table>
 <thead>
 <tr>
@@ -734,46 +889,177 @@ pre[data-line] .line-highlight[data-end]:after {
 </thead>
 <tbody>
 <tr>
-<td><code>(INNER) JOIN</code></td>
-<td>Returns records that have matching values in both tables</td>
+<td><code>A, B</code></td>
+<td>Kartesisk produkt</td>
 </tr>
 <tr>
-<td><code>LEFT (OUTER) JOIN</code></td>
-<td>Returns all records from the left table, and the matched records from the right table</td>
+<td><code>A CROSS JOIN B</code></td>
+<td>Kartesisk produkt</td>
 </tr>
 <tr>
-<td><code>RIGHT (OUTER) JOIN</code></td>
-<td>Returns all records from the right table, and the matched records from the left table</td>
+<td><code>A NATURAL JOIN B</code></td>
+<td>Natural join</td>
 </tr>
 <tr>
-<td><code>FULL (OUTER) JOIN</code></td>
-<td>Returns all records when there is a match in either left or right table</td>
+<td><code>A (INNER) JOIN B</code></td>
+<td>Indre join</td>
+</tr>
+<tr>
+<td><code>A LEFT (OUTER) JOIN B</code></td>
+<td>Venstre ytre join</td>
+</tr>
+<tr>
+<td><code>A RIGHT (OUTER) JOIN B</code></td>
+<td>H&#xF8;yre ytre join</td>
+</tr>
+<tr>
+<td><code>A FULL (OUTER) JOIN B</code></td>
+<td>Full ytre join</td>
 </tr>
 </tbody>
 </table>
-<h3 class="mume-header" id="637-aggregering">6.3.7. Aggregering</h3>
+<p>Parenteser antyder frivillig spesifisering. Se <a href="#5-relasjonsalgebra">relasjonsalgebra</a> for n&#xE6;rmere forklaring av funksjonene.</p>
+<table>
+<thead>
+<tr>
+<th>Betingelse</th>
+<th>Beskrivelse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NATURAL</code></td>
+<td>Natural join</td>
+</tr>
+<tr>
+<td><code>ON betingelse</code></td>
+<td>Spesifiserer join-betingelsen</td>
+</tr>
+<tr>
+<td><code>USING (attributt, ...)</code></td>
+<td>Spesifiserer hvilke attributter som m&#xE5; v&#xE6;re like i de to tabellene</td>
+</tr>
+</tbody>
+</table>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token comment">-- Finner navn p&#xE5; hund og eier for personer over 60 &#xE5;r</span>
+<span class="token keyword keyword-SELECT">SELECT</span> Person<span class="token punctuation">.</span>Navn<span class="token punctuation">,</span> Hund<span class="token punctuation">.</span>Navn
+<span class="token keyword keyword-FROM">FROM</span> Person <span class="token keyword keyword-INNER">INNER</span> <span class="token keyword keyword-JOIN">JOIN</span> Hund <span class="token keyword keyword-ON">ON</span> Person<span class="token punctuation">.</span>Pnr <span class="token operator">=</span> Hund<span class="token punctuation">.</span>EierPnr
+<span class="token keyword keyword-WHERE">WHERE</span> Person<span class="token punctuation">.</span>Alder <span class="token operator">&gt;</span> <span class="token number">60</span>
+</pre><h3 class="mume-header" id="636-aggregering">6.3.6. Aggregering</h3>
 
-<h3 class="mume-header" id="638-gruppering">6.3.8. Gruppering</h3>
+<p>Se <a href="#52-gruppering-og-aggregering">aggregering i relasjonsalgebra</a>.<br>
+Funksjonene ignorerer <code>NULL</code>-verdier. Med <code>DISTINCT</code> opererer funksjonene p&#xE5; unike verdier. <code>AS</code> definerer et alias.</p>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token comment">-- Finner snittalderen av alle personer</span>
+<span class="token keyword keyword-SELECT">SELECT</span> <span class="token function">AVG</span><span class="token punctuation">(</span>Alder<span class="token punctuation">)</span> <span class="token keyword keyword-AS">AS</span> SnittAlder
+<span class="token keyword keyword-FROM">FROM</span> Person
+</pre><h3 class="mume-header" id="637-gruppering-group-by">6.3.7. Gruppering - <code>GROUP BY</code></h3>
 
-<h3 class="mume-header" id="639-betingelse-etter-gruppering-having">6.3.9. Betingelse etter gruppering - <code>HAVING</code></h3>
+<p>Definerer grupper (partisjoner) av rader. M&#xE5; komme etter en eventuell <code>WHERE</code>.</p>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token comment">-- Finner snittalderen for hvert navn</span>
+<span class="token keyword keyword-SELECT">SELECT</span> <span class="token function">AVG</span><span class="token punctuation">(</span>Alder<span class="token punctuation">)</span> <span class="token keyword keyword-AS">AS</span> SnittAlder
+<span class="token keyword keyword-FROM">FROM</span> Person
+<span class="token keyword keyword-GROUP">GROUP</span> <span class="token keyword keyword-BY">BY</span> Navn
+</pre><h4 class="mume-header" id="6371-betingelse-etter-gruppering-having">6.3.7.1. Betingelse etter gruppering - <code>HAVING</code></h4>
 
-<h3 class="mume-header" id="6310-n%C3%B8stede-sp%C3%B8rringer">6.3.10. N&#xF8;stede sp&#xF8;rringer</h3>
+<p>Som <code>WHERE</code>, men <em>etter</em> gruppering.</p>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token comment">-- Finner snittalderen for hvert navn, men kun hvis snittet over 60</span>
+<span class="token keyword keyword-SELECT">SELECT</span> Navn<span class="token punctuation">,</span> <span class="token function">AVG</span><span class="token punctuation">(</span>Alder<span class="token punctuation">)</span> <span class="token keyword keyword-AS">AS</span> SnittAlder
+<span class="token keyword keyword-FROM">FROM</span> Person
+<span class="token keyword keyword-GROUP">GROUP</span> <span class="token keyword keyword-BY">BY</span> Navn
+<span class="token keyword keyword-HAVING">HAVING</span> SnittAlder <span class="token operator">&gt;</span> <span class="token number">60</span>
+</pre><h3 class="mume-header" id="638-n%C3%B8stede-sp%C3%B8rringer">6.3.8. N&#xF8;stede sp&#xF8;rringer</h3>
 
-<h4 class="mume-header" id="63101-sammenlikningsoperatorer">6.3.10.1. Sammenlikningsoperatorer</h4>
+<p>I <code>WHERE</code>-delen kan vi sammenlikne med resultatet fra en sp&#xF8;rring. I <code>FROM</code>-delen kan vi gj&#xF8;re en ny sp&#xF8;rring p&#xE5; resultatet av en sp&#xF8;rring.</p>
+<h4 class="mume-header" id="6381-sammenlikningsoperatorer">6.3.8.1. Sammenlikningsoperatorer</h4>
 
-<h4 class="mume-header" id="63102-any-all">6.3.10.2. <code>ANY</code>, <code>ALL</code></h4>
+<p><code>=, !=, &lt;, &gt;, &lt;=, &gt;=</code> virker som forventet.</p>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token comment">-- Finner navnet til den eldste personen</span>
+<span class="token keyword keyword-SELECT">SELECT</span> Navn
+<span class="token keyword keyword-FROM">FROM</span> Person
+<span class="token keyword keyword-WHERE">WHERE</span> Alder <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword keyword-SELECT">SELECT</span> <span class="token function">MAX</span><span class="token punctuation">(</span>Alder<span class="token punctuation">)</span> <span class="token keyword keyword-FROM">FROM</span> Person<span class="token punctuation">)</span>
+</pre><h4 class="mume-header" id="6382-any-all">6.3.8.2. <code>ANY</code>, <code>ALL</code></h4>
 
-<h4 class="mume-header" id="63103-in-not-in">6.3.10.3. <code>IN</code>, <code>NOT IN</code></h4>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token comment">-- Finner navnet til den eldste personen (alternativ m&#xE5;te)</span>
+<span class="token keyword keyword-SELECT">SELECT</span> Navn
+<span class="token keyword keyword-FROM">FROM</span> Person
+<span class="token keyword keyword-WHERE">WHERE</span> Alder <span class="token operator">&gt;=</span> <span class="token keyword keyword-ALL">ALL</span> <span class="token punctuation">(</span><span class="token keyword keyword-SELECT">SELECT</span> Alder <span class="token keyword keyword-FROM">FROM</span> Person<span class="token punctuation">)</span>
+</pre><h4 class="mume-header" id="6383-in-not-in">6.3.8.3. <code>IN</code>, <code>NOT IN</code></h4>
 
-<h4 class="mume-header" id="63104-exists">6.3.10.4. <code>EXISTS</code></h4>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token comment">-- Finner snittalderen til forfattere</span>
+<span class="token keyword keyword-SELECT">SELECT</span> <span class="token function">AVG</span><span class="token punctuation">(</span>Alder<span class="token punctuation">)</span>
+<span class="token keyword keyword-FROM">FROM</span> Person
+<span class="token keyword keyword-WHERE">WHERE</span> Navn <span class="token operator">IN</span> <span class="token punctuation">(</span><span class="token keyword keyword-SELECT">SELECT</span> Forfatter <span class="token keyword keyword-FROM">FROM</span> Bok<span class="token punctuation">)</span>
+</pre><h4 class="mume-header" id="6384-exists">6.3.8.4. <code>EXISTS</code></h4>
 
-<h4 class="mume-header" id="63105-union-snitt-og-differanse">6.3.10.5. Union, snitt og differanse</h4>
+<p>Dette er en korrelert del-sp&#xF8;rring, dvs. at den sender inn data. (Om Person-entiteter i dette tilfelle).</p>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token comment">-- Finner navn p&#xE5; personer som ikke jobber med noen andre personer</span>
+<span class="token keyword keyword-SELECT">SELECT</span> Navn 
+<span class="token keyword keyword-FROM">FROM</span> Person
+<span class="token keyword keyword-WHERE">WHERE</span> <span class="token operator">NOT</span> <span class="token keyword keyword-EXISTS">EXISTS</span> <span class="token punctuation">(</span>
+    <span class="token keyword keyword-SELECT">SELECT</span> <span class="token operator">*</span>
+    <span class="token keyword keyword-FROM">FROM</span> JobberMed
+    <span class="token keyword keyword-WHERE">WHERE</span> JobberMed<span class="token punctuation">.</span>PnrA <span class="token operator">=</span> Person<span class="token punctuation">.</span>Pnr <span class="token operator">OR</span> JobberMed<span class="token punctuation">.</span>PnrB <span class="token operator">=</span> Person<span class="token punctuation">.</span>Pnr
+<span class="token punctuation">)</span>
+</pre><h4 class="mume-header" id="6385-union-snitt-og-differanse">6.3.8.5. Union, snitt og differanse</h4>
 
-<h4 class="mume-header" id="63106-n%C3%B8stede-sp%C3%B8rringer-i-from-delen">6.3.10.6. N&#xF8;stede sp&#xF8;rringer i <code>FROM</code>-delen</h4>
+<p>Krever kompatible operandtabeller (like kolonnenavn).</p>
+<table>
+<thead>
+<tr>
+<th>Funksjon</th>
+<th>Forklaring</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>UNION</code></td>
+<td>Union</td>
+</tr>
+<tr>
+<td><code>INTERSECT</code></td>
+<td>Snitt</td>
+</tr>
+<tr>
+<td><code>EXCEPT</code></td>
+<td>Minus</td>
+</tr>
+<tr>
+<td><code>UNION ALL</code></td>
+<td>Union (beholder duplikater)</td>
+</tr>
+<tr>
+<td><code>INTERSECT ALL</code></td>
+<td>Snitt (beholder duplikater)</td>
+</tr>
+<tr>
+<td><code>EXCEPT ALL</code></td>
+<td>Minus (beholder duplikater)</td>
+</tr>
+</tbody>
+</table>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token comment">-- Finner navn som brukes p&#xE5; b&#xE5;de personer og hunder</span>
+<span class="token keyword keyword-SELECT">SELECT</span> Navn <span class="token keyword keyword-FROM">FROM</span> Person
+<span class="token keyword keyword-INTERSECT">INTERSECT</span>
+<span class="token keyword keyword-SELECT">SELECT</span> Navn <span class="token keyword keyword-FROM">FROM</span> Hund
+</pre><h4 class="mume-header" id="6386-n%C3%B8stede-sp%C3%B8rringer-i-from-delen">6.3.8.6. N&#xF8;stede sp&#xF8;rringer i <code>FROM</code>-delen</h4>
 
-<h3 class="mume-header" id="6311-virtuelle-tabeller-view">6.3.11. Virtuelle tabeller - <code>VIEW</code></h3>
+<p>I <code>FROM</code>-delen kan vi gj&#xF8;re en ny sp&#xF8;rring p&#xE5; resultatet av en sp&#xF8;rring. Lager en midlertidig tabell.</p>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token comment">-- Finner antall arbeidere for ingeni&#xF8;ryrker med under 1000 arbeidere</span>
+<span class="token keyword keyword-SELECT">SELECT</span> Yrke AntallArbeidere
+<span class="token keyword keyword-FROM">FROM</span> <span class="token punctuation">(</span>
+  <span class="token keyword keyword-SELECT">SELECT</span> Yrke<span class="token punctuation">,</span> <span class="token function">COUNT</span><span class="token punctuation">(</span>Pnr<span class="token punctuation">)</span> <span class="token keyword keyword-AS">AS</span> AntallArbeidere
+  <span class="token keyword keyword-FROM">FROM</span> Person
+  <span class="token keyword keyword-GROUP">GROUP</span> <span class="token keyword keyword-BY">BY</span> Yrke
+<span class="token punctuation">)</span>
+<span class="token keyword keyword-WHERE">WHERE</span> Yrke <span class="token operator">LIKE</span> <span class="token string">&apos;%ingeni&#xF8;r&apos;</span> <span class="token operator">AND</span> AntallArbeidere <span class="token operator">&lt;</span> <span class="token number">1000</span>
+</pre><h3 class="mume-header" id="639-virtuelle-tabeller-view">6.3.9. Virtuelle tabeller - <code>VIEW</code></h3>
 
-<h1 class="mume-header" id="7-normalisering">7. Normalisering</h1>
+<p>Views er tabeller som er avledet ut fra tabeller som er lagret i databasen. Hvorfor: Sp&#xF8;rreforenkling, sikkerhet og ytelse.</p>
+<pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-CREATE">CREATE</span> <span class="token keyword keyword-VIEW">VIEW</span> Forelder<span class="token punctuation">(</span>ForelderPnr<span class="token punctuation">,</span> ForelderNavn<span class="token punctuation">,</span> BarnPnr<span class="token punctuation">,</span> BarnNavn<span class="token punctuation">)</span>
+<span class="token keyword keyword-AS">AS</span> <span class="token keyword keyword-SELECT">SELECT</span> F<span class="token punctuation">.</span>Pnr<span class="token punctuation">,</span> F<span class="token punctuation">.</span>Navn<span class="token punctuation">,</span> B<span class="token punctuation">.</span>Pnr<span class="token punctuation">,</span> B<span class="token punctuation">.</span>Navn
+<span class="token keyword keyword-FROM">FROM</span> Person <span class="token keyword keyword-AS">AS</span> F <span class="token keyword keyword-INNER">INNER</span> <span class="token keyword keyword-JOIN">JOIN</span> Person <span class="token keyword keyword-AS">AS</span> B
+<span class="token keyword keyword-ON">ON</span> <span class="token punctuation">(</span>F<span class="token punctuation">.</span>Pnr <span class="token operator">=</span> B<span class="token punctuation">.</span>MorPnr <span class="token operator">OR</span> F<span class="token punctuation">.</span>Pnr <span class="token operator">=</span> B<span class="token punctuation">.</span>FarPnr<span class="token punctuation">)</span>
+</pre><h1 class="mume-header" id="7-normalisering">7. Normalisering</h1>
 
 <h2 class="mume-header" id="71-tillukning">7.1. Tillukning</h2>
 
@@ -824,6 +1110,7 @@ pre[data-line] .line-highlight[data-end]:after {
 (b) A er et n&#xF8;kkelattributt i tabellen.</p>
 <p>BOYCE-CODD NORMALFORM</p>
 <p>En tabell er p&#xE5; BCNF hvis det for alle ikke-trivielle funksjonelle avhengigheter X -&gt; Y som gjelder for tabellen, er slik at X er en supern&#xF8;kkel i tabellen.</p>
+<p>tapsl&#xF8;st-join-egenskapen</p>
 <h2 class="mume-header" id="74-dekomponering">7.4. Dekomponering</h2>
 
 
@@ -861,35 +1148,48 @@ pre[data-line] .line-highlight[data-end]:after {
 </li>
 <li><a href="#5-relasjonsalgebra">5. Relasjonsalgebra</a>
 <ul>
-<li><a href="#51-gruppering-og-aggregering">5.1. Gruppering og aggregering</a></li>
+<li><a href="#51-operasjoner">5.1. Operasjoner</a></li>
+<li><a href="#52-gruppering-og-aggregering">5.2. Gruppering og aggregering</a></li>
 </ul>
 </li>
 <li><a href="#6-sql">6. SQL</a>
 <ul>
-<li><a href="#61-opprette-data">6.1. Opprette data</a></li>
-<li><a href="#62-endre-data">6.2. Endre data</a></li>
-<li><a href="#63-sp%C3%B8rringer">6.3. Sp&#xF8;rringer</a>
+<li><a href="#61-opprette-data">6.1. Opprette data</a>
+<ul>
+<li><a href="#611-fremmedn%C3%B8kkelrestriksjoner">6.1.1. Fremmedn&#xF8;kkelrestriksjoner</a></li>
+</ul>
+</li>
+<li><a href="#62-manipulere-data">6.2. Manipulere data</a>
+<ul>
+<li><a href="#621-sette-inn-data-insert-into">6.2.1. Sette inn data - <code>INSERT INTO</code></a></li>
+<li><a href="#622-oppdatere-data-update">6.2.2. Oppdatere data - <code>UPDATE</code></a></li>
+<li><a href="#623-slette-data-delete">6.2.3. Slette data - <code>DELETE</code></a></li>
+</ul>
+</li>
+<li><a href="#63-sp%C3%B8rringer-select">6.3. Sp&#xF8;rringer - <code>SELECT</code></a>
 <ul>
 <li><a href="#631-spesifisere-krav-where">6.3.1. Spesifisere krav - <code>WHERE</code></a></li>
 <li><a href="#632-fjerne-duplikater-distinct">6.3.2. Fjerne duplikater - <code>DISTINCT</code></a></li>
-<li><a href="#633-sortering-order-by">6.3.3. Sortering <code>ORDER BY</code></a></li>
+<li><a href="#633-sortering-order-by">6.3.3. Sortering - <code>ORDER BY</code></a></li>
 <li><a href="#634-strengsammenlikning-like">6.3.4. Strengsammenlikning - <code>LIKE</code></a></li>
-<li><a href="#635-kartesisk-produkt">6.3.5. Kartesisk produkt</a></li>
-<li><a href="#636-ulike-typer-join">6.3.6. Ulike typer join</a></li>
-<li><a href="#637-aggregering">6.3.7. Aggregering</a></li>
-<li><a href="#638-gruppering">6.3.8. Gruppering</a></li>
-<li><a href="#639-betingelse-etter-gruppering-having">6.3.9. Betingelse etter gruppering - <code>HAVING</code></a></li>
-<li><a href="#6310-n%C3%B8stede-sp%C3%B8rringer">6.3.10. N&#xF8;stede sp&#xF8;rringer</a>
+<li><a href="#635-data-fra-flere-tabeller-kartesisk-produkt-og-ulike-typer-join">6.3.5. Data fra flere tabeller: kartesisk produkt og ulike typer join</a></li>
+<li><a href="#636-aggregering">6.3.6. Aggregering</a></li>
+<li><a href="#637-gruppering-group-by">6.3.7. Gruppering - <code>GROUP BY</code></a>
 <ul>
-<li><a href="#63101-sammenlikningsoperatorer">6.3.10.1. Sammenlikningsoperatorer</a></li>
-<li><a href="#63102-any-all">6.3.10.2. <code>ANY</code>, <code>ALL</code></a></li>
-<li><a href="#63103-in-not-in">6.3.10.3. <code>IN</code>, <code>NOT IN</code></a></li>
-<li><a href="#63104-exists">6.3.10.4. <code>EXISTS</code></a></li>
-<li><a href="#63105-union-snitt-og-differanse">6.3.10.5. Union, snitt og differanse</a></li>
-<li><a href="#63106-n%C3%B8stede-sp%C3%B8rringer-i-from-delen">6.3.10.6. N&#xF8;stede sp&#xF8;rringer i <code>FROM</code>-delen</a></li>
+<li><a href="#6371-betingelse-etter-gruppering-having">6.3.7.1. Betingelse etter gruppering - <code>HAVING</code></a></li>
 </ul>
 </li>
-<li><a href="#6311-virtuelle-tabeller-view">6.3.11. Virtuelle tabeller - <code>VIEW</code></a></li>
+<li><a href="#638-n%C3%B8stede-sp%C3%B8rringer">6.3.8. N&#xF8;stede sp&#xF8;rringer</a>
+<ul>
+<li><a href="#6381-sammenlikningsoperatorer">6.3.8.1. Sammenlikningsoperatorer</a></li>
+<li><a href="#6382-any-all">6.3.8.2. <code>ANY</code>, <code>ALL</code></a></li>
+<li><a href="#6383-in-not-in">6.3.8.3. <code>IN</code>, <code>NOT IN</code></a></li>
+<li><a href="#6384-exists">6.3.8.4. <code>EXISTS</code></a></li>
+<li><a href="#6385-union-snitt-og-differanse">6.3.8.5. Union, snitt og differanse</a></li>
+<li><a href="#6386-n%C3%B8stede-sp%C3%B8rringer-i-from-delen">6.3.8.6. N&#xF8;stede sp&#xF8;rringer i <code>FROM</code>-delen</a></li>
+</ul>
+</li>
+<li><a href="#639-virtuelle-tabeller-view">6.3.9. Virtuelle tabeller - <code>VIEW</code></a></li>
 </ul>
 </li>
 </ul>

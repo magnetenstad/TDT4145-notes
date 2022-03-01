@@ -19,28 +19,32 @@ Følgende notater dekker første halvdel av faget.
   - [4.1. Mapping fra ER-modell](#41-mapping-fra-er-modell)
   - [4.2. Mapping fra EER-modell](#42-mapping-fra-eer-modell)
 - [5. Relasjonsalgebra](#5-relasjonsalgebra)
-  - [5.1. Gruppering og aggregering](#51-gruppering-og-aggregering)
+  - [5.1. Operasjoner](#51-operasjoner)
+  - [5.2. Gruppering og aggregering](#52-gruppering-og-aggregering)
 - [6. SQL](#6-sql)
   - [6.1. Opprette data](#61-opprette-data)
-  - [6.2. Endre data](#62-endre-data)
-  - [6.3. Spørringer](#63-spørringer)
+    - [6.1.1. Fremmednøkkelrestriksjoner](#611-fremmednøkkelrestriksjoner)
+  - [6.2. Manipulere data](#62-manipulere-data)
+    - [6.2.1. Sette inn data - `INSERT INTO`](#621-sette-inn-data---insert-into)
+    - [6.2.2. Oppdatere data - `UPDATE`](#622-oppdatere-data---update)
+    - [6.2.3. Slette data - `DELETE`](#623-slette-data---delete)
+  - [6.3. Spørringer - `SELECT`](#63-spørringer---select)
     - [6.3.1. Spesifisere krav - `WHERE`](#631-spesifisere-krav---where)
     - [6.3.2. Fjerne duplikater - `DISTINCT`](#632-fjerne-duplikater---distinct)
-    - [6.3.3. Sortering `ORDER BY`](#633-sortering-order-by)
+    - [6.3.3. Sortering - `ORDER BY`](#633-sortering---order-by)
     - [6.3.4. Strengsammenlikning - `LIKE`](#634-strengsammenlikning---like)
-    - [6.3.5. Kartesisk produkt](#635-kartesisk-produkt)
-    - [6.3.6. Ulike typer join](#636-ulike-typer-join)
-    - [6.3.7. Aggregering](#637-aggregering)
-    - [6.3.8. Gruppering](#638-gruppering)
-    - [6.3.9. Betingelse etter gruppering - `HAVING`](#639-betingelse-etter-gruppering---having)
-    - [6.3.10. Nøstede spørringer](#6310-nøstede-spørringer)
-      - [6.3.10.1. Sammenlikningsoperatorer](#63101-sammenlikningsoperatorer)
-      - [6.3.10.2. `ANY`, `ALL`](#63102-any-all)
-      - [6.3.10.3. `IN`, `NOT IN`](#63103-in-not-in)
-      - [6.3.10.4. `EXISTS`](#63104-exists)
-      - [6.3.10.5. Union, snitt og differanse](#63105-union-snitt-og-differanse)
-      - [6.3.10.6. Nøstede spørringer i `FROM`-delen](#63106-nøstede-spørringer-i-from-delen)
-    - [6.3.11. Virtuelle tabeller - `VIEW`](#6311-virtuelle-tabeller---view)
+    - [6.3.5. Data fra flere tabeller: kartesisk produkt og ulike typer join](#635-data-fra-flere-tabeller-kartesisk-produkt-og-ulike-typer-join)
+    - [6.3.6. Aggregering](#636-aggregering)
+    - [6.3.7. Gruppering - `GROUP BY`](#637-gruppering---group-by)
+      - [6.3.7.1. Betingelse etter gruppering - `HAVING`](#6371-betingelse-etter-gruppering---having)
+    - [6.3.8. Nøstede spørringer](#638-nøstede-spørringer)
+      - [6.3.8.1. Sammenlikningsoperatorer](#6381-sammenlikningsoperatorer)
+      - [6.3.8.2. `ANY`, `ALL`](#6382-any-all)
+      - [6.3.8.3. `IN`, `NOT IN`](#6383-in-not-in)
+      - [6.3.8.4. `EXISTS`](#6384-exists)
+      - [6.3.8.5. Union, snitt og differanse](#6385-union-snitt-og-differanse)
+      - [6.3.8.6. Nøstede spørringer i `FROM`-delen](#6386-nøstede-spørringer-i-from-delen)
+    - [6.3.9. Virtuelle tabeller - `VIEW`](#639-virtuelle-tabeller---view)
 - [7. Normalisering](#7-normalisering)
   - [7.1. Tillukning](#71-tillukning)
     - [7.1.1. Tillukningen til en mengde FA-er: F^+^](#711-tillukningen-til-en-mengde-fa-er-f)
@@ -52,7 +56,7 @@ Følgende notater dekker første halvdel av faget.
 # 3. Datamodellering
 Begrep | Forklaring
 --- | ---
-Miniverden | Domenet. De virkelige konseptene som skal modelleres.
+Miniverden | Domenet. De konseptene fra virkeligheten som skal modelleres.
 Datamodell | Et sett begreper for å beskrive struktur (hvilke typer data, sammenheger og restriksjoner) og operasjoner (handlinger på data: innsetting, endring, sletting og spørring)
 Konseptuelle modeller | For å forstå og dokumentere. For eksempel ER-modeller.
 Implementasjonsmodeller | For å realisere. For eksempel relasjonsdatabasemodeller.
@@ -65,11 +69,14 @@ Selvbeskrivende DBMS | Inneholder både data og beskrivelser om dataen (metadata
 Selvbeskrivende datamodeller | Inkluderer databeskrivelser i selve dataen. For eksempel XML og JSON.
 Program-data uavhengighet | En egenskap som går ut på at strukturendring i datafil ikke medfører at man må endre programmene som har tilgang til dataen.
 Flerbrukersstøtte | Flere brukere kan hente ut og lagre data samtidig uten problemer.
+Entitetsintegritet | Tilsier at en primærnøkkel ikke kan være `NULL`.
+Referanseintegritet | Tilsier at fremmednøkkelen mot en tabell må referere til en eksisterende rad i den tabellen.
+Databasetilstand | Dataen i databasen på et gitt tidspunkt.
+Konsistent databasetilstand | At databasen tilfredsstiller alle integritetsregler.
 Transaksjon | En serie operasjoner på en database som sammen bevarer databasens konsistens.
 
-
 ## 3.1. ER-modellering
-<p>ER-notasjon: <a href="/assets/ER_notasjon_2017.pdf">Open PDF</a>.</p>
+**Viktig!** ER-notasjon: <a href="/assets/ER_notasjon_2017.pdf">Open PDF</a>.
 
 ### 3.1.1. Entiteter og entitetsklasser
 Begrep | Forklaring
@@ -104,16 +111,14 @@ Begrep | Forklaring
 Kardinalitet | Ved bruk av 1 eller N på hver side av relasjonen antydes om relasjonen er en-til-en, en-til-mange eller mange-til-mange. Noteres på *motsatt side* av relasjonen som den aktuelle entiteten.
 Strukturell restriksjon (*min*, *max*) | Antyder at en entitet opptrer i relasjonen minst *min* ganger og maks *max* ganger. Vanlige restriksjoner er (0, 1), (1, 1), (0, n) og (1, n). Noteres på *samme side* av relasjonen som den aktuelle entiteten.
 
-
 ## 3.2. Forekomstdiagram
  
-
 ## 3.3. EER-modellering
-### 3.3.1. Spesialisering og generalisering
 
+### 3.3.1. Spesialisering og generalisering
 Begrep | Forklaring
 --- | ---
-Superklasse-subklasserelasjon | Subklassene *arver* egenskapene (attributter og relasjoner) til superklassen.
+Superklasse-subklasserelasjon | Subklassene *arver* egenskapene (attributter og relasjoner) til superklassen, men kan også ha særegne attributter og relasjoner. En subklasse er en delmengde av den tilhørende superklassen.
 Total spesialisering | Alle entiteter i superklassen må delta i minst en subklasse. Noteres med dobbel strek.
 Overlappende subklasser | En entitet i superklassen kan delta i flere enn en subklasse. Noteres med O eller mangel på notasjon. 
 Distinke subklasser | En entitet i superklassen kan *ikke* delta i flere enn en subklasse. Noteres med D. 
@@ -127,9 +132,29 @@ En entitet kan delta i | **Disjunkt** | **Overlappende**
 En kategori representerer en samling av entiteter som er en delmenge av entitetene fra ulike  entitetsklasser (kategorienes superklasser). Blir også kalt en union-type. En kategori kan være delvis eller total. En total kategori vil inneholde alle entitetene i unionen av superklassene og markeres med dobbelt strek mellom kategorien og sirkelen.
 
 # 4. Relasjonsdatabaser
+Relasjonersdatabaser er bygd opp av tabeller der kolonner angir attributter og rader angir entiteter eller relasjoner.
+
 ## 4.1. Mapping fra ER-modell
+Konsept | Hvordan mappe
+--- | ---
+Regulære entitetsklasser | Entitetsklassen får egen tabell. Attributter blir kolonner. Sammensatte attributter splittes opp. Primærnøkkel fra ER-modell brukes.
+Svake entitetstyper | Legger til primærnøkkel (fremmednøkkel) fra identifiserende entitetsklasser, sammen med klassens delvise nøkkel. Ellers likt.
+Binære 1:1 relasjoner | Fremmednøkkel kan legges i en av entitetsklassetabellene, eller så kan relasjonen få egen tabell.
+Binære 1:N relasjoner | Fremmednøkkel kan legges i entiteten med kardinalitet 1, eller så kan relasjonen få egen tabell.
+Binære N:N relasjoner | Relasjonen får egen tabell.
+Flerverdiattributter | Får egen tabell med fremmednøkkel mot entitetsklassen.
+N-ære relasjonsklasser (N > 2) | Får egen tabell med fremmednøkler mot alle tilhørende entitetsklasser.
+
 ## 4.2. Mapping fra EER-modell
+Konsept | Hvordan mappe
+--- | ---
+Spesialisering/generalisering | A) Separate tabeller for superklasse og alle subklasser. Kommentar: Data om en entitet spredt over flere tabeller, må bruke join. B) Separate tabeller for subklasser som inkluderer attributter fra superklassen. Kommentar: Krever total og disjunkt spesialisering. C) En tabell som inkluderer attributter fra superklassen og alle subklasser. Kommentar: Ved disjunkt spesialisering kreves et type-attributt. Ved overlappende spesialisering kreves en boolsk type-vektor (en kolonne per type).
+Kategorier | En tabell for kategori-entitetsklassen, med typeattributt. Superklassene har som regel ulike nøkler, i tillegg til en surrogat(fremmed)nøkkel mot kategorien.
+
 # 5. Relasjonsalgebra
+I relasjonsalgebra bruker vi operasjoner for å manipulere relasjonsdatabasetabeller. Merk at en rad her er en tuppel og en tabell er en mengde av tuppler. Vi vil altså ikke ha duplikater. Operatorene er lukket over tabeller (både input og output er mengder). 
+
+## 5.1. Operasjoner
 Operasjon | Operator | Forklaring
 --- | --- | ---
 Seleksjon | $\sigma_{\text{Betingelse}}(\text{A})$ | Returnerer radene i A som oppfyller betingelsen.
@@ -146,47 +171,250 @@ Full ytre join | $=\Join=_{\text{Betingelse}}(\text{A, B})$ | Returnerer alle ra
 Omdøping | $\rho_{Tabellnavn(Attributtnavn..)}(\text{A})$ | Returnerer en ny tabell med nye kolonnenavn.
 Sortering | $\uparrow \downarrow_{Attributt..}(A)$ | Returnerer en tabell der radene er sortert etter de oppgitte attributtene. Man kan spesifisere ASC (stigende) eller DESC (synkende) rekkefølge.
 
-## 5.1. Gruppering og aggregering
+## 5.2. Gruppering og aggregering
+
+$F_{\text{Grupperingsattributter, Aggregeringsfunksjoner}}(A)$
+Visualisert med graf plasseres grupperingsattributtene på venstre side og aggregeringsfunksjonene på høyre side. Man kan også definere et alias med $\text{AS}$. Eksempel: La $\text{A = Bilde(Fotograf, Motiv)}$ Da vil $F_{\text{Fotograf, COUNT(Motiv) AS AntallMotiver}}(A)$ returnere en tabell $\text{Bilde(Fotograf, AntallMotiver)}$ med antall motiver hver fotograf har avbildet.
+
 Funksjon | Forklaring
 --- | ---
-SUM(attributt) | Sum
-AVG(attributt) | Gjennomsnitt
-MIN(attributt) | Minimum
-MAX(attributt) | Maksimum
-COUNT(attributt) | Antall verdier (unntatt NULL)
-COUNT(DISTINCT attributt) | Antall unike verdier (unntatt NULL)
-COUNT(*) | Antall rader
+$\text{SUM(attributt)}$ | Sum
+$\text{AVG(attributt)}$ | Gjennomsnitt
+$\text{MIN(attributt)}$ | Minimum
+$\text{MAX(attributt)}$ | Maksimum
+$\text{COUNT(attributt)}$ | Antall verdier (unntatt NULL)
+$\text{COUNT(*)}$ | Antall rader
 
 
 # 6. SQL
-## 6.1. Opprette data
-## 6.2. Endre data
-## 6.3. Spørringer
-### 6.3.1. Spesifisere krav - `WHERE`
-### 6.3.2. Fjerne duplikater - `DISTINCT`
-### 6.3.3. Sortering `ORDER BY`
-### 6.3.4. Strengsammenlikning - `LIKE`
-### 6.3.5. Kartesisk produkt
-### 6.3.6. Ulike typer join
+Deklarativt spørrespråk ("hva, ikke hvordan") - vi trenger ikke tenke på optimalisering. Ikke mengdeorientert som relasjonsalgebra, resultattabellene kan ha like rader - må be om at duplikater fjernes.
 
+## 6.1. Opprette data
+DDL - Data Definition Language
+```sql
+CREATE TABLE /* opprette tabell */
+ALTER TABLE /* endre tabell */
+DROP TABLE /* fjerne tabell */
+```
+```sql
+CREATE TABLE Person (
+    Pnr     INTEGER NOT NULL,
+    Navn    VARCHAR(30),
+    Alder   INTEGER,
+    CONSTRAINT Person_PK PRIMARY KEY (Pnr));
+```
+
+### 6.1.1. Fremmednøkkelrestriksjoner
+```sql
+CONSTRAINT RestriksjonsNavn FOREIGN KEY (Attributt) REFERENCES FremmedTabell(FremmedAttributt)
+    ON UPDATE <>
+    ON DELETE <>);
+```
+Alternativer for `<>`:
+- `NO ACTION` (default) / `RESTRICT`: stopper handlingen
+- `SET NULL`: setter `NULL`-verdi
+- `CASCADE`: oppdaterer/sletter tilsvarende
+
+## 6.2. Manipulere data
+DML - Data Manipulation Language
+
+### 6.2.1. Sette inn data - `INSERT INTO`
+```sql
+INSERT INTO Person VALUES (1, 'Ola', 24);
+INSERT INTO Person VALUES (2, 'Kari', 45);
+INSERT INTO Person VALUES (3, 'Per', 14);
+```
+### 6.2.2. Oppdatere data - `UPDATE`
+```sql
+UPDATE Person
+SET Navn = 'Karianne'
+WHERE Pnr = 2
+```
+### 6.2.3. Slette data - `DELETE`
+```sql
+DELETE FROM Person
+WHERE Navn = 'Ola'
+```
+
+## 6.3. Spørringer - `SELECT`
+Merk: `SELECT(*)` angir at vi ønsker alle attributter.
+```sql
+SELECT attributt, ...
+FROM tabell, ...
+WHERE betingelse
+```
+Relasjonsalgebraekvivalent:
+$$\Pi_{\text{attributt, ...}}(\sigma_{\text{betingelse}}(\text{tabell}))$$
+
+### 6.3.1. Spesifisere krav - `WHERE`
+Følgende operator virker som forventet.
+Operator |
+--- |
+AND, OR |
+=, !=, <, >, <=, >= |
+Merk: `<>` er det samme som `!=`
+
+### 6.3.2. Fjerne duplikater - `DISTINCT`
+```sql
+SELECT DISTINCT Navn
+FROM Person
+```
+
+### 6.3.3. Sortering - `ORDER BY`
+```sql
+SELECT Navn
+FROM Person
+ORDER BY Alder ASC
+```
+
+### 6.3.4. Strengsammenlikning - `LIKE`
+`%` angir vilkårlig antall tegn. `_` angir ett tegn.
+```sql
+-- Finner alle attributter for personer med navn som begynner på P
+SELECT *
+FROM Person
+WHERE Navn LIKE 'P%'
+```
+
+### 6.3.5. Data fra flere tabeller: kartesisk produkt og ulike typer join
+Plasseres i `FROM`-delen. Gitt tabeller `A` og `B`:
 Funksjon | Beskrivelse
 --- | ---
-`(INNER) JOIN` | Returns records that have matching values in both tables
-`LEFT (OUTER) JOIN` | Returns all records from the left table, and the matched records from the right table
-`RIGHT (OUTER) JOIN` | Returns all records from the right table, and the matched records from the left table
-`FULL (OUTER) JOIN` | Returns all records when there is a match in either left or right table
+`A, B` | Kartesisk produkt
+`A CROSS JOIN B` | Kartesisk produkt
+`A NATURAL JOIN B` | Natural join
+`A (INNER) JOIN B` | Indre join
+`A LEFT (OUTER) JOIN B` | Venstre ytre join
+`A RIGHT (OUTER) JOIN B` | Høyre ytre join
+`A FULL (OUTER) JOIN B` | Full ytre join
+Parenteser antyder frivillig spesifisering. Se [relasjonsalgebra](#5-relasjonsalgebra) for nærmere forklaring av funksjonene.
 
-### 6.3.7. Aggregering
-### 6.3.8. Gruppering
-### 6.3.9. Betingelse etter gruppering - `HAVING`
-### 6.3.10. Nøstede spørringer
-#### 6.3.10.1. Sammenlikningsoperatorer
-#### 6.3.10.2. `ANY`, `ALL`
-#### 6.3.10.3. `IN`, `NOT IN`
-#### 6.3.10.4. `EXISTS`
-#### 6.3.10.5. Union, snitt og differanse
-#### 6.3.10.6. Nøstede spørringer i `FROM`-delen
-### 6.3.11. Virtuelle tabeller - `VIEW`
+Betingelse | Beskrivelse
+--- | ---
+`NATURAL` | Natural join
+`ON betingelse` | Spesifiserer join-betingelsen
+`USING (attributt, ...)` | Spesifiserer hvilke attributter som må være like i de to tabellene
+
+```sql
+-- Finner navn på hund og eier for personer over 60 år
+SELECT Person.Navn, Hund.Navn
+FROM Person INNER JOIN Hund ON Person.Pnr = Hund.EierPnr
+WHERE Person.Alder > 60
+```
+
+### 6.3.6. Aggregering
+Se [aggregering i relasjonsalgebra](#52-gruppering-og-aggregering).
+Funksjonene ignorerer `NULL`-verdier. Med `DISTINCT` opererer funksjonene på unike verdier. `AS` definerer et alias.
+```sql
+-- Finner snittalderen av alle personer
+SELECT AVG(Alder) AS SnittAlder
+FROM Person
+```
+
+### 6.3.7. Gruppering - `GROUP BY`
+Definerer grupper (partisjoner) av rader. Må komme etter en eventuell `WHERE`.
+```sql
+-- Finner snittalderen for hvert navn
+SELECT AVG(Alder) AS SnittAlder
+FROM Person
+GROUP BY Navn
+```
+
+#### 6.3.7.1. Betingelse etter gruppering - `HAVING`
+Som `WHERE`, men *etter* gruppering.
+```sql
+-- Finner snittalderen for hvert navn, men kun hvis snittet over 60
+SELECT Navn, AVG(Alder) AS SnittAlder
+FROM Person
+GROUP BY Navn
+HAVING SnittAlder > 60
+```
+
+### 6.3.8. Nøstede spørringer
+I `WHERE`-delen kan vi sammenlikne med resultatet fra en spørring. I `FROM`-delen kan vi gjøre en ny spørring på resultatet av en spørring.
+
+#### 6.3.8.1. Sammenlikningsoperatorer
+`=, !=, <, >, <=, >=` virker som forventet.
+
+```sql
+-- Finner navnet til den eldste personen
+SELECT Navn
+FROM Person
+WHERE Alder = (SELECT MAX(Alder) FROM Person)
+```
+
+#### 6.3.8.2. `ANY`, `ALL`
+```sql
+-- Finner navnet til den eldste personen (alternativ måte)
+SELECT Navn
+FROM Person
+WHERE Alder >= ALL (SELECT Alder FROM Person)
+```
+
+#### 6.3.8.3. `IN`, `NOT IN`
+```sql
+-- Finner snittalderen til forfattere
+SELECT AVG(Alder)
+FROM Person
+WHERE Navn IN (SELECT Forfatter FROM Bok)
+```
+
+#### 6.3.8.4. `EXISTS`
+Dette er en korrelert del-spørring, dvs. at den sender inn data. (Om Person-entiteter i dette tilfelle).
+```sql
+-- Finner navn på personer som ikke jobber med noen andre personer
+SELECT Navn 
+FROM Person
+WHERE NOT EXISTS (
+    SELECT *
+    FROM JobberMed
+    WHERE JobberMed.PnrA = Person.Pnr OR JobberMed.PnrB = Person.Pnr
+)
+```
+
+
+#### 6.3.8.5. Union, snitt og differanse
+Krever kompatible operandtabeller (like kolonnenavn).
+
+Funksjon | Forklaring
+--- | ---
+`UNION` | Union
+`INTERSECT` | Snitt
+`EXCEPT` | Minus
+`UNION ALL` | Union (beholder duplikater)
+`INTERSECT ALL` | Snitt (beholder duplikater)
+`EXCEPT ALL` | Minus (beholder duplikater)
+
+```sql
+-- Finner navn som brukes på både personer og hunder
+SELECT Navn FROM Person
+INTERSECT
+SELECT Navn FROM Hund
+```
+
+#### 6.3.8.6. Nøstede spørringer i `FROM`-delen
+I `FROM`-delen kan vi gjøre en ny spørring på resultatet av en spørring. Lager en midlertidig tabell.
+```sql
+-- Finner antall arbeidere for ingeniøryrker med under 1000 arbeidere
+SELECT Yrke AntallArbeidere
+FROM (
+  SELECT Yrke, COUNT(Pnr) AS AntallArbeidere
+  FROM Person
+  GROUP BY Yrke
+)
+WHERE Yrke LIKE '%ingeniør' AND AntallArbeidere < 1000
+```
+
+### 6.3.9. Virtuelle tabeller - `VIEW`
+Views er tabeller som er avledet ut fra tabeller som er lagret i databasen. Hvorfor: Spørreforenkling, sikkerhet og ytelse.
+
+```sql
+CREATE VIEW Forelder(ForelderPnr, ForelderNavn, BarnPnr, BarnNavn)
+AS SELECT F.Pnr, F.Navn, B.Pnr, B.Navn
+FROM Person AS F INNER JOIN Person AS B
+ON (F.Pnr = B.MorPnr OR F.Pnr = B.FarPnr)
+```
+
 # 7. Normalisering
 
 ## 7.1. Tillukning
@@ -225,6 +453,8 @@ En tabell er på 3NF hvis det for alle ikke-trivielle funksjonelle avhengigheter
 BOYCE-CODD NORMALFORM
 
 En tabell er på BCNF hvis det for alle ikke-trivielle funksjonelle avhengigheter X -> Y som gjelder for tabellen, er slik at X er en supernøkkel i tabellen.
+
+tapsløst-join-egenskapen
 
 ## 7.4. Dekomponering
 
