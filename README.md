@@ -52,7 +52,7 @@ Følgende notater dekker første halvdel av faget.
 # 3. Datamodellering
 Begrep | Forklaring
 --- | ---
-Miniverden | Domenet. En mengde konsepter som skal modelleres.
+Miniverden | Domenet. De virkelige konseptene som skal modelleres.
 Datamodell | Et sett begreper for å beskrive struktur (hvilke typer data, sammenheger og restriksjoner) og operasjoner (handlinger på data: innsetting, endring, sletting og spørring)
 Konseptuelle modeller | For å forstå og dokumentere. For eksempel ER-modeller.
 Implementasjonsmodeller | For å realisere. For eksempel relasjonsdatabasemodeller.
@@ -61,10 +61,10 @@ Database | En strukturert samling av relaterte data.
 Informasjon | Data + tolkning
 DBMS | Databasehåndteringssystem. Software som styrer lagring og tilgang på data i databasen.
 Databasesystem | DBMS + data
-Selvbeskrivende DBMS | Vil si at den inneholder både data og beskrivelser om dataen (metadata). Dette gjøres generelt i DBMS-katalogen.
+Selvbeskrivende DBMS | Inneholder både data og beskrivelser om dataen (metadata). Dette gjøres generelt i DBMS-katalogen.
 Selvbeskrivende datamodeller | Inkluderer databeskrivelser i selve dataen. For eksempel XML og JSON.
 Program-data uavhengighet | En egenskap som går ut på at strukturendring i datafil ikke medfører at man må endre programmene som har tilgang til dataen.
-Flerbrukersstøtte | Flere brukere kan hente ut og lagre data samtidig uten at det er problem.
+Flerbrukersstøtte | Flere brukere kan hente ut og lagre data samtidig uten problemer.
 Transaksjon | En serie operasjoner på en database som sammen bevarer databasens konsistens.
 
 

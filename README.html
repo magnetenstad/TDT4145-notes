@@ -1,0 +1,935 @@
+<!DOCTYPE html><html><head>
+      <title>README</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="1-tdt4145-datamodellering-og-databasesystemer">1. TDT4145 - Datamodellering og databasesystemer</h1>
+
+<p>F&#xF8;lgende notater dekker f&#xF8;rste halvdel av faget.</p>
+<h1 class="mume-header" id="2-innholdsfortegnelse">2. Innholdsfortegnelse</h1>
+
+<ul>
+<li><a href="#1-tdt4145---datamodellering-og-databasesystemer">1. TDT4145 - Datamodellering og databasesystemer</a></li>
+<li><a href="#2-innholdsfortegnelse">2. Innholdsfortegnelse</a></li>
+<li><a href="#3-datamodellering">3. Datamodellering</a>
+<ul>
+<li><a href="#31-er-modellering">3.1. ER-modellering</a>
+<ul>
+<li><a href="#311-entiteter-og-entitetsklasser">3.1.1. Entiteter og entitetsklasser</a></li>
+<li><a href="#312-attributter">3.1.2. Attributter</a></li>
+<li><a href="#313-relasjoner-og-relasjonsklasser">3.1.3. Relasjoner og relasjonsklasser</a>
+<ul>
+<li><a href="#3131-kardinalitet-og-strukturelle-restriksjoner">3.1.3.1. Kardinalitet og strukturelle restriksjoner</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#32-forekomstdiagram">3.2. Forekomstdiagram</a></li>
+<li><a href="#33-eer-modellering">3.3. EER-modellering</a>
+<ul>
+<li><a href="#331-spesialisering-og-generalisering">3.3.1. Spesialisering og generalisering</a></li>
+<li><a href="#332-kategorier">3.3.2. Kategorier</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#4-relasjonsdatabaser">4. Relasjonsdatabaser</a>
+<ul>
+<li><a href="#41-mapping-fra-er-modell">4.1. Mapping fra ER-modell</a></li>
+<li><a href="#42-mapping-fra-eer-modell">4.2. Mapping fra EER-modell</a></li>
+</ul>
+</li>
+<li><a href="#5-relasjonsalgebra">5. Relasjonsalgebra</a>
+<ul>
+<li><a href="#51-gruppering-og-aggregering">5.1. Gruppering og aggregering</a></li>
+</ul>
+</li>
+<li><a href="#6-sql">6. SQL</a>
+<ul>
+<li><a href="#61-opprette-data">6.1. Opprette data</a></li>
+<li><a href="#62-endre-data">6.2. Endre data</a></li>
+<li><a href="#63-sp%C3%B8rringer">6.3. Sp&#xF8;rringer</a>
+<ul>
+<li><a href="#631-spesifisere-krav---where">6.3.1. Spesifisere krav - <code>WHERE</code></a></li>
+<li><a href="#632-fjerne-duplikater---distinct">6.3.2. Fjerne duplikater - <code>DISTINCT</code></a></li>
+<li><a href="#633-sortering-order-by">6.3.3. Sortering <code>ORDER BY</code></a></li>
+<li><a href="#634-strengsammenlikning---like">6.3.4. Strengsammenlikning - <code>LIKE</code></a></li>
+<li><a href="#635-kartesisk-produkt">6.3.5. Kartesisk produkt</a></li>
+<li><a href="#636-ulike-typer-join">6.3.6. Ulike typer join</a></li>
+<li><a href="#637-aggregering">6.3.7. Aggregering</a></li>
+<li><a href="#638-gruppering">6.3.8. Gruppering</a></li>
+<li><a href="#639-betingelse-etter-gruppering---having">6.3.9. Betingelse etter gruppering - <code>HAVING</code></a></li>
+<li><a href="#6310-n%C3%B8stede-sp%C3%B8rringer">6.3.10. N&#xF8;stede sp&#xF8;rringer</a>
+<ul>
+<li><a href="#63101-sammenlikningsoperatorer">6.3.10.1. Sammenlikningsoperatorer</a></li>
+<li><a href="#63102-any-all">6.3.10.2. <code>ANY</code>, <code>ALL</code></a></li>
+<li><a href="#63103-in-not-in">6.3.10.3. <code>IN</code>, <code>NOT IN</code></a></li>
+<li><a href="#63104-exists">6.3.10.4. <code>EXISTS</code></a></li>
+<li><a href="#63105-union-snitt-og-differanse">6.3.10.5. Union, snitt og differanse</a></li>
+<li><a href="#63106-n%C3%B8stede-sp%C3%B8rringer-i-from-delen">6.3.10.6. N&#xF8;stede sp&#xF8;rringer i <code>FROM</code>-delen</a></li>
+</ul>
+</li>
+<li><a href="#6311-virtuelle-tabeller---view">6.3.11. Virtuelle tabeller - <code>VIEW</code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#7-normalisering">7. Normalisering</a>
+<ul>
+<li><a href="#71-tillukning">7.1. Tillukning</a>
+<ul>
+<li><a href="#711-tillukningen-til-en-mengde-fa-er-f">7.1.1. Tillukningen til en mengde FA-er: F<sup>+</sup></a></li>
+<li><a href="#712-tillukningen-til-en-mengde-attributter-x">7.1.2. Tillukningen til en mengde attributter: X<sup>+</sup></a></li>
+</ul>
+</li>
+<li><a href="#72-n%C3%B8kler">7.2. N&#xF8;kler</a></li>
+<li><a href="#73-normalformer">7.3. Normalformer</a></li>
+<li><a href="#74-dekomponering">7.4. Dekomponering</a></li>
+</ul>
+</li>
+</ul>
+<h1 class="mume-header" id="3-datamodellering">3. Datamodellering</h1>
+
+<table>
+<thead>
+<tr>
+<th>Begrep</th>
+<th>Forklaring</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Miniverden</td>
+<td>Domenet. De virkelige konseptene som skal modelleres.</td>
+</tr>
+<tr>
+<td>Datamodell</td>
+<td>Et sett begreper for &#xE5; beskrive struktur (hvilke typer data, sammenheger og restriksjoner) og operasjoner (handlinger p&#xE5; data: innsetting, endring, sletting og sp&#xF8;rring)</td>
+</tr>
+<tr>
+<td>Konseptuelle modeller</td>
+<td>For &#xE5; forst&#xE5; og dokumentere. For eksempel ER-modeller.</td>
+</tr>
+<tr>
+<td>Implementasjonsmodeller</td>
+<td>For &#xE5; realisere. For eksempel relasjonsdatabasemodeller.</td>
+</tr>
+<tr>
+<td>Fysiske modeller</td>
+<td>Kontroll p&#xE5; lagring og optimalisering. Disse er produktspesifikke modeller.</td>
+</tr>
+<tr>
+<td>Database</td>
+<td>En strukturert samling av relaterte data.</td>
+</tr>
+<tr>
+<td>Informasjon</td>
+<td>Data + tolkning</td>
+</tr>
+<tr>
+<td>DBMS</td>
+<td>Databaseh&#xE5;ndteringssystem. Software som styrer lagring og tilgang p&#xE5; data i databasen.</td>
+</tr>
+<tr>
+<td>Databasesystem</td>
+<td>DBMS + data</td>
+</tr>
+<tr>
+<td>Selvbeskrivende DBMS</td>
+<td>Inneholder b&#xE5;de data og beskrivelser om dataen (metadata). Dette gj&#xF8;res generelt i DBMS-katalogen.</td>
+</tr>
+<tr>
+<td>Selvbeskrivende datamodeller</td>
+<td>Inkluderer databeskrivelser i selve dataen. For eksempel XML og JSON.</td>
+</tr>
+<tr>
+<td>Program-data uavhengighet</td>
+<td>En egenskap som g&#xE5;r ut p&#xE5; at strukturendring i datafil ikke medf&#xF8;rer at man m&#xE5; endre programmene som har tilgang til dataen.</td>
+</tr>
+<tr>
+<td>Flerbrukersst&#xF8;tte</td>
+<td>Flere brukere kan hente ut og lagre data samtidig uten problemer.</td>
+</tr>
+<tr>
+<td>Transaksjon</td>
+<td>En serie operasjoner p&#xE5; en database som sammen bevarer databasens konsistens.</td>
+</tr>
+</tbody>
+</table>
+<h2 class="mume-header" id="31-er-modellering">3.1. ER-modellering</h2>
+
+<p>ER-notasjon: <a href="assets\ER_notasjon_2017.pdf">Open PDF</a>.</p>
+<h3 class="mume-header" id="311-entiteter-og-entitetsklasser">3.1.1. Entiteter og entitetsklasser</h3>
+
+<table>
+<thead>
+<tr>
+<th>Begrep</th>
+<th>Forklaring</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Entitet</td>
+<td>Objekt som eksisterer i miniverdenen. Et element av en entitetsklasse.</td>
+</tr>
+<tr>
+<td>Enitetsklasse</td>
+<td>Mengden av alle likeartede entiteter som er av samme klasse (type) og har samme egenskaper</td>
+</tr>
+<tr>
+<td>Svak entitetsklasse</td>
+<td>En entitetsklasse der n&#xF8;kkelen (delvis n&#xF8;kkel) bygger p&#xE5; n&#xF8;kkelen fra en annen <em>identifiserende entitetsklasse</em>, gjennom en <em>identifiserende relasjonsklasse</em>. Den m&#xE5; v&#xE6;re eksistensavhengig av deltakelse i den identifiserende relasjonsklassen.</td>
+</tr>
+</tbody>
+</table>
+<h3 class="mume-header" id="312-attributter">3.1.2. Attributter</h3>
+
+<p>Attributter beskriver entiteter. Hvert attributt henter sine mulige verdier fra et domene (datatype).</p>
+<table>
+<thead>
+<tr>
+<th>Type attributt</th>
+<th>Notasjon</th>
+<th>Forklaring</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enkel attributt (Standard)</td>
+<td>Ingen</td>
+<td>Attributt</td>
+</tr>
+<tr>
+<td>Flerverdiattributt</td>
+<td>Dobbel linje</td>
+<td>Kan holde flere verdier</td>
+</tr>
+<tr>
+<td>Sammensatt attributt</td>
+<td>Har egne subattributter</td>
+<td>Har egne subattributter</td>
+</tr>
+<tr>
+<td>Avledet attributt</td>
+<td>Stiplet linje</td>
+<td>Kan avledes fra andre attributter, trenger ikke lagres eksplisitt</td>
+</tr>
+<tr>
+<td>N&#xF8;kkelattributt</td>
+<td>Understreket</td>
+<td>Entydig identifikator for entiteten</td>
+</tr>
+</tbody>
+</table>
+<h3 class="mume-header" id="313-relasjoner-og-relasjonsklasser">3.1.3. Relasjoner og relasjonsklasser</h3>
+
+<table>
+<thead>
+<tr>
+<th>Begrep</th>
+<th>Forklaring</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Relasjon</td>
+<td>Sammenheng mellom to eller flere enititeter. Kan ha attributter p&#xE5; samme m&#xE5;te som entiteter. Relasjonen eksisterer ikke uten de entitetene som deltar.</td>
+</tr>
+<tr>
+<td>Relasjonsklasse</td>
+<td>Mengden av likeartede relasjoner mellom samme enitetsklasser.</td>
+</tr>
+<tr>
+<td>Rekursiv relasjonsklasse</td>
+<td>Relasjonsklasser der samme entitetsklasse inng&#xE5;r flere ganger. En entitetsklasse kan da ha flere roller i relasjonsklassen.</td>
+</tr>
+</tbody>
+</table>
+<h4 class="mume-header" id="3131-kardinalitet-og-strukturelle-restriksjoner">3.1.3.1. Kardinalitet og strukturelle restriksjoner</h4>
+
+<p>Foreleser i emnet foretrekker strukturelle restriksjoner</p>
+<table>
+<thead>
+<tr>
+<th>Begrep</th>
+<th>Forklaring</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kardinalitet</td>
+<td>Ved bruk av 1 eller N p&#xE5; hver side av relasjonen antydes om relasjonen er en-til-en, en-til-mange eller mange-til-mange. Noteres p&#xE5; <em>motsatt side</em> av relasjonen som den aktuelle entiteten.</td>
+</tr>
+<tr>
+<td>Strukturell restriksjon (<em>min</em>, <em>max</em>)</td>
+<td>Antyder at en entitet opptrer i relasjonen minst <em>min</em> ganger og maks <em>max</em> ganger. Vanlige restriksjoner er (0, 1), (1, 1), (0, n) og (1, n). Noteres p&#xE5; <em>samme side</em> av relasjonen som den aktuelle entiteten.</td>
+</tr>
+</tbody>
+</table>
+<h2 class="mume-header" id="32-forekomstdiagram">3.2. Forekomstdiagram</h2>
+
+<h2 class="mume-header" id="33-eer-modellering">3.3. EER-modellering</h2>
+
+<h3 class="mume-header" id="331-spesialisering-og-generalisering">3.3.1. Spesialisering og generalisering</h3>
+
+<table>
+<thead>
+<tr>
+<th>Begrep</th>
+<th>Forklaring</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Superklasse-subklasserelasjon</td>
+<td>Subklassene <em>arver</em> egenskapene (attributter og relasjoner) til superklassen.</td>
+</tr>
+<tr>
+<td>Total spesialisering</td>
+<td>Alle entiteter i superklassen m&#xE5; delta i minst en subklasse. Noteres med dobbel strek.</td>
+</tr>
+<tr>
+<td>Overlappende subklasser</td>
+<td>En entitet i superklassen kan delta i flere enn en subklasse. Noteres med O eller mangel p&#xE5; notasjon.</td>
+</tr>
+<tr>
+<td>Distinke subklasser</td>
+<td>En entitet i superklassen kan <em>ikke</em> delta i flere enn en subklasse. Noteres med D.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>En entitet kan delta i</th>
+<th><strong>Disjunkt</strong></th>
+<th><strong>Overlappende</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Delvis</strong></td>
+<td>0-1 subklasser</td>
+<td>0-n subklasser</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td>1 subklasse</td>
+<td>1-n subklasser</td>
+</tr>
+</tbody>
+</table>
+<h3 class="mume-header" id="332-kategorier">3.3.2. Kategorier</h3>
+
+<p>En kategori representerer en samling av entiteter som er en delmenge av entitetene fra ulike  entitetsklasser (kategorienes superklasser). Blir ogs&#xE5; kalt en union-type. En kategori kan v&#xE6;re delvis eller total. En total kategori vil inneholde alle entitetene i unionen av superklassene og markeres med dobbelt strek mellom kategorien og sirkelen.</p>
+<h1 class="mume-header" id="4-relasjonsdatabaser">4. Relasjonsdatabaser</h1>
+
+<h2 class="mume-header" id="41-mapping-fra-er-modell">4.1. Mapping fra ER-modell</h2>
+
+<h2 class="mume-header" id="42-mapping-fra-eer-modell">4.2. Mapping fra EER-modell</h2>
+
+<h1 class="mume-header" id="5-relasjonsalgebra">5. Relasjonsalgebra</h1>
+
+<table>
+<thead>
+<tr>
+<th>Operasjon</th>
+<th>Operator</th>
+<th>Forklaring</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Seleksjon</td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>&#x3C3;</mi><mtext>Betingelse</mtext></msub><mo stretchy="false">(</mo><mtext>A</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\sigma_{\text{Betingelse}}(\text{A})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">&#x3C3;</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">Betingelse</span></span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord text"><span class="mord">A</span></span><span class="mclose">)</span></span></span></span></td>
+<td>Returnerer radene i A som oppfyller betingelsen.</td>
+</tr>
+<tr>
+<td>Projeksjon</td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">&#x3A0;</mi><mtext>Kolonnenavn...</mtext></msub><mo stretchy="false">(</mo><mtext>A</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Pi_{\text{Kolonnenavn...}}(\text{A})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord">&#x3A0;</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">Kolonnenavn...</span></span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord text"><span class="mord">A</span></span><span class="mclose">)</span></span></span></span></td>
+<td>Returnerer de oppgitte kolonnene i A.</td>
+</tr>
+<tr>
+<td>Union</td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&#x222A;</mo><mo stretchy="false">(</mo><mtext>A,&#xA0;B</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\cup(\text{A, B})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">&#x222A;</span><span class="mopen">(</span><span class="mord text"><span class="mord">A,&#xA0;B</span></span><span class="mclose">)</span></span></span></span></td>
+<td>Returnerer unionen av A og B. Krever like kolonnenavn.</td>
+</tr>
+<tr>
+<td>Snitt</td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&#x2229;</mo><mo stretchy="false">(</mo><mtext>A,&#xA0;B</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\cap(\text{A, B})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">&#x2229;</span><span class="mopen">(</span><span class="mord text"><span class="mord">A,&#xA0;B</span></span><span class="mclose">)</span></span></span></span></td>
+<td>Returnerer snittet av A og B. Krever like kolonnenavn.</td>
+</tr>
+<tr>
+<td>Differanse</td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&#x2212;</mo><mo stretchy="false">(</mo><mtext>A,&#xA0;B</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">-(\text{A, B})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">&#x2212;</span><span class="mopen">(</span><span class="mord text"><span class="mord">A,&#xA0;B</span></span><span class="mclose">)</span></span></span></span></td>
+<td>Returnerer radene i A som ikke er i B. Krever like kolonnenavn.</td>
+</tr>
+<tr>
+<td>Kartesisk produkt</td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>X</mtext><mo stretchy="false">(</mo><mtext>A,&#xA0;B</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\text{X}(\text{A, B})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">X</span></span><span class="mopen">(</span><span class="mord text"><span class="mord">A,&#xA0;B</span></span><span class="mclose">)</span></span></span></span></td>
+<td>Kombinerer alle rader i A med alle rader i B.</td>
+</tr>
+<tr>
+<td>Indre join</td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>&#x22C8;</mo><mtext>Betingelse</mtext></msub><mo stretchy="false">(</mo><mtext>A,&#xA0;B</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Join_{\text{Betingelse}}(\text{A, B})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7911em;vertical-align:-0.2861em;"></span><span class="mrel"><span class="mrel">&#x22C8;</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">Betingelse</span></span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord">A,&#xA0;B</span></span><span class="mclose">)</span></span></span></span></td>
+<td>Kombinerer radene i A og B som sammen oppfyller betingelsen.</td>
+</tr>
+<tr>
+<td>Naturlig join</td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&#x2217;</mo><mo stretchy="false">(</mo><mtext>A,&#xA0;B</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">*(\text{A, B})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">&#x2217;</span><span class="mopen">(</span><span class="mord text"><span class="mord">A,&#xA0;B</span></span><span class="mclose">)</span></span></span></span></td>
+<td>Kombinerer radene i A og B der alle kolonner i A og B med samme navn ogs&#xE5; har samme verdi.</td>
+</tr>
+<tr>
+<td>Venstre ytre join</td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>=</mo><msub><mo>&#x22C8;</mo><mtext>Betingelse</mtext></msub><mo stretchy="false">(</mo><mtext>A,&#xA0;B</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">=\Join_{\text{Betingelse}}(\text{A, B})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">=</span></span><span class="base"><span class="strut" style="height:0.7911em;vertical-align:-0.2861em;"></span><span class="mrel"><span class="mrel">&#x22C8;</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">Betingelse</span></span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord">A,&#xA0;B</span></span><span class="mclose">)</span></span></span></span></td>
+<td>Returnerer alle rader i A, og de kombinerte radene i A og B som sammen oppfyller betingelsen.</td>
+</tr>
+<tr>
+<td>H&#xF8;yre ytre join</td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&#x22C8;</mo><msub><mo>=</mo><mtext>Betingelse</mtext></msub><mo stretchy="false">(</mo><mtext>A,&#xA0;B</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Join=_{\text{Betingelse}}(\text{A, B})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.51em;vertical-align:-0.005em;"></span><span class="mrel">&#x22C8;</span></span><span class="base"><span class="strut" style="height:0.653em;vertical-align:-0.2861em;"></span><span class="mrel"><span class="mrel">=</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">Betingelse</span></span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord">A,&#xA0;B</span></span><span class="mclose">)</span></span></span></span></td>
+<td>Returnerer alle rader i B, og de kombinerte radene i A og B som sammen oppfyller betingelsen.</td>
+</tr>
+<tr>
+<td>Full ytre join</td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>=</mo><mo>&#x22C8;</mo><msub><mo>=</mo><mtext>Betingelse</mtext></msub><mo stretchy="false">(</mo><mtext>A,&#xA0;B</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">=\Join=_{\text{Betingelse}}(\text{A, B})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.51em;vertical-align:-0.005em;"></span><span class="mrel">=&#x22C8;</span></span><span class="base"><span class="strut" style="height:0.653em;vertical-align:-0.2861em;"></span><span class="mrel"><span class="mrel">=</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">Betingelse</span></span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord">A,&#xA0;B</span></span><span class="mclose">)</span></span></span></span></td>
+<td>Returnerer alle rader i A og B, og de kombinerte radene i A og B som sammen oppfyller betingelsen.</td>
+</tr>
+<tr>
+<td>Omd&#xF8;ping</td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>&#x3C1;</mi><mrow><mi>T</mi><mi>a</mi><mi>b</mi><mi>e</mi><mi>l</mi><mi>l</mi><mi>n</mi><mi>a</mi><mi>v</mi><mi>n</mi><mo stretchy="false">(</mo><mi>A</mi><mi>t</mi><mi>t</mi><mi>r</mi><mi>i</mi><mi>b</mi><mi>u</mi><mi>t</mi><mi>t</mi><mi>n</mi><mi>a</mi><mi>v</mi><mi>n</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo stretchy="false">)</mo></mrow></msub><mo stretchy="false">(</mo><mtext>A</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\rho_{Tabellnavn(Attributtnavn..)}(\text{A})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1052em;vertical-align:-0.3552em;"></span><span class="mord"><span class="mord mathnormal">&#x3C1;</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.5198em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="mord mathnormal mtight">ab</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">ll</span><span class="mord mathnormal mtight">na</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">v</span><span class="mord mathnormal mtight">n</span><span class="mopen mtight">(</span><span class="mord mathnormal mtight">A</span><span class="mord mathnormal mtight">tt</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">ib</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">tt</span><span class="mord mathnormal mtight">na</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">v</span><span class="mord mathnormal mtight">n</span><span class="mord mtight">..</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.3552em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord text"><span class="mord">A</span></span><span class="mclose">)</span></span></span></span></td>
+<td>Returnerer en ny tabell med nye kolonnenavn.</td>
+</tr>
+<tr>
+<td>Sortering</td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&#x2191;</mo><msub><mo>&#x2193;</mo><mrow><mi>A</mi><mi>t</mi><mi>t</mi><mi>r</mi><mi>i</mi><mi>b</mi><mi>u</mi><mi>t</mi><mi>t</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi></mrow></msub><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\uparrow \downarrow_{Attributt..}(A)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mrel">&#x2191;</span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mrel"><span class="mrel">&#x2193;</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">A</span><span class="mord mathnormal mtight">tt</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">ib</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">tt</span><span class="mord mtight">..</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mclose">)</span></span></span></span></td>
+<td>Returnerer en tabell der radene er sortert etter de oppgitte attributtene. Man kan spesifisere ASC (stigende) eller DESC (synkende) rekkef&#xF8;lge.</td>
+</tr>
+</tbody>
+</table>
+<h2 class="mume-header" id="51-gruppering-og-aggregering">5.1. Gruppering og aggregering</h2>
+
+<table>
+<thead>
+<tr>
+<th>Funksjon</th>
+<th>Forklaring</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SUM(attributt)</td>
+<td>Sum</td>
+</tr>
+<tr>
+<td>AVG(attributt)</td>
+<td>Gjennomsnitt</td>
+</tr>
+<tr>
+<td>MIN(attributt)</td>
+<td>Minimum</td>
+</tr>
+<tr>
+<td>MAX(attributt)</td>
+<td>Maksimum</td>
+</tr>
+<tr>
+<td>COUNT(attributt)</td>
+<td>Antall verdier (unntatt NULL)</td>
+</tr>
+<tr>
+<td>COUNT(DISTINCT attributt)</td>
+<td>Antall unike verdier (unntatt NULL)</td>
+</tr>
+<tr>
+<td>COUNT(*)</td>
+<td>Antall rader</td>
+</tr>
+</tbody>
+</table>
+<h1 class="mume-header" id="6-sql">6. SQL</h1>
+
+<h2 class="mume-header" id="61-opprette-data">6.1. Opprette data</h2>
+
+<h2 class="mume-header" id="62-endre-data">6.2. Endre data</h2>
+
+<h2 class="mume-header" id="63-sp%C3%B8rringer">6.3. Sp&#xF8;rringer</h2>
+
+<h3 class="mume-header" id="631-spesifisere-krav-where">6.3.1. Spesifisere krav - <code>WHERE</code></h3>
+
+<h3 class="mume-header" id="632-fjerne-duplikater-distinct">6.3.2. Fjerne duplikater - <code>DISTINCT</code></h3>
+
+<h3 class="mume-header" id="633-sortering-order-by">6.3.3. Sortering <code>ORDER BY</code></h3>
+
+<h3 class="mume-header" id="634-strengsammenlikning-like">6.3.4. Strengsammenlikning - <code>LIKE</code></h3>
+
+<h3 class="mume-header" id="635-kartesisk-produkt">6.3.5. Kartesisk produkt</h3>
+
+<h3 class="mume-header" id="636-ulike-typer-join">6.3.6. Ulike typer join</h3>
+
+<table>
+<thead>
+<tr>
+<th>Funksjon</th>
+<th>Beskrivelse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>(INNER) JOIN</code></td>
+<td>Returns records that have matching values in both tables</td>
+</tr>
+<tr>
+<td><code>LEFT (OUTER) JOIN</code></td>
+<td>Returns all records from the left table, and the matched records from the right table</td>
+</tr>
+<tr>
+<td><code>RIGHT (OUTER) JOIN</code></td>
+<td>Returns all records from the right table, and the matched records from the left table</td>
+</tr>
+<tr>
+<td><code>FULL (OUTER) JOIN</code></td>
+<td>Returns all records when there is a match in either left or right table</td>
+</tr>
+</tbody>
+</table>
+<h3 class="mume-header" id="637-aggregering">6.3.7. Aggregering</h3>
+
+<h3 class="mume-header" id="638-gruppering">6.3.8. Gruppering</h3>
+
+<h3 class="mume-header" id="639-betingelse-etter-gruppering-having">6.3.9. Betingelse etter gruppering - <code>HAVING</code></h3>
+
+<h3 class="mume-header" id="6310-n%C3%B8stede-sp%C3%B8rringer">6.3.10. N&#xF8;stede sp&#xF8;rringer</h3>
+
+<h4 class="mume-header" id="63101-sammenlikningsoperatorer">6.3.10.1. Sammenlikningsoperatorer</h4>
+
+<h4 class="mume-header" id="63102-any-all">6.3.10.2. <code>ANY</code>, <code>ALL</code></h4>
+
+<h4 class="mume-header" id="63103-in-not-in">6.3.10.3. <code>IN</code>, <code>NOT IN</code></h4>
+
+<h4 class="mume-header" id="63104-exists">6.3.10.4. <code>EXISTS</code></h4>
+
+<h4 class="mume-header" id="63105-union-snitt-og-differanse">6.3.10.5. Union, snitt og differanse</h4>
+
+<h4 class="mume-header" id="63106-n%C3%B8stede-sp%C3%B8rringer-i-from-delen">6.3.10.6. N&#xF8;stede sp&#xF8;rringer i <code>FROM</code>-delen</h4>
+
+<h3 class="mume-header" id="6311-virtuelle-tabeller-view">6.3.11. Virtuelle tabeller - <code>VIEW</code></h3>
+
+<h1 class="mume-header" id="7-normalisering">7. Normalisering</h1>
+
+<h2 class="mume-header" id="71-tillukning">7.1. Tillukning</h2>
+
+<h3 class="mume-header" id="711-tillukningen-til-en-mengde-fa-er-f">7.1.1. Tillukningen til en mengde FA-er: F<sup>+</sup></h3>
+
+<p>Anta <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span></span></span></span> er en mengde funksjonelle avhengigheter. Da er<br>
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>F</mi><mo>+</mo></msup><mo>=</mo><mo stretchy="false">{</mo><mi>X</mi><mo>&#x2192;</mo><mi>Y</mi><mi mathvariant="normal">&#x2223;</mi><mi>X</mi><mo>&#x2192;</mo><mi>Y</mi><mtext>&#xA0;kan&#xA0;utledes&#xA0;fra&#xA0;FA-ene&#xA0;i&#xA0;F</mtext><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">F^+ = \{ X \rightarrow Y | X \rightarrow Y \text{ kan utledes fra FA-ene i F} \}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7713em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7713em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#x2192;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="mord">&#x2223;</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#x2192;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="mord text"><span class="mord">&#xA0;kan&#xA0;utledes&#xA0;fra&#xA0;FA-ene&#xA0;i&#xA0;F</span></span><span class="mclose">}</span></span></span></span></p>
+<h3 class="mume-header" id="712-tillukningen-til-en-mengde-attributter-x">7.1.2. Tillukningen til en mengde attributter: X<sup>+</sup></h3>
+
+<p>Anta <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span></span> og <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>&#x2286;</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">X \subseteq R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.136em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#x2286;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span></span>. Da er <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>X</mi><mo>+</mo></msup><mo>=</mo><mo stretchy="false">{</mo><mi>Y</mi><mo>&#x2208;</mo><mi>R</mi><mi mathvariant="normal">&#x2223;</mi><mi>X</mi><mo>&#x2192;</mo><mi>Y</mi><mo>&#x2208;</mo><msup><mi>F</mi><mo>+</mo></msup><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">X^+ = \{ Y \in R | X \rightarrow Y \in F^+ \}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7713em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7713em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#x2208;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">&#x2223;</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#x2192;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7224em;vertical-align:-0.0391em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#x2208;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0213em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7713em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span></span></span></span></span><span class="mclose">}</span></span></span></span> Dette er mengden av alle attributter som er funksjonelt avhengige av <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span></span></span></span>.</p>
+<h2 class="mume-header" id="72-n%C3%B8kler">7.2. N&#xF8;kler</h2>
+
+<table>
+<thead>
+<tr>
+<th>Type n&#xF8;kkel</th>
+<th>Forklaring</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N&#xF8;kkelattributt</td>
+<td>Et attributt som er med i en eller flere supern&#xF8;kler</td>
+</tr>
+<tr>
+<td>Supern&#xF8;kkel</td>
+<td>Mengde attributter som sammen er en identifikator</td>
+</tr>
+<tr>
+<td>Kandidatn&#xF8;kkel</td>
+<td>En minimal supern&#xF8;kkel</td>
+</tr>
+<tr>
+<td>N&#xF8;kkel</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 class="mume-header" id="73-normalformer">7.3. Normalformer</h2>
+
+<p>F&#xD8;RSTE NORMALFORM</p>
+<p>Atomiske verdier</p>
+<p>ANDRE NORMALFORM</p>
+<p>En tabell er p&#xE5; 2NF hvis ingen ikke-n&#xF8;kkel-attributter er delvis avhengig av en (kandidat-)n&#xF8;kkel.</p>
+<p>TREDJE NORMALFORM</p>
+<p>En tabell er p&#xE5; 3NF hvis det for alle ikke-trivielle funksjonelle avhengigheter X -&gt; A som gjelder for tabellen, er slik at<br>
+(a) X er en supern&#xF8;kkel i tabellen eller<br>
+(b) A er et n&#xF8;kkelattributt i tabellen.</p>
+<p>BOYCE-CODD NORMALFORM</p>
+<p>En tabell er p&#xE5; BCNF hvis det for alle ikke-trivielle funksjonelle avhengigheter X -&gt; Y som gjelder for tabellen, er slik at X er en supern&#xF8;kkel i tabellen.</p>
+<h2 class="mume-header" id="74-dekomponering">7.4. Dekomponering</h2>
+
+
+      </div>
+      <div class="md-sidebar-toc"><ul>
+<li><a href="#1-tdt4145-datamodellering-og-databasesystemer">1. TDT4145 - Datamodellering og databasesystemer</a></li>
+<li><a href="#2-innholdsfortegnelse">2. Innholdsfortegnelse</a></li>
+<li><a href="#3-datamodellering">3. Datamodellering</a>
+<ul>
+<li><a href="#31-er-modellering">3.1. ER-modellering</a>
+<ul>
+<li><a href="#311-entiteter-og-entitetsklasser">3.1.1. Entiteter og entitetsklasser</a></li>
+<li><a href="#312-attributter">3.1.2. Attributter</a></li>
+<li><a href="#313-relasjoner-og-relasjonsklasser">3.1.3. Relasjoner og relasjonsklasser</a>
+<ul>
+<li><a href="#3131-kardinalitet-og-strukturelle-restriksjoner">3.1.3.1. Kardinalitet og strukturelle restriksjoner</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#32-forekomstdiagram">3.2. Forekomstdiagram</a></li>
+<li><a href="#33-eer-modellering">3.3. EER-modellering</a>
+<ul>
+<li><a href="#331-spesialisering-og-generalisering">3.3.1. Spesialisering og generalisering</a></li>
+<li><a href="#332-kategorier">3.3.2. Kategorier</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#4-relasjonsdatabaser">4. Relasjonsdatabaser</a>
+<ul>
+<li><a href="#41-mapping-fra-er-modell">4.1. Mapping fra ER-modell</a></li>
+<li><a href="#42-mapping-fra-eer-modell">4.2. Mapping fra EER-modell</a></li>
+</ul>
+</li>
+<li><a href="#5-relasjonsalgebra">5. Relasjonsalgebra</a>
+<ul>
+<li><a href="#51-gruppering-og-aggregering">5.1. Gruppering og aggregering</a></li>
+</ul>
+</li>
+<li><a href="#6-sql">6. SQL</a>
+<ul>
+<li><a href="#61-opprette-data">6.1. Opprette data</a></li>
+<li><a href="#62-endre-data">6.2. Endre data</a></li>
+<li><a href="#63-sp%C3%B8rringer">6.3. Sp&#xF8;rringer</a>
+<ul>
+<li><a href="#631-spesifisere-krav-where">6.3.1. Spesifisere krav - <code>WHERE</code></a></li>
+<li><a href="#632-fjerne-duplikater-distinct">6.3.2. Fjerne duplikater - <code>DISTINCT</code></a></li>
+<li><a href="#633-sortering-order-by">6.3.3. Sortering <code>ORDER BY</code></a></li>
+<li><a href="#634-strengsammenlikning-like">6.3.4. Strengsammenlikning - <code>LIKE</code></a></li>
+<li><a href="#635-kartesisk-produkt">6.3.5. Kartesisk produkt</a></li>
+<li><a href="#636-ulike-typer-join">6.3.6. Ulike typer join</a></li>
+<li><a href="#637-aggregering">6.3.7. Aggregering</a></li>
+<li><a href="#638-gruppering">6.3.8. Gruppering</a></li>
+<li><a href="#639-betingelse-etter-gruppering-having">6.3.9. Betingelse etter gruppering - <code>HAVING</code></a></li>
+<li><a href="#6310-n%C3%B8stede-sp%C3%B8rringer">6.3.10. N&#xF8;stede sp&#xF8;rringer</a>
+<ul>
+<li><a href="#63101-sammenlikningsoperatorer">6.3.10.1. Sammenlikningsoperatorer</a></li>
+<li><a href="#63102-any-all">6.3.10.2. <code>ANY</code>, <code>ALL</code></a></li>
+<li><a href="#63103-in-not-in">6.3.10.3. <code>IN</code>, <code>NOT IN</code></a></li>
+<li><a href="#63104-exists">6.3.10.4. <code>EXISTS</code></a></li>
+<li><a href="#63105-union-snitt-og-differanse">6.3.10.5. Union, snitt og differanse</a></li>
+<li><a href="#63106-n%C3%B8stede-sp%C3%B8rringer-i-from-delen">6.3.10.6. N&#xF8;stede sp&#xF8;rringer i <code>FROM</code>-delen</a></li>
+</ul>
+</li>
+<li><a href="#6311-virtuelle-tabeller-view">6.3.11. Virtuelle tabeller - <code>VIEW</code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#7-normalisering">7. Normalisering</a>
+<ul>
+<li><a href="#71-tillukning">7.1. Tillukning</a>
+<ul>
+<li><a href="#711-tillukningen-til-en-mengde-fa-er-f">7.1.1. Tillukningen til en mengde FA-er: F<sup>+</sup></a></li>
+<li><a href="#712-tillukningen-til-en-mengde-attributter-x">7.1.2. Tillukningen til en mengde attributter: X<sup>+</sup></a></li>
+</ul>
+</li>
+<li><a href="#72-n%C3%B8kler">7.2. N&#xF8;kler</a></li>
+<li><a href="#73-normalformer">7.3. Normalformer</a></li>
+<li><a href="#74-dekomponering">7.4. Dekomponering</a></li>
+</ul>
+</li>
+</ul>
+</div>
+      <a id="sidebar-toc-btn">&#x2261;</a>
+    
+    
+    
+    
+    
+    
+    
+    
+<script>
+
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
+      
+  
+    </body></html>
