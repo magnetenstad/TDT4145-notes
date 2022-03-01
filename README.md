@@ -46,12 +46,18 @@ Følgende notater dekker første halvdel av faget.
       - [6.3.8.6. Nøstede spørringer i `FROM`-delen](#6386-nøstede-spørringer-i-from-delen)
     - [6.3.9. Virtuelle tabeller - `VIEW`](#639-virtuelle-tabeller---view)
 - [7. Normalisering](#7-normalisering)
-  - [7.1. Tillukning](#71-tillukning)
-    - [7.1.1. Tillukningen til en mengde FA-er: F^+^](#711-tillukningen-til-en-mengde-fa-er-f)
-    - [7.1.2. Tillukningen til en mengde attributter: X^+^](#712-tillukningen-til-en-mengde-attributter-x)
-  - [7.2. Nøkler](#72-nøkler)
-  - [7.3. Normalformer](#73-normalformer)
-  - [7.4. Dekomponering](#74-dekomponering)
+  - [7.1. Restriksjoner](#71-restriksjoner)
+  - [7.2. Funksjonelle avhengigheter](#72-funksjonelle-avhengigheter)
+    - [7.2.1. Utledningsregler](#721-utledningsregler)
+    - [7.2.2. Full funksjonell avhengighet](#722-full-funksjonell-avhengighet)
+  - [7.3. Tillukning](#73-tillukning)
+  - [7.4. Nøkler](#74-nøkler)
+  - [7.5. Normalformer](#75-normalformer)
+    - [7.5.1. Første normalform - 1NF](#751-første-normalform---1nf)
+    - [7.5.2. Andre normalform - 2NF](#752-andre-normalform---2nf)
+    - [7.5.3. Tredje normalform - 3NF](#753-tredje-normalform---3nf)
+    - [7.5.4. Boyce-Codd normalform - BCNF](#754-boyce-codd-normalform---bcnf)
+  - [7.6. Kriterier ved relasjonsdatabasedesign](#76-kriterier-ved-relasjonsdatabasedesign)
 
 # 3. Datamodellering
 Begrep | Forklaring
@@ -71,8 +77,8 @@ Program-data uavhengighet | En egenskap som går ut på at strukturendring i dat
 Flerbrukersstøtte | Flere brukere kan hente ut og lagre data samtidig uten problemer.
 Entitetsintegritet | Tilsier at en primærnøkkel ikke kan være `NULL`.
 Referanseintegritet | Tilsier at fremmednøkkelen mot en tabell må referere til en eksisterende rad i den tabellen.
-Databasetilstand | Dataen i databasen på et gitt tidspunkt.
-Konsistent databasetilstand | At databasen tilfredsstiller alle integritetsregler.
+Databasetilstand | Database-forekomsten (dataene) på et gitt tidspunkt.
+Konsistent databasetilstand | At databasen tilfredsstiller alle integritetsregler (reglene i miniverdenen).
 Transaksjon | En serie operasjoner på en database som sammen bevarer databasens konsistens.
 
 ## 3.1. ER-modellering
@@ -237,7 +243,7 @@ WHERE Navn = 'Ola'
 ```
 
 ## 6.3. Spørringer - `SELECT`
-Merk: `SELECT(*)` angir at vi ønsker alle attributter.
+Merk: `SELECT *` angir at vi ønsker alle attributter.
 ```sql
 SELECT attributt, ...
 FROM tabell, ...
@@ -252,6 +258,7 @@ Operator |
 --- |
 AND, OR |
 =, !=, <, >, <=, >= |
+
 Merk: `<>` er det samme som `!=`
 
 ### 6.3.2. Fjerne duplikater - `DISTINCT`
@@ -287,6 +294,7 @@ Funksjon | Beskrivelse
 `A LEFT (OUTER) JOIN B` | Venstre ytre join
 `A RIGHT (OUTER) JOIN B` | Høyre ytre join
 `A FULL (OUTER) JOIN B` | Full ytre join
+
 Parenteser antyder frivillig spesifisering. Se [relasjonsalgebra](#5-relasjonsalgebra) for nærmere forklaring av funksjonene.
 
 Betingelse | Beskrivelse
@@ -416,45 +424,88 @@ ON (F.Pnr = B.MorPnr OR F.Pnr = B.FarPnr)
 ```
 
 # 7. Normalisering
+Vi ønsker å unngå redundans (lagring av samme informasjon flere ganger) og innsettings-, oppdaterings- og slettings-anomalier.
 
-## 7.1. Tillukning
-
-### 7.1.1. Tillukningen til en mengde FA-er: F^+^
-Anta $F$ er en mengde funksjonelle avhengigheter. Da er 
-$F^+ = \{ X \rightarrow Y | X \rightarrow Y \text{ kan utledes fra FA-ene i F} \}$
-
-### 7.1.2. Tillukningen til en mengde attributter: X^+^
-Anta $R$ og $F$, $X \subseteq R$. Da er $ X^+ = \{ Y \in R | X \rightarrow Y \in F^+ \}$ Dette er mengden av alle attributter som er funksjonelt avhengige av $X$.
-
-## 7.2. Nøkler
-
-Type nøkkel | Forklaring
+## 7.1. Restriksjoner
+Begrep | Forklaring
 --- | ---
-Nøkkelattributt | Et attributt som er med i en eller flere supernøkler
-Supernøkkel | Mengde attributter som sammen er en identifikator
-Kandidatnøkkel | En minimal supernøkkel
-Nøkkel | 
+Implisitte restriksjoner | Er en del av datamodellen og håndheves derfor alltid av DBMS.
+Eksplisitte restriksjoner | Kan uttrykkes i datamodellen (databaseskjemaet). Håndheves av DBMS. Eksempler: Primærnøkkel, fremmednøkkel, datatyper, verdi-begrensninger, etc.
+Applikasjonsbaserte restriksjoner (business rules) | Må håndteres utenfor datamodellen (av applikasjonsprogrammene).
 
-## 7.3. Normalformer
-FØRSTE NORMALFORM
+## 7.2. Funksjonelle avhengigheter
 
-Atomiske verdier
+Notasjon | Forklaring
+--- | ---
+$R(A, B, ...)$ | Skjema for tabellen
+$r(R)$ | Tabellforekomsten
+$t_i \in r(R)$ | Rad i tabellforekomsten
+$t_i[A]$ | Radens verdi for attributtet $A$
+$X \subseteq R$ | En delmengde av attributtene i $R$
 
-ANDRE NORMALFORM
+Forkortes gjerne til FA. 
 
-En tabell er på 2NF hvis ingen ikke-nøkkel-attributter er delvis avhengig av en (kandidat-)nøkkel.
+$X \rightarrow Y$, der $X, Y \subseteq R$ uttrykker en restriksjon på alle lovlige tabellforekomster for $R$ (en funksjonell avhengighet). Alle rader (tuppler), $t_j$ pg $t_i$, i en forekomst $r(R)$ som har samme verdier for attributtene i $X$ (dvs. $t_i[X] = t_j[X]$), *må* ha samme verdier for attributtene i $Y$ (dvs. $t_i[Y] = t_j[Y]$).
 
-TREDJE NORMALFORM
+Kort sagt: FA-en $\text{PersonNummer} \rightarrow \text{Navn}$ tilsier at alle rader med samme $\text{PersonNummer}$ må ha samme $\text{Navn}$.
 
-En tabell er på 3NF hvis det for alle ikke-trivielle funksjonelle avhengigheter X -> A som gjelder for tabellen, er slik at 
-(a) X er en supernøkkel i tabellen eller 
-(b) A er et nøkkelattributt i tabellen.
+### 7.2.1. Utledningsregler
+Disse er sjelden nødvendige.
+Navn | Regel
+--- | ---
+IR-1 (reflexive) | ${ Y \subseteq X }$ gir $X \rightarrow Y$
+IR-2 (augmentation) | ${ X \rightarrow Y }$ gir $XZ \rightarrow YZ$
+IR-3 (transitive) | ${ X \rightarrow Y, \, Y \rightarrow Z }$ gir $X \rightarrow Z$
+IR-4 (decomposition) | ${ X \rightarrow YZ }$ gir $X \rightarrow Y$
+IR-5 (additive) | ${ X \rightarrow Y, \, X \rightarrow Z }$ gir $X \rightarrow YZ$
+IR-6 (pseudotransitive) | ${ X \rightarrow Y, \, WY \rightarrow Z }$ gir $WX \rightarrow Z$
+$X, Y, Z, W \subseteq R$ (mengden av alle attributter)
 
-BOYCE-CODD NORMALFORM
+### 7.2.2. Full funksjonell avhengighet
+En funksjonell avhengighet $X \rightarrow Y$ er en full funksjonell avhengighet hvis det er umulig å fjerne et attributt, $A \in X$, og ha $(X - {A}) \rightarrow Y$. Kan tenkes på som at $X$ er en [minimal nøkkel](#72-nøkler) for $Y$.
 
-En tabell er på BCNF hvis det for alle ikke-trivielle funksjonelle avhengigheter X -> Y som gjelder for tabellen, er slik at X er en supernøkkel i tabellen.
+## 7.3. Tillukning
+Anta $F$ er en mengde funksjonelle avhengigheter. Tillukningen til $F$ er mengden av alle funksjonelle avhengigheter som kan utledes av $F$ og er gitt ved følgende
+$$F^+ = \{ X \rightarrow Y \,|\, X \rightarrow Y \text{ kan utledes fra FA-ene i F} \}$$
 
-tapsløst-join-egenskapen
+Anta $R$ og $F$, $X \subseteq R$. Tillukningen til $X$ er mengden av alle attributter som er funksjonelt avhengige av $X$ og er gitt ved følgende
+$$X^+ = \{ Y \in R \,|\, X \rightarrow Y \in F^+ \}$$
 
-## 7.4. Dekomponering
+## 7.4. Nøkler
 
+Begrep | Forklaring
+--- | ---
+Nøkkelattributt | Et attributt som inngår i en eller flere kandidatnøkler
+Ikke-nøkkelattributt | Et attributt som ikke inngår i noen kandidatnøkler
+Supernøkkel | En mengde attributter som sammen danner en unik identifikator
+Nøkkel/kandidatnøkkel | En minimal supernøkkel (inneholder ingen flere attributter enn nødvendig)
+Primærnøkkel | Primærnøkkelen velges blant kandidatnøklene
+Sekundærnøkkel | En kandidatnøkkel som ikke er primærnøkkel. Her kan vi velge å tillate `NULL`-verdier.
+
+## 7.5. Normalformer
+Alle høyere normalformer forutsetter de lavere normalformene.
+
+### 7.5.1. Første normalform - 1NF
+En tabell er på 1NF hvis og bare hvis alle attributter har **en enkelt verdi** fra domenet.
+
+### 7.5.2. Andre normalform - 2NF
+En tabell er på andre normalform hvis og bare hvis det ikke finnes noen ikke-nøkkelattributter som er delvis avhengig av en kandidatnøkkel.
+
+### 7.5.3. Tredje normalform - 3NF
+
+En tabell er på 3NF hvis og bare hvis det for alle tabellens funksjonelle avhengigheter på formen $X \rightarrow Y$ er slik at enten
+- X er en supernøkkel i tabellen, eller 
+- Y er et nøkkelattributt i tabellen.
+
+### 7.5.4. Boyce-Codd normalform - BCNF
+En tabell er på BCNF hvis og bare hvis det for alle tabellens funksjonelle avhengigheter på formen $X \rightarrow Y$, er slik at $X$ er en supernøkkel i tabellen.
+
+
+## 7.6. Kriterier ved relasjonsdatabasedesign
+
+Kriterium | Forklaring
+--- | ---
+Normalform | Ser på hver enkelt projeksjon, og ønsker så høy normalform som mulig.
+Attributtbevaring | Alle attributter i $R$ må finnes i minst en av projeksjonene, slik at den samme dataen kan lagres.
+Bevaring av funksjonelle avhengigheter | Alle funksjonelle avhengigheter i $F$ skal finnes i en eller flere $R_i$-er eller kunne utledes fra FA-ene som gjelder i $R_i$-ene.
+Tapsløs-join-egenskapen | Må kunne komme tilbake til utgangspunktet, og ikke kunne skape falske data. Kan sjekke hver oppdeling med felles-attributt-regelen, eller bruke tabellmetoden (algoritme 15.3 i læreboka). Felles-attributt-regelen: Dekomponeringen er ikke-additiv hvis felles attributter i $R_1$ og $R_2$ er en supernøkkel i en eller begge tabellene. Denne regelen vil ikke *alltid* gjelde, men det er sjeldent den gir feil svar.
