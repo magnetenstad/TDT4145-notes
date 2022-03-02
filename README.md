@@ -114,7 +114,7 @@ Foreleser i emnet foretrekker strukturelle restriksjoner
 
 Begrep | Forklaring
 --- | ---
-Kardinalitet | Ved bruk av 1 eller N på hver side av relasjonen antydes om relasjonen er en-til-en, en-til-mange eller mange-til-mange. Noteres på *motsatt side* av relasjonen som den aktuelle entiteten.
+Kardinalitet | Ved bruk av 1 eller N på hver side av relasjonen antydes om relasjonen er en-til-en, en-til-mange eller mange-til-mange. Noteres på *motsatt side* av relasjonen som den aktuelle entiteten. Enkel strek antyder delvis deltagelse (entitetene må ikke delta i relasjonen), dobbel strek antyder total deltagelse (entitetene må delta i relasjonen minst en gang).
 Strukturell restriksjon (*min*, *max*) | Antyder at en entitet opptrer i relasjonen minst *min* ganger og maks *max* ganger. Vanlige restriksjoner er (0, 1), (1, 1), (0, n) og (1, n). Noteres på *samme side* av relasjonen som den aktuelle entiteten.
 
 ## 3.2. Forekomstdiagram
@@ -508,4 +508,5 @@ Kriterium | Forklaring
 Normalform | Ser på hver enkelt projeksjon, og ønsker så høy normalform som mulig.
 Attributtbevaring | Alle attributter i $R$ må finnes i minst en av projeksjonene, slik at den samme dataen kan lagres.
 Bevaring av funksjonelle avhengigheter | Alle funksjonelle avhengigheter i $F$ skal finnes i en eller flere $R_i$-er eller kunne utledes fra FA-ene som gjelder i $R_i$-ene.
-Tapsløs-join-egenskapen | Må kunne komme tilbake til utgangspunktet, og ikke kunne skape falske data. Kan sjekke hver oppdeling med felles-attributt-regelen, eller bruke tabellmetoden (algoritme 15.3 i læreboka). Felles-attributt-regelen: Dekomponeringen er ikke-additiv hvis felles attributter i $R_1$ og $R_2$ er en supernøkkel i en eller begge tabellene. Denne regelen vil ikke *alltid* gjelde, men det er sjeldent den gir feil svar.
+Tapsløs-join-egenskapen | Må kunne komme tilbake til utgangspunktet, og ikke kunne skape falske data. Kan sikres ved å sjekke hver oppdeling med felles-attributt-regelen, eller bruke tabellmetoden (algoritme 15.3 i læreboka).
+Felles-attributt-regelen | Dekomponeringen har tapsløs-join-egenskapen hvis felles attributter i $R_1$ og $R_2$ er en supernøkkel i en eller begge tabellene. Dvs. at dersom $R_1 \cap R_2 \rightarrow R_1$ eller $R_1 \cap R_2 \rightarrow R_2$, har dekomponeringen tapsløs-join-egenskapen.
