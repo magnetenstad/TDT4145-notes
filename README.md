@@ -50,8 +50,8 @@ Følgende notater dekker første halvdel av faget.
   - [7.2. Funksjonelle avhengigheter](#72-funksjonelle-avhengigheter)
     - [7.2.1. Utledningsregler](#721-utledningsregler)
     - [7.2.2. Full funksjonell avhengighet](#722-full-funksjonell-avhengighet)
-    - [Fler-verdi-avhengigheter - MVD](#fler-verdi-avhengigheter---mvd)
-      - [Trivielle fler-verdi-avhengigheter](#trivielle-fler-verdi-avhengigheter)
+    - [7.2.3. Fler-verdi-avhengigheter - MVD](#723-fler-verdi-avhengigheter---mvd)
+      - [7.2.3.1. Trivielle fler-verdi-avhengigheter](#7231-trivielle-fler-verdi-avhengigheter)
   - [7.3. Tillukning](#73-tillukning)
   - [7.4. Nøkler](#74-nøkler)
   - [7.5. Normalformer](#75-normalformer)
@@ -475,13 +475,13 @@ $X, Y, Z, W \subseteq R$ (mengden av alle attributter)
 ### 7.2.2. Full funksjonell avhengighet
 En funksjonell avhengighet $X \rightarrow Y$ er en full funksjonell avhengighet hvis det er umulig å fjerne et attributt, $A \in X$, og ha $(X - {A}) \rightarrow Y$. Kan tenkes på som at $X$ er en [minimal nøkkel](#72-nøkler) for $Y$.
 
-### Fler-verdi-avhengigheter - MVD
-Gitt $X, Y$ som er delmengder av $R$. En fler-verdi-avhengighet (multi-value dependency, MVD) $X \twoheadrightarrow Y$ betyr at mengden $Y$-verdier som er assosiert med en $X$-verdi bestemmes av $X$ og er uavhengig av andre attributter.
+### 7.2.3. Fler-verdi-avhengigheter - MVD
+La $X, Y$ være delmengder av $R$. En fler-verdi-avhengighet $X \twoheadrightarrow Y$ betyr at mengden $Y$-verdier som er assosiert med en $X$-verdi bestemmes av $X$ og er uavhengig av andre attributter. Dette kalles også for en MVD (multi-value dependency).
 
 Eksempel: I en tabell over hvilke hobbyer personer har $\text{Hobbyer(PersonNummer, Hobby)}$ er $\text{PersonNummer} \twoheadrightarrow \text{Hobby}$. "En person kan ha en eller flere hobbyer".
 
-#### Trivielle fler-verdi-avhengigheter
-$X \twoheadrightarrow Y$ er triviell hvis $Y$ er en delmengde av $X$ eller $X \cup Y = R$. Trivielle MVD-er gir ingen restriksjon.
+#### 7.2.3.1. Trivielle fler-verdi-avhengigheter
+$X \twoheadrightarrow Y$ er triviell hvis $Y$ er en delmengde av $X$ eller $X \cup Y = R$. Trivielle MVD-er utelates restriksjoner i 4NF.
 
 ## 7.3. Tillukning
 Anta $F$ er en mengde funksjonelle avhengigheter. Tillukningen til $F$ er mengden av alle funksjonelle avhengigheter som kan utledes av $F$ og er gitt ved følgende
