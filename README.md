@@ -476,9 +476,9 @@ $X, Y, Z, W \subseteq R$ (mengden av alle attributter)
 En funksjonell avhengighet $X \rightarrow Y$ er en full funksjonell avhengighet hvis det er umulig å fjerne et attributt, $A \in X$, og ha $(X - {A}) \rightarrow Y$. Kan tenkes på som at $X$ er en [minimal nøkkel](#72-nøkler) for $Y$.
 
 ### 7.2.3. Fler-verdi-avhengigheter - MVD
-La $X, Y$ være delmengder av $R$. En fler-verdi-avhengighet $X \twoheadrightarrow Y$ betyr at mengden $Y$-verdier som er assosiert med en $X$-verdi bestemmes av $X$ og er uavhengig av andre attributter. Dette kalles også for en MVD (multi-value dependency).
+La $X, Y$ være delmengder av $R$. En fler-verdi-avhengighet $X \twoheadrightarrow Y$ betyr at mengden $Y$-verdier som er assosiert med en $X$-verdi bestemmes av $X$ og som er uavhengig av andre attributter. Dette kalles også for en MVD (multi-value dependency).
 
-Eksempel: I en tabell over hvilke hobbyer personer har $\text{Hobbyer(PersonNummer, Hobby)}$ er $\text{PersonNummer} \twoheadrightarrow \text{Hobby}$. "En person kan ha en eller flere hobbyer".
+Eksempel: I en tabell over hvilke hobbyer personer har $\text{Hobbyer(PersonNummer, Hobby)}$ er $\text{PersonNummer} \twoheadrightarrow \text{Hobby}$. Det er en mengde Hobby-verdier som er assosiert med en PersonNummer-verdi og uavhengig av andre attributter.
 
 #### 7.2.3.1. Trivielle fler-verdi-avhengigheter
 $X \twoheadrightarrow Y$ er triviell hvis $Y$ er en delmengde av $X$ eller $X \cup Y = R$. Trivielle MVD-er utelates restriksjoner i 4NF.
