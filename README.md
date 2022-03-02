@@ -50,6 +50,8 @@ Følgende notater dekker første halvdel av faget.
   - [7.2. Funksjonelle avhengigheter](#72-funksjonelle-avhengigheter)
     - [7.2.1. Utledningsregler](#721-utledningsregler)
     - [7.2.2. Full funksjonell avhengighet](#722-full-funksjonell-avhengighet)
+    - [Fler-verdi-avhengigheter - MVD](#fler-verdi-avhengigheter---mvd)
+      - [Trivielle fler-verdi-avhengigheter](#trivielle-fler-verdi-avhengigheter)
   - [7.3. Tillukning](#73-tillukning)
   - [7.4. Nøkler](#74-nøkler)
   - [7.5. Normalformer](#75-normalformer)
@@ -57,12 +59,14 @@ Følgende notater dekker første halvdel av faget.
     - [7.5.2. Andre normalform - 2NF](#752-andre-normalform---2nf)
     - [7.5.3. Tredje normalform - 3NF](#753-tredje-normalform---3nf)
     - [7.5.4. Boyce-Codd normalform - BCNF](#754-boyce-codd-normalform---bcnf)
-  - [7.6. Kriterier ved relasjonsdatabasedesign](#76-kriterier-ved-relasjonsdatabasedesign)
+    - [7.5.5. Fjerde normalform - 4NF](#755-fjerde-normalform---4nf)
+  - [7.6. Dekomponeringskriterier](#76-dekomponeringskriterier)
+    - [7.6.1. Regler for tapsløs join](#761-regler-for-tapsløs-join)
 
 # 3. Datamodellering
 Begrep | Forklaring
 --- | ---
-Miniverden | Domenet. De konseptene fra virkeligheten som skal modelleres.
+Miniverden | De konseptene fra virkeligheten som skal modelleres.
 Datamodell | Et sett begreper for å beskrive struktur (hvilke typer data, sammenheger og restriksjoner) og operasjoner (handlinger på data: innsetting, endring, sletting og spørring)
 Konseptuelle modeller | For å forstå og dokumentere. For eksempel ER-modeller.
 Implementasjonsmodeller | For å realisere. For eksempel relasjonsdatabasemodeller.
@@ -75,10 +79,10 @@ Selvbeskrivende DBMS | Inneholder både data og beskrivelser om dataen (metadata
 Selvbeskrivende datamodeller | Inkluderer databeskrivelser i selve dataen. For eksempel XML og JSON.
 Program-data uavhengighet | En egenskap som går ut på at strukturendring i datafil ikke medfører at man må endre programmene som har tilgang til dataen.
 Flerbrukersstøtte | Flere brukere kan hente ut og lagre data samtidig uten problemer.
-Entitetsintegritet | Tilsier at en primærnøkkel ikke kan være `NULL`.
-Referanseintegritet | Tilsier at fremmednøkkelen mot en tabell må referere til en eksisterende rad i den tabellen.
+Entitetsintegritet | Alle relasjonsskjemaer skal ha en primærnøkkel. Primærnøkler må være unike og kan ikke være `NULL`.
+Referanseintegritet | Hvis en fremmednøkkel ikke er `NULL`, må den referere til en eksisterende rad i den tabellen den peker mot.
 Databasetilstand | Database-forekomsten (dataene) på et gitt tidspunkt.
-Konsistent databasetilstand | At databasen tilfredsstiller alle integritetsregler (reglene i miniverdenen).
+Konsistent databasetilstand | At databasen tilfredsstiller alle integritetsregler og relevante reglene fra miniverdenen.
 Transaksjon | En serie operasjoner på en database som sammen bevarer databasens konsistens.
 
 ## 3.1. ER-modellering
@@ -100,7 +104,7 @@ Enkel attributt (Standard) | Ingen | Attributt
 Flerverdiattributt | Dobbel linje | Kan holde flere verdier
 Sammensatt attributt | Har egne subattributter | Har egne subattributter
 Avledet attributt | Stiplet linje | Kan avledes fra andre attributter, trenger ikke lagres eksplisitt
-Nøkkelattributt | Understreket | Entydig identifikator for entiteten
+Nøkkelattributt | Understreket | Identifikator for entiteten
 
 ### 3.1.3. Relasjoner og relasjonsklasser
 Begrep | Forklaring
@@ -127,7 +131,7 @@ Begrep | Forklaring
 Superklasse-subklasserelasjon | Subklassene *arver* egenskapene (attributter og relasjoner) til superklassen, men kan også ha særegne attributter og relasjoner. En subklasse er en delmengde av den tilhørende superklassen.
 Total spesialisering | Alle entiteter i superklassen må delta i minst en subklasse. Noteres med dobbel strek.
 Overlappende subklasser | En entitet i superklassen kan delta i flere enn en subklasse. Noteres med O eller mangel på notasjon. 
-Distinke subklasser | En entitet i superklassen kan *ikke* delta i flere enn en subklasse. Noteres med D. 
+Distinkte subklasser | En entitet i superklassen kan *ikke* delta i flere enn en subklasse. Noteres med D. 
 
 En entitet kan delta i | **Disjunkt** | **Overlappende**
 --- | --- | ---
@@ -171,15 +175,15 @@ Differanse | $-(\text{A, B})$ | Returnerer radene i A som ikke er i B. Krever li
 Kartesisk produkt | $\text{X}(\text{A, B})$ | Kombinerer alle rader i A med alle rader i B.
 Indre join | $\Join_{\text{Betingelse}}(\text{A, B})$ | Kombinerer radene i A og B som sammen oppfyller betingelsen.
 Naturlig join | $*(\text{A, B})$ | Kombinerer radene i A og B der alle kolonner i A og B med samme navn også har samme verdi.
-Venstre ytre join | $=\Join_{\text{Betingelse}}(\text{A, B})$ | Returnerer alle rader i A, og de kombinerte radene i A og B som sammen oppfyller betingelsen.
-Høyre ytre join | $\Join=_{\text{Betingelse}}(\text{A, B})$ | Returnerer alle rader i B, og de kombinerte radene i A og B som sammen oppfyller betingelsen.
-Full ytre join | $=\Join=_{\text{Betingelse}}(\text{A, B})$ | Returnerer alle rader i A og B, og de kombinerte radene i A og B som sammen oppfyller betingelsen.
+Venstre ytre join | $=\Join_{\text{Betingelse}}(\text{A, B})$ | Kombinerer radene i A og B som sammen oppfyller betingelsen, men inkluderer også resten av radene i A (med `NULL`-verdier i nye kolonner).
+Høyre ytre join | $\Join=_{\text{Betingelse}}(\text{A, B})$ | Kombinerer radene i A og B som sammen oppfyller betingelsen, men inkluderer også resten av radene i B (med `NULL`-verdier i nye kolonner).
+Full ytre join | $=\Join=_{\text{Betingelse}}(\text{A, B})$ | Kombinerer radene i A og B som sammen oppfyller betingelsen, men inkluderer også resten av radene i A og B (med `NULL`-verdier i nye kolonner).
 Omdøping | $\rho_{Tabellnavn(Attributtnavn..)}(\text{A})$ | Returnerer en ny tabell med nye kolonnenavn.
 Sortering | $\uparrow \downarrow_{Attributt..}(A)$ | Returnerer en tabell der radene er sortert etter de oppgitte attributtene. Man kan spesifisere ASC (stigende) eller DESC (synkende) rekkefølge.
 
 ## 5.2. Gruppering og aggregering
-
-$F_{\text{Grupperingsattributter, Aggregeringsfunksjoner}}(A)$
+Gjør utregninger "per gruppe".
+$$F_{\text{Grupperingsattributter, Aggregeringsfunksjoner}}(A)$$
 Visualisert med graf plasseres grupperingsattributtene på venstre side og aggregeringsfunksjonene på høyre side. Man kan også definere et alias med $\text{AS}$. Eksempel: La $\text{A = Bilde(Fotograf, Motiv)}$ Da vil $F_{\text{Fotograf, COUNT(Motiv) AS AntallMotiver}}(A)$ returnere en tabell $\text{Bilde(Fotograf, AntallMotiver)}$ med antall motiver hver fotograf har avbildet.
 
 Funksjon | Forklaring
@@ -260,6 +264,12 @@ Operator |
 `=`, `!=`, `<`, `>`, `<=`, `>=` |
 
 Merk: `<>` er det samme som `!=`
+```sql
+-- Finner personnummer og navn for personer over 20
+SELECT Pnr, Navn
+FROM Person
+WHERE Alder > 20
+```
 
 ### 6.3.2. Fjerne duplikater - `DISTINCT`
 ```sql
@@ -437,7 +447,8 @@ Applikasjonsbaserte restriksjoner (business rules) | Må håndteres utenfor data
 
 Notasjon | Forklaring
 --- | ---
-$R(A, B, ...)$ | Skjema for tabellen
+$R(A, B, ...)$ | Skjema for tabellen. A, B, ... er attributter.
+$X \rightarrow Y$ | $Y$ er funksjonelt avhengig av $X$
 $r(R)$ | Tabellforekomsten
 $t_i \in r(R)$ | Rad i tabellforekomsten
 $t_i[A]$ | Radens verdi for attributtet $A$
@@ -463,6 +474,14 @@ $X, Y, Z, W \subseteq R$ (mengden av alle attributter)
 
 ### 7.2.2. Full funksjonell avhengighet
 En funksjonell avhengighet $X \rightarrow Y$ er en full funksjonell avhengighet hvis det er umulig å fjerne et attributt, $A \in X$, og ha $(X - {A}) \rightarrow Y$. Kan tenkes på som at $X$ er en [minimal nøkkel](#72-nøkler) for $Y$.
+
+### Fler-verdi-avhengigheter - MVD
+Gitt $X, Y$ som er delmengder av $R$. En fler-verdi-avhengighet (multi-value dependency, MVD) $X \twoheadrightarrow Y$ betyr at mengden $Y$-verdier som er assosiert med en $X$-verdi bestemmes av $X$ og er uavhengig av andre attributter.
+
+Eksempel: I en tabell over hvilke hobbyer personer har $\text{Hobbyer(PersonNummer, Hobby)}$ er $\text{PersonNummer} \twoheadrightarrow \text{Hobby}$. "En person kan ha en eller flere hobbyer".
+
+#### Trivielle fler-verdi-avhengigheter
+$X \twoheadrightarrow Y$ er triviell hvis $Y$ er en delmengde av $X$ eller $X \cup Y = R$. Trivielle MVD-er gir ingen restriksjon.
 
 ## 7.3. Tillukning
 Anta $F$ er en mengde funksjonelle avhengigheter. Tillukningen til $F$ er mengden av alle funksjonelle avhengigheter som kan utledes av $F$ og er gitt ved følgende
@@ -492,7 +511,6 @@ En tabell er på 1NF hvis og bare hvis alle attributter har **en enkelt verdi** 
 En tabell er på andre normalform hvis og bare hvis det ikke finnes noen ikke-nøkkelattributter som er delvis avhengig av en kandidatnøkkel.
 
 ### 7.5.3. Tredje normalform - 3NF
-
 En tabell er på 3NF hvis og bare hvis det for alle tabellens funksjonelle avhengigheter på formen $X \rightarrow Y$ er slik at enten
 - X er en supernøkkel i tabellen, eller 
 - Y er et nøkkelattributt i tabellen.
@@ -500,13 +518,20 @@ En tabell er på 3NF hvis og bare hvis det for alle tabellens funksjonelle avhen
 ### 7.5.4. Boyce-Codd normalform - BCNF
 En tabell er på BCNF hvis og bare hvis det for alle tabellens funksjonelle avhengigheter på formen $X \rightarrow Y$, er slik at $X$ er en supernøkkel i tabellen.
 
+### 7.5.5. Fjerde normalform - 4NF
+En tabell er på 4NF hvis og bare hvis det for alle ikke-trivielle MVD-er $X \twoheadrightarrow Y$, er slik at $X$ er en supernøkkel.
 
-## 7.6. Kriterier ved relasjonsdatabasedesign
-
-Kriterium | Forklaring
+## 7.6. Dekomponeringskriterier
+Dekomponeringskriterium | Forklaring
 --- | ---
-Normalform | Ser på hver enkelt projeksjon, og ønsker så høy normalform som mulig.
+Normalform | Ser på hver enkelt projeksjon (tabell), og ønsker så høy normalform som mulig.
 Attributtbevaring | Alle attributter i $R$ må finnes i minst en av projeksjonene, slik at den samme dataen kan lagres.
 Bevaring av funksjonelle avhengigheter | Alle funksjonelle avhengigheter i $F$ skal finnes i en eller flere $R_i$-er eller kunne utledes fra FA-ene som gjelder i $R_i$-ene.
-Tapsløs-join-egenskapen | Må kunne komme tilbake til utgangspunktet, og ikke kunne skape falske data. Kan sikres ved å sjekke hver oppdeling med felles-attributt-regelen, eller bruke tabellmetoden (algoritme 15.3 i læreboka).
-Felles-attributt-regelen | Dekomponeringen har tapsløs-join-egenskapen hvis felles attributter i $R_1$ og $R_2$ er en supernøkkel i en eller begge tabellene. Dvs. at dersom $R_1 \cap R_2 \rightarrow R_1$ eller $R_1 \cap R_2 \rightarrow R_2$, har dekomponeringen tapsløs-join-egenskapen.
+Tapsløs-join-egenskapen | Må kunne komme tilbake til utgangspunktet, og ikke kunne skape falske data. Kan sikres ved å sjekke hver oppdeling med snittregelen, eller bruke tabellmetoden (algoritme 15.3 i læreboka).
+
+### 7.6.1. Regler for tapsløs join
+Begrep | Forklaring
+--- | ---
+Tabellmetoden | (algoritme 15.3 i læreboka)
+Snittregelen | Dekomponeringen har tapsløs-join-egenskapen hvis felles attributter (snittet) i $R_1$ og $R_2$ er en supernøkkel i en eller begge tabellene: $R_1 \cap R_2 \rightarrow R_1$ eller $R_1 \cap R_2 \rightarrow R_2$.
+Fagins teorem | La $A, B$ være delmengder av $R$ og la $C = R - AB$. Projeksjonene $AB$ og $AC$ har tapsløs-join-egenskapen hvis og bare hvis $A \twoheadrightarrow B$ eller $A \twoheadrightarrow C$.

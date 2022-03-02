@@ -1155,13 +1155,13 @@ until X+ = oldX+;
 - Started med R og F. Finner en dekomponering i tabeller (projeksjoner) som kan lagre det samme og har bedre egenskaper.
 
 1. Normalform
-  - Ser på hver enkelt tabell (projeksjon) for seg
+   - Ser på hver enkelt tabell (projeksjon) for seg
 2. Attributtbevaring
-  - Kan lagre det samme
+   - Kan lagre det samme
 3. Bevaring av funksjonelle avhengigheter
-  - Beholde samme restriksjon, enkelt
+   - Beholde samme restriksjon, enkelt
 4. Tapsløs sammenstilling til utgangspunktet
-  - Ikke skape "falske data"
+   - Ikke skape "falske data"
 
 ### Attributtbevaring
 - Alle attributter i R må finnes i minst en av projeksjonene
@@ -1199,3 +1199,26 @@ until X+ = oldX+;
 
 ![](assets/video/20/4.png)
 
+## Video-21-normalisering-mvd-4nf
+- 3NF / BCNF kan ha redundansutfordringer
+
+### Fler-verdi-avhengigheter
+Gitt $X, Y$ som er delmengder av $R$. En fler-verdi-avhengighet (multi-value dependency, MVD) $X \twoheadrightarrow Y$ betyr at mengden $Y$-verdier som er assosiert med en $X$-verdi bestemmes av $X$ og er uavhengig av andre attributter.
+
+Eksempel: I $\text{Hobbyer(PersonNummer, Hobby)}$ er $\text{PersonNummer} \twoheadrightarrow \text{Hobby}$. "En person kan ha en eller flere hobbyer".
+
+- Alle FA-er er MVD-er
+- MVD-er kommer ofte i par (?)
+
+#### Trivielle fler-verdi-avhengigheter
+- $X \twoheadrightarrow Y$ er triviell hvis $Y$ er en delmengde av $X$ eller $X \cup Y = R$
+  - Trivielle MVD-er gir ingen restriksjon
+
+### Fjerde normalform - 4NF
+En tabell er på 4NF hvis og bare hvis det for alle ikke-trivielle MVD-er $X \twoheadrightarrow Y$, er slik at $X$ er en supernøkkel.
+
+### Fagins teorem
+La $A, B$ være delmengder av $R$ og la $C = R - AB$. Projeksjonene $AB$ og $AC$ har tapsløs-join-egenskapen hvis og bare hvis $A \twoheadrightarrow B$ eller $A \twoheadrightarrow C$.
+
+### Oppgave
+![](assets/video/21/1.png)
