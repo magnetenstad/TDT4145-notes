@@ -131,7 +131,7 @@ Begrep | Forklaring
 Superklasse-subklasserelasjon | Subklassene *arver* egenskapene (attributter og relasjoner) til superklassen, men kan også ha særegne attributter og relasjoner. En subklasse er en delmengde av den tilhørende superklassen.
 Total spesialisering | Alle entiteter i superklassen må delta i minst en subklasse. Noteres med dobbel strek.
 Overlappende subklasser | En entitet i superklassen kan delta i flere enn en subklasse. Noteres med O eller mangel på notasjon. 
-Distinkte subklasser | En entitet i superklassen kan *ikke* delta i flere enn en subklasse. Noteres med D. 
+Disjunkte subklasser | En entitet i superklassen kan *ikke* delta i flere enn en subklasse. Noteres med D. 
 
 En entitet kan delta i | **Disjunkt** | **Overlappende**
 --- | --- | ---
