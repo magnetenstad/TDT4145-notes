@@ -2,6 +2,8 @@
 # 1. TDT4145 - Datamodellering og databasesystemer
 Følgende notater dekker første halvdel av faget.
 
+> Oppdaterte notater finner du [her](https://magne.dev/docs/courses/tdt4145).
+
 # 2. Innholdsfortegnelse
 - [1. TDT4145 - Datamodellering og databasesystemer](#1-tdt4145---datamodellering-og-databasesystemer)
 - [2. Innholdsfortegnelse](#2-innholdsfortegnelse)
